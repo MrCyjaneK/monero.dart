@@ -1,0 +1,24 @@
+name: monero
+description: Dart library for monero
+version: 0.0.0
+repository: https://git.mrcyjanek.net/mrcyjanek/monero.dart
+publish_to: https://git.mrcyjanek.net/api/packages/mrcyjanek/pub
+
+environment:
+  sdk: ^3.2.3
+
+dependencies:
+  ffi: ^2.1.0
+
+dev_dependencies:
+  lints: ^2.1.0
+  test: ^1.24.0
+  ffigen: ^10.0.0
+
+ffigen:
+  name: MoneroC
+  description: monero_c bindings
+  output: 'lib/src/generated_bindings.g.dart'
+  headers:
+    entry-points:
+      - 'wallet2_api_c.h'
