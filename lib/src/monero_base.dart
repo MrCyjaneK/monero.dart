@@ -344,6 +344,30 @@ bool MONERO_Wallet_init(
   return s;
 }
 
+int MONERO_Wallet_getRefreshFromBlockHeight(MONERO_wallet wallet_ptr) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  return lib.MONERO_Wallet_getRefreshFromBlockHeight(wallet_ptr);
+}
+
+bool MONERO_Wallet_connectToDaemon(MONERO_wallet wallet_ptr) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  return lib.MONERO_Wallet_connectToDaemon(wallet_ptr);
+}
+
+int MONERO_Wallet_connected(MONERO_wallet wallet_ptr) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  return lib.MONERO_Wallet_connected(wallet_ptr);
+}
+
+bool MONERO_Wallet_setProxy(MONERO_wallet wallet_ptr,
+    {required String address}) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final address_ = address.toNativeUtf8().cast<Char>();
+  final s = lib.MONERO_Wallet_setProxy(wallet_ptr, address_);
+  calloc.free(address_);
+  return s;
+}
+
 int MONERO_Wallet_balance(MONERO_wallet wallet_ptr,
     {required int accountIndex}) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
@@ -736,4 +760,11 @@ class LogLevel {
   int get LogLevel_4 => lib.LogLevel_4;
   int get LogLevel_Min => LogLevel_Silent;
   int get LogLevel_Max => lib.LogLevel_4;
+}
+
+class ConnectionStatus {
+  late final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  int get Disconnected => lib.ConnectionStatus_Disconnected;
+  int get Connected => lib.ConnectionStatus_Connected;
+  int get WrongVersion => lib.ConnectionStatus_WrongVersion;
 }

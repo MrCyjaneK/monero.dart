@@ -430,6 +430,30 @@ class MoneroC {
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
+  late final ffi.Pointer<ffi.Int> _ConnectionStatus_Disconnected =
+      _lookup<ffi.Int>('ConnectionStatus_Disconnected');
+
+  int get ConnectionStatus_Disconnected => _ConnectionStatus_Disconnected.value;
+
+  set ConnectionStatus_Disconnected(int value) =>
+      _ConnectionStatus_Disconnected.value = value;
+
+  late final ffi.Pointer<ffi.Int> _ConnectionStatus_Connected =
+      _lookup<ffi.Int>('ConnectionStatus_Connected');
+
+  int get ConnectionStatus_Connected => _ConnectionStatus_Connected.value;
+
+  set ConnectionStatus_Connected(int value) =>
+      _ConnectionStatus_Connected.value = value;
+
+  late final ffi.Pointer<ffi.Int> _ConnectionStatus_WrongVersion =
+      _lookup<ffi.Int>('ConnectionStatus_WrongVersion');
+
+  int get ConnectionStatus_WrongVersion => _ConnectionStatus_WrongVersion.value;
+
+  set ConnectionStatus_WrongVersion(int value) =>
+      _ConnectionStatus_WrongVersion.value = value;
+
   ffi.Pointer<ffi.Char> MONERO_Wallet_seed(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -627,6 +651,66 @@ class MoneroC {
           bool,
           bool,
           ffi.Pointer<ffi.Char>)>();
+
+  int MONERO_Wallet_getRefreshFromBlockHeight(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_Wallet_getRefreshFromBlockHeight(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_Wallet_getRefreshFromBlockHeightPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Wallet_getRefreshFromBlockHeight');
+  late final _MONERO_Wallet_getRefreshFromBlockHeight =
+      _MONERO_Wallet_getRefreshFromBlockHeightPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Void>)>();
+
+  bool MONERO_Wallet_connectToDaemon(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_Wallet_connectToDaemon(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_Wallet_connectToDaemonPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Wallet_connectToDaemon');
+  late final _MONERO_Wallet_connectToDaemon = _MONERO_Wallet_connectToDaemonPtr
+      .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
+
+  int MONERO_Wallet_connected(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_Wallet_connected(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_Wallet_connectedPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Wallet_connected');
+  late final _MONERO_Wallet_connected = _MONERO_Wallet_connectedPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Void>)>();
+
+  bool MONERO_Wallet_setProxy(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> address,
+  ) {
+    return _MONERO_Wallet_setProxy(
+      wallet_ptr,
+      address,
+    );
+  }
+
+  late final _MONERO_Wallet_setProxyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_setProxy');
+  late final _MONERO_Wallet_setProxy = _MONERO_Wallet_setProxyPtr.asFunction<
+      bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   int MONERO_Wallet_balance(
     ffi.Pointer<ffi.Void> wallet_ptr,
