@@ -19,9 +19,14 @@ int MONERO_PendingTransaction_status(MONERO_PendingTransaction pendingTx_ptr) {
 String MONERO_PendingTransaction_errorString(
     MONERO_PendingTransaction pendingTx_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_PendingTransaction_errorString(pendingTx_ptr)
-      .cast<Utf8>()
-      .toDartString();
+  try {
+    return lib.MONERO_PendingTransaction_errorString(pendingTx_ptr)
+        .cast<Utf8>()
+        .toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 bool MONERO_PendingTransaction_commit(MONERO_PendingTransaction pendingTx_ptr,
@@ -100,9 +105,14 @@ int MONERO_TransactionInfo_blockHeight(MONERO_TransactionInfo pendingTx_ptr) {
 String MONERO_TransactionInfo_description(
     MONERO_TransactionInfo pendingTx_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_TransactionInfo_description(pendingTx_ptr)
-      .cast<Utf8>()
-      .toDartString();
+  try {
+    return lib.MONERO_TransactionInfo_description(pendingTx_ptr)
+        .cast<Utf8>()
+        .toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 int MONERO_TransactionInfo_subaddrAccount(
@@ -113,9 +123,14 @@ int MONERO_TransactionInfo_subaddrAccount(
 
 String MONERO_TransactionInfo_label(MONERO_TransactionInfo pendingTx_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_TransactionInfo_label(pendingTx_ptr)
-      .cast<Utf8>()
-      .toDartString();
+  try {
+    return lib.MONERO_TransactionInfo_label(pendingTx_ptr)
+        .cast<Utf8>()
+        .toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 int MONERO_TransactionInfo_confirmations(MONERO_TransactionInfo pendingTx_ptr) {
@@ -130,9 +145,14 @@ int MONERO_TransactionInfo_unlockTime(MONERO_TransactionInfo pendingTx_ptr) {
 
 String MONERO_TransactionInfo_hash(MONERO_TransactionInfo pendingTx_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_TransactionInfo_hash(pendingTx_ptr)
-      .cast<Utf8>()
-      .toDartString();
+  try {
+    return lib.MONERO_TransactionInfo_hash(pendingTx_ptr)
+        .cast<Utf8>()
+        .toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 int MONERO_TransactionInfo_timestamp(MONERO_TransactionInfo pendingTx_ptr) {
@@ -142,9 +162,14 @@ int MONERO_TransactionInfo_timestamp(MONERO_TransactionInfo pendingTx_ptr) {
 
 String MONERO_TransactionInfo_paymentId(MONERO_TransactionInfo pendingTx_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_TransactionInfo_paymentId(pendingTx_ptr)
-      .cast<Utf8>()
-      .toDartString();
+  try {
+    return lib.MONERO_TransactionInfo_paymentId(pendingTx_ptr)
+        .cast<Utf8>()
+        .toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 // TransactionHistory
@@ -194,8 +219,12 @@ bool MONERO_isLibOk() {
 String MONERO_Wallet_seed(MONERO_wallet wallet_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final c = lib.MONERO_Wallet_seed(wallet_ptr);
-  final s = c.cast<Utf8>().toDartString();
-  return s;
+  try {
+    return c.cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 int MONERO_Wallet_status(MONERO_wallet wallet_ptr) {
@@ -206,44 +235,68 @@ int MONERO_Wallet_status(MONERO_wallet wallet_ptr) {
 String MONERO_Wallet_errorString(MONERO_wallet wallet_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final c = lib.MONERO_Wallet_errorString(wallet_ptr);
-  final s = c.cast<Utf8>().toDartString();
-  return s;
+  try {
+    return c.cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 String MONERO_Wallet_address(MONERO_wallet wallet_ptr,
     {int accountIndex = 0, int addressIndex = 0}) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final c = lib.MONERO_Wallet_address(wallet_ptr, accountIndex, addressIndex);
-  final s = c.cast<Utf8>().toDartString();
-  return s;
+  try {
+    return c.cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 String MONERO_Wallet_secretViewKey(MONERO_wallet wallet_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final c = lib.MONERO_Wallet_secretViewKey(wallet_ptr);
-  final s = c.cast<Utf8>().toDartString();
-  return s;
+  try {
+    return c.cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 String MONERO_Wallet_publicViewKey(MONERO_wallet wallet_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final c = lib.MONERO_Wallet_publicViewKey(wallet_ptr);
-  final s = c.cast<Utf8>().toDartString();
-  return s;
+  try {
+    return c.cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 String MONERO_Wallet_secretSpendKey(MONERO_wallet wallet_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final c = lib.MONERO_Wallet_secretSpendKey(wallet_ptr);
-  final s = c.cast<Utf8>().toDartString();
-  return s;
+  try {
+    return c.cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 String MONERO_Wallet_publicSpendKey(MONERO_wallet wallet_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final c = lib.MONERO_Wallet_publicSpendKey(wallet_ptr);
-  final s = c.cast<Utf8>().toDartString();
-  return s;
+  try {
+    return c.cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 void MONERO_Wallet_stop(MONERO_wallet wallet_ptr) {
@@ -335,7 +388,12 @@ bool MONERO_Wallet_synchronized(MONERO_wallet wallet_ptr) {
 
 String MONERO_Wallet_displayAmount(int amount) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_Wallet_displayAmount(amount).cast<Utf8>().toDartString();
+  try {
+    return lib.MONERO_Wallet_displayAmount(amount).cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 bool MONERO_Wallet_addressValid(String address) {
@@ -432,10 +490,15 @@ int MONERO_Wallet_numSubaddresses(MONERO_wallet wallet_ptr,
 String MONERO_Wallet_getSubaddressLabel(MONERO_wallet wallet_ptr,
     {required int accountIndex, required int addressIndex}) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_Wallet_getSubaddressLabel(
-          wallet_ptr, accountIndex, addressIndex)
-      .cast<Utf8>()
-      .toDartString();
+  try {
+    return lib.MONERO_Wallet_getSubaddressLabel(
+            wallet_ptr, accountIndex, addressIndex)
+        .cast<Utf8>()
+        .toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 void MONERO_Wallet_setSubaddressLabel(MONERO_wallet wallet_ptr,
@@ -612,7 +675,12 @@ bool MONERO_WalletManager_walletExists(String path) {
 
 String MONERO_WalletManager_errorString() {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_WalletManager_errorString().cast<Utf8>().toDartString();
+  try {
+    return lib.MONERO_WalletManager_errorString().cast<Utf8>().toDartString();
+  } catch (e) {
+    print(e);
+    return "";
+  }
 }
 
 void MONERO_WalletManager_setDaemonAddress(String address) {
