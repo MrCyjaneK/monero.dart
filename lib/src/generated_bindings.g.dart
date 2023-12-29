@@ -1358,56 +1358,45 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, bool)>();
 
   bool MONERO_WalletManager_walletExists(
-    ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> path,
   ) {
     return _MONERO_WalletManager_walletExists(
-      wallet_ptr,
       path,
     );
   }
 
-  late final _MONERO_WalletManager_walletExistsPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Bool Function(ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Char>)>>('MONERO_WalletManager_walletExists');
+  late final _MONERO_WalletManager_walletExistsPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Char>)>>(
+          'MONERO_WalletManager_walletExists');
   late final _MONERO_WalletManager_walletExists =
       _MONERO_WalletManager_walletExistsPtr.asFunction<
-          bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+          bool Function(ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> MONERO_WalletManager_errorString(
-    ffi.Pointer<ffi.Void> wallet_ptr,
-  ) {
-    return _MONERO_WalletManager_errorString(
-      wallet_ptr,
-    );
+  ffi.Pointer<ffi.Char> MONERO_WalletManager_errorString() {
+    return _MONERO_WalletManager_errorString();
   }
 
-  late final _MONERO_WalletManager_errorStringPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Void>)>>('MONERO_WalletManager_errorString');
+  late final _MONERO_WalletManager_errorStringPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'MONERO_WalletManager_errorString');
   late final _MONERO_WalletManager_errorString =
       _MONERO_WalletManager_errorStringPtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
+          ffi.Pointer<ffi.Char> Function()>();
 
   void MONERO_WalletManager_setDaemonAddress(
-    ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> address,
   ) {
     return _MONERO_WalletManager_setDaemonAddress(
-      wallet_ptr,
       address,
     );
   }
 
-  late final _MONERO_WalletManager_setDaemonAddressPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Char>)>>('MONERO_WalletManager_setDaemonAddress');
+  late final _MONERO_WalletManager_setDaemonAddressPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
+          'MONERO_WalletManager_setDaemonAddress');
   late final _MONERO_WalletManager_setDaemonAddress =
       _MONERO_WalletManager_setDaemonAddressPtr.asFunction<
-          void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+          void Function(ffi.Pointer<ffi.Char>)>();
 
   int MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything(
     int x,

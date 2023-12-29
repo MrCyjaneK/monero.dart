@@ -601,29 +601,25 @@ bool MONERO_WalletManager_closeWallet(MONERO_wallet wallet_ptr, bool store) {
   return lib.MONERO_WalletManager_closeWallet(wallet_ptr, store);
 }
 
-bool MONERO_WalletManager_walletExists(MONERO_wallet wallet_ptr,
-    {required String path}) {
+bool MONERO_WalletManager_walletExists(String path) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
 
   final path_ = path.toNativeUtf8().cast<Char>();
-  final s = lib.MONERO_WalletManager_walletExists(wallet_ptr, path_);
+  final s = lib.MONERO_WalletManager_walletExists(path_);
   calloc.free(path_);
   return s;
 }
 
-String MONERO_WalletManager_errorString(MONERO_wallet wallet_ptr) {
+String MONERO_WalletManager_errorString() {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
-  return lib.MONERO_WalletManager_errorString(wallet_ptr)
-      .cast<Utf8>()
-      .toDartString();
+  return lib.MONERO_WalletManager_errorString().cast<Utf8>().toDartString();
 }
 
-void MONERO_WalletManager_setDaemonAddress(MONERO_wallet wallet_ptr,
-    {required String address}) {
+void MONERO_WalletManager_setDaemonAddress(String address) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
 
   final address_ = address.toNativeUtf8().cast<Char>();
-  final s = lib.MONERO_WalletManager_setDaemonAddress(wallet_ptr, address_);
+  final s = lib.MONERO_WalletManager_setDaemonAddress(address_);
   calloc.free(address_);
   return s;
 }
