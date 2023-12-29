@@ -592,6 +592,17 @@ MONERO_TransactionHistory MONERO_Wallet_history(MONERO_wallet wallet_ptr) {
   return lib.MONERO_Wallet_history(wallet_ptr);
 }
 
+void MONERO_Wallet_setOffline(MONERO_wallet wallet_ptr,
+    {required bool offline}) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  lib.MONERO_Wallet_setOffline(wallet_ptr, offline);
+}
+
+bool MONERO_Wallet_isOffline(MONERO_wallet wallet_ptr) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  return lib.MONERO_Wallet_isOffline(wallet_ptr);
+}
+
 int MONERO_Wallet_getBytesReceived(MONERO_wallet wallet_ptr) {
   final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   return lib.MONERO_Wallet_getBytesReceived(wallet_ptr);
@@ -689,6 +700,21 @@ void MONERO_WalletManager_setDaemonAddress(String address) {
   final address_ = address.toNativeUtf8().cast<Char>();
   final s = lib.MONERO_WalletManager_setDaemonAddress(address_);
   calloc.free(address_);
+  return s;
+}
+
+bool MONERO_WalletManager_setProxy(String address) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+
+  final address_ = address.toNativeUtf8().cast<Char>();
+  final s = lib.MONERO_WalletManager_setProxy(address_);
+  calloc.free(address_);
+  return s;
+}
+
+void MONERO_WalletManagerFactory_setLogLevel(int level) {
+  final lib = MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final s = lib.MONERO_WalletManagerFactory_setLogLevel(level);
   return s;
 }
 

@@ -1220,6 +1220,37 @@ class MoneroC {
   late final _MONERO_Wallet_history = _MONERO_Wallet_historyPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
 
+  void MONERO_Wallet_setOffline(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    bool offline,
+  ) {
+    return _MONERO_Wallet_setOffline(
+      wallet_ptr,
+      offline,
+    );
+  }
+
+  late final _MONERO_Wallet_setOfflinePtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Bool)>>(
+      'MONERO_Wallet_setOffline');
+  late final _MONERO_Wallet_setOffline = _MONERO_Wallet_setOfflinePtr
+      .asFunction<void Function(ffi.Pointer<ffi.Void>, bool)>();
+
+  bool MONERO_Wallet_isOffline(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_Wallet_isOffline(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_Wallet_isOfflinePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Wallet_isOffline');
+  late final _MONERO_Wallet_isOffline = _MONERO_Wallet_isOfflinePtr.asFunction<
+      bool Function(ffi.Pointer<ffi.Void>)>();
+
   int MONERO_Wallet_getBytesReceived(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -1397,6 +1428,86 @@ class MoneroC {
   late final _MONERO_WalletManager_setDaemonAddress =
       _MONERO_WalletManager_setDaemonAddressPtr.asFunction<
           void Function(ffi.Pointer<ffi.Char>)>();
+
+  bool MONERO_WalletManager_setProxy(
+    ffi.Pointer<ffi.Char> address,
+  ) {
+    return _MONERO_WalletManager_setProxy(
+      address,
+    );
+  }
+
+  late final _MONERO_WalletManager_setProxyPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Char>)>>(
+          'MONERO_WalletManager_setProxy');
+  late final _MONERO_WalletManager_setProxy = _MONERO_WalletManager_setProxyPtr
+      .asFunction<bool Function(ffi.Pointer<ffi.Char>)>();
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_Silent =
+      _lookup<ffi.Int>('LogLevel_Silent');
+
+  int get LogLevel_Silent => _LogLevel_Silent.value;
+
+  set LogLevel_Silent(int value) => _LogLevel_Silent.value = value;
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_0 = _lookup<ffi.Int>('LogLevel_0');
+
+  int get LogLevel_0 => _LogLevel_0.value;
+
+  set LogLevel_0(int value) => _LogLevel_0.value = value;
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_1 = _lookup<ffi.Int>('LogLevel_1');
+
+  int get LogLevel_1 => _LogLevel_1.value;
+
+  set LogLevel_1(int value) => _LogLevel_1.value = value;
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_2 = _lookup<ffi.Int>('LogLevel_2');
+
+  int get LogLevel_2 => _LogLevel_2.value;
+
+  set LogLevel_2(int value) => _LogLevel_2.value = value;
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_3 = _lookup<ffi.Int>('LogLevel_3');
+
+  int get LogLevel_3 => _LogLevel_3.value;
+
+  set LogLevel_3(int value) => _LogLevel_3.value = value;
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_4 = _lookup<ffi.Int>('LogLevel_4');
+
+  int get LogLevel_4 => _LogLevel_4.value;
+
+  set LogLevel_4(int value) => _LogLevel_4.value = value;
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_Min =
+      _lookup<ffi.Int>('LogLevel_Min');
+
+  int get LogLevel_Min => _LogLevel_Min.value;
+
+  set LogLevel_Min(int value) => _LogLevel_Min.value = value;
+
+  late final ffi.Pointer<ffi.Int> _LogLevel_Max =
+      _lookup<ffi.Int>('LogLevel_Max');
+
+  int get LogLevel_Max => _LogLevel_Max.value;
+
+  set LogLevel_Max(int value) => _LogLevel_Max.value = value;
+
+  void MONERO_WalletManagerFactory_setLogLevel(
+    int level,
+  ) {
+    return _MONERO_WalletManagerFactory_setLogLevel(
+      level,
+    );
+  }
+
+  late final _MONERO_WalletManagerFactory_setLogLevelPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>(
+          'MONERO_WalletManagerFactory_setLogLevel');
+  late final _MONERO_WalletManagerFactory_setLogLevel =
+      _MONERO_WalletManagerFactory_setLogLevelPtr.asFunction<
+          void Function(int)>();
 
   int MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything(
     int x,
