@@ -652,6 +652,24 @@ class MoneroC {
           bool,
           ffi.Pointer<ffi.Char>)>();
 
+  void MONERO_Wallet_setRefreshFromBlockHeight(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    int refresh_from_block_height,
+  ) {
+    return _MONERO_Wallet_setRefreshFromBlockHeight(
+      wallet_ptr,
+      refresh_from_block_height,
+    );
+  }
+
+  late final _MONERO_Wallet_setRefreshFromBlockHeightPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Void>,
+              ffi.Uint64)>>('MONERO_Wallet_setRefreshFromBlockHeight');
+  late final _MONERO_Wallet_setRefreshFromBlockHeight =
+      _MONERO_Wallet_setRefreshFromBlockHeightPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Void>, int)>();
+
   int MONERO_Wallet_getRefreshFromBlockHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -1593,20 +1611,90 @@ class MoneroC {
       _MONERO_WalletManagerFactory_setLogLevelPtr.asFunction<
           void Function(int)>();
 
-  int MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything(
-    int x,
+  void MONERO_DEBUG_test0() {
+    return _MONERO_DEBUG_test0();
+  }
+
+  late final _MONERO_DEBUG_test0Ptr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('MONERO_DEBUG_test0');
+  late final _MONERO_DEBUG_test0 =
+      _MONERO_DEBUG_test0Ptr.asFunction<void Function()>();
+
+  bool MONERO_DEBUG_test1(
+    bool x,
   ) {
-    return _MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything(
+    return _MONERO_DEBUG_test1(
       x,
     );
   }
 
-  late final _MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverythingPtr =
+  late final _MONERO_DEBUG_test1Ptr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Bool)>>(
+          'MONERO_DEBUG_test1');
+  late final _MONERO_DEBUG_test1 =
+      _MONERO_DEBUG_test1Ptr.asFunction<bool Function(bool)>();
+
+  int MONERO_DEBUG_test2(
+    int x,
+  ) {
+    return _MONERO_DEBUG_test2(
+      x,
+    );
+  }
+
+  late final _MONERO_DEBUG_test2Ptr =
       _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>(
-          'MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything');
-  late final _MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything =
-      _MONERO_DEBUG_theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverythingPtr
-          .asFunction<int Function(int)>();
+          'MONERO_DEBUG_test2');
+  late final _MONERO_DEBUG_test2 =
+      _MONERO_DEBUG_test2Ptr.asFunction<int Function(int)>();
+
+  int MONERO_DEBUG_test3(
+    int x,
+  ) {
+    return _MONERO_DEBUG_test3(
+      x,
+    );
+  }
+
+  late final _MONERO_DEBUG_test3Ptr =
+      _lookup<ffi.NativeFunction<ffi.Uint64 Function(ffi.Uint64)>>(
+          'MONERO_DEBUG_test3');
+  late final _MONERO_DEBUG_test3 =
+      _MONERO_DEBUG_test3Ptr.asFunction<int Function(int)>();
+
+  ffi.Pointer<ffi.Void> MONERO_DEBUG_test4(
+    int x,
+  ) {
+    return _MONERO_DEBUG_test4(
+      x,
+    );
+  }
+
+  late final _MONERO_DEBUG_test4Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.Uint64)>>(
+          'MONERO_DEBUG_test4');
+  late final _MONERO_DEBUG_test4 =
+      _MONERO_DEBUG_test4Ptr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
+
+  ffi.Pointer<ffi.Char> MONERO_DEBUG_test5() {
+    return _MONERO_DEBUG_test5();
+  }
+
+  late final _MONERO_DEBUG_test5Ptr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'MONERO_DEBUG_test5');
+  late final _MONERO_DEBUG_test5 =
+      _MONERO_DEBUG_test5Ptr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+
+  ffi.Pointer<ffi.Char> MONERO_DEBUG_test5_std() {
+    return _MONERO_DEBUG_test5_std();
+  }
+
+  late final _MONERO_DEBUG_test5_stdPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'MONERO_DEBUG_test5_std');
+  late final _MONERO_DEBUG_test5_std =
+      _MONERO_DEBUG_test5_stdPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 }
 
 final class __fsid_t extends ffi.Struct {
