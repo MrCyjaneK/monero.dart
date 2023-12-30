@@ -786,10 +786,26 @@ class MONERO_libOk {
     }
   }
 
+  String get test5_str16 {
+    try {
+      return test5.cast<Utf16>().toDartString();
+    } catch (e) {
+      return "$e";
+    }
+  }
+
   final Pointer<Char> test5_std;
   String get test5_std_str {
     try {
       return test5_std.cast<Utf8>().toDartString();
+    } catch (e) {
+      return "$e";
+    }
+  }
+
+  String get test5_std_str16 {
+    try {
+      return test5_std.cast<Utf16>().toDartString();
     } catch (e) {
       return "$e";
     }
