@@ -4,7 +4,6 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types
 
 import 'dart:ffi';
-import 'dart:js_util';
 
 import 'package:ffi/ffi.dart';
 import 'package:monero/src/generated_bindings.g.dart';
