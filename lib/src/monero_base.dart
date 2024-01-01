@@ -92,12 +92,117 @@ int MONERO_PendingTransaction_fee(MONERO_PendingTransaction pendingTx_ptr) {
   return fee;
 }
 
+String MONERO_PendingTransaction_txid(
+    MONERO_PendingTransaction pendingTx_ptr, String separator) {
+  debugStart?.call('MONERO_PendingTransaction_txid');
+  lib ??= MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid = lib!.MONERO_PendingTransaction_txid(pendingTx_ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('MONERO_PendingTransaction_txid');
+  try {
+    final label = txid.cast<Utf8>().toDartString();
+    debugEnd?.call('MONERO_PendingTransaction_txid');
+    return label;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_txid', e);
+    debugEnd?.call('MONERO_PendingTransaction_txid');
+    return "";
+  }
+}
+
 int MONERO_PendingTransaction_txCount(MONERO_PendingTransaction pendingTx_ptr) {
   debugStart?.call('MONERO_PendingTransaction_txCount');
   lib ??= MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
   final txCount = lib!.MONERO_PendingTransaction_txCount(pendingTx_ptr);
   debugEnd?.call('MONERO_PendingTransaction_txCount');
   return txCount;
+}
+
+String MONERO_PendingTransaction_subaddrAccount(
+    MONERO_PendingTransaction pendingTx_ptr, String separator) {
+  debugStart?.call('MONERO_PendingTransaction_subaddrAccount');
+  lib ??= MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid =
+      lib!.MONERO_PendingTransaction_subaddrAccount(pendingTx_ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('MONERO_PendingTransaction_subaddrAccount');
+  try {
+    final label = txid.cast<Utf8>().toDartString();
+    debugEnd?.call('MONERO_PendingTransaction_subaddrAccount');
+    return label;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_subaddrAccount', e);
+    debugEnd?.call('MONERO_PendingTransaction_subaddrAccount');
+    return "";
+  }
+}
+
+String MONERO_PendingTransaction_subaddrIndices(
+    MONERO_PendingTransaction pendingTx_ptr, String separator) {
+  debugStart?.call('MONERO_PendingTransaction_subaddrIndices');
+  lib ??= MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid =
+      lib!.MONERO_PendingTransaction_subaddrIndices(pendingTx_ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('MONERO_PendingTransaction_subaddrIndices');
+  try {
+    final label = txid.cast<Utf8>().toDartString();
+    debugEnd?.call('MONERO_PendingTransaction_subaddrIndices');
+    return label;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_subaddrIndices', e);
+    debugEnd?.call('MONERO_PendingTransaction_subaddrIndices');
+    return "";
+  }
+}
+
+String MONERO_PendingTransaction_multisigSignData(
+    MONERO_PendingTransaction pendingTx_ptr) {
+  debugStart?.call('MONERO_PendingTransaction_multisigSignData');
+  lib ??= MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final txid = lib!.MONERO_PendingTransaction_multisigSignData(pendingTx_ptr);
+  debugEnd?.call('MONERO_PendingTransaction_multisigSignData');
+  try {
+    final label = txid.cast<Utf8>().toDartString();
+    debugEnd?.call('MONERO_PendingTransaction_multisigSignData');
+    return label;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_multisigSignData', e);
+    debugEnd?.call('MONERO_PendingTransaction_multisigSignData');
+    return "";
+  }
+}
+
+void MONERO_PendingTransaction_signMultisigTx(
+    MONERO_PendingTransaction pendingTx_ptr) {
+  debugStart?.call('MONERO_PendingTransaction_signMultisigTx');
+  lib ??= MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final ret = lib!.MONERO_PendingTransaction_signMultisigTx(pendingTx_ptr);
+  debugEnd?.call('MONERO_PendingTransaction_signMultisigTx');
+  return ret;
+}
+
+String MONERO_PendingTransaction_signersKeys(
+    MONERO_PendingTransaction pendingTx_ptr, String separator) {
+  debugStart?.call('MONERO_PendingTransaction_signersKeys');
+  lib ??= MoneroC(DynamicLibrary.open('libwallet2_api_c.so'));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid =
+      lib!.MONERO_PendingTransaction_signersKeys(pendingTx_ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('MONERO_PendingTransaction_signersKeys');
+  try {
+    final label = txid.cast<Utf8>().toDartString();
+    debugEnd?.call('MONERO_PendingTransaction_signersKeys');
+    return label;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_signersKeys', e);
+    debugEnd?.call('MONERO_PendingTransaction_signersKeys');
+    return "";
+  }
 }
 
 // TransactionInfo
