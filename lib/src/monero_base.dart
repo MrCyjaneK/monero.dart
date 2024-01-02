@@ -1961,12 +1961,12 @@ bool MONERO_Wallet_paymentIdValid(String paymentId) {
   return s;
 }
 
-bool MONERO_Wallet_addressValid(String address) {
+bool MONERO_Wallet_addressValid(String address, int networkType) {
   debugStart?.call('MONERO_Wallet_addressValid');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
 
   final address_ = address.toNativeUtf8().cast<Char>();
-  final s = lib!.MONERO_Wallet_addressValid(address_, lib!.NetworkType_MAINNET);
+  final s = lib!.MONERO_Wallet_addressValid(address_, networkType);
   calloc.free(address_);
   debugEnd?.call('MONERO_Wallet_addressValid');
   return s;
