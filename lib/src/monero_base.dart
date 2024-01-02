@@ -19,7 +19,10 @@ final defaultSeparator = ";".toNativeUtf8().cast<Char>();
 
 final Stopwatch sw = Stopwatch()..start();
 
+bool printStarts = false;
+
 void Function(String call)? debugStart = (call) {
+  if (printStarts) print("MONERO: $call");
   debugCallLength[call] ??= <int>[];
   debugCallLength[call]!.add(sw.elapsedMicroseconds);
 };
