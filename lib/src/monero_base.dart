@@ -2129,6 +2129,18 @@ int MONERO_Wallet_autoRefreshInterval(MONERO_wallet ptr) {
   return autoRefreshInterval;
 }
 
+void MONERO_Wallet_addSubaddress(MONERO_wallet ptr,
+    {required int accountIndex, String label = ""}) {
+  debugStart?.call('MONERO_Wallet_addSubaddress');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final label_ = label.toNativeUtf8().cast<Char>();
+  final s = lib!.MONERO_Wallet_addSubaddress(ptr, accountIndex, label_);
+  calloc.free(label_);
+  debugEnd?.call('MONERO_Wallet_addSubaddress');
+  return s;
+}
+
 void MONERO_Wallet_addSubaddressAccount(MONERO_wallet ptr,
     {String label = ""}) {
   debugStart?.call('MONERO_Wallet_addSubaddressAccount');
