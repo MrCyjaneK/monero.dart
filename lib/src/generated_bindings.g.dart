@@ -4361,6 +4361,39 @@ class MoneroC {
       _MONERO_Wallet_daemonBlockChainHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
+  int MONERO_Wallet_daemonBlockChainHeight_cached(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_Wallet_daemonBlockChainHeight_cached(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_Wallet_daemonBlockChainHeight_cachedPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Wallet_daemonBlockChainHeight_cached');
+  late final _MONERO_Wallet_daemonBlockChainHeight_cached =
+      _MONERO_Wallet_daemonBlockChainHeight_cachedPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Void>)>();
+
+  bool MONERO_Wallet_daemonBlockChainHeight_enableRefresh(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    int seconds,
+  ) {
+    return _MONERO_Wallet_daemonBlockChainHeight_enableRefresh(
+      wallet_ptr,
+      seconds,
+    );
+  }
+
+  late final _MONERO_Wallet_daemonBlockChainHeight_enableRefreshPtr = _lookup<
+          ffi
+          .NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>, ffi.Int)>>(
+      'MONERO_Wallet_daemonBlockChainHeight_enableRefresh');
+  late final _MONERO_Wallet_daemonBlockChainHeight_enableRefresh =
+      _MONERO_Wallet_daemonBlockChainHeight_enableRefreshPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>, int)>();
+
   int MONERO_Wallet_daemonBlockChainTargetHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
