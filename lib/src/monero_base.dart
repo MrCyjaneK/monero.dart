@@ -1395,11 +1395,14 @@ bool MONERO_DeviceProgress_indeterminate(MONERO_DeviceProgress ptr) {
 
 typedef MONERO_wallet = Pointer<Void>;
 
-String MONERO_Wallet_seed(MONERO_wallet ptr) {
+String MONERO_Wallet_seed(MONERO_wallet ptr, {required String seedOffset}) {
   debugStart?.call('MONERO_Wallet_seed');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final seed = lib!.MONERO_Wallet_seed(ptr).cast<Utf8>().toDartString();
+    final seedOffset_ = seedOffset.toNativeUtf8().cast<Char>();
+    final seed =
+        lib!.MONERO_Wallet_seed(ptr, seedOffset_).cast<Utf8>().toDartString();
+    calloc.free(seedOffset_);
     debugEnd?.call('MONERO_Wallet_seed');
     return seed;
   } catch (e) {

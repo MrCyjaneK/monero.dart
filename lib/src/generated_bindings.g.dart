@@ -3636,18 +3636,21 @@ class MoneroC {
 
   ffi.Pointer<ffi.Char> MONERO_Wallet_seed(
     ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> seed_offset,
   ) {
     return _MONERO_Wallet_seed(
       wallet_ptr,
+      seed_offset,
     );
   }
 
   late final _MONERO_Wallet_seedPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Void>)>>('MONERO_Wallet_seed');
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_seed');
   late final _MONERO_Wallet_seed = _MONERO_Wallet_seedPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> MONERO_Wallet_getSeedLanguage(
     ffi.Pointer<ffi.Void> wallet_ptr,
