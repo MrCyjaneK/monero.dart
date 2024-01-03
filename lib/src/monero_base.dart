@@ -1907,12 +1907,11 @@ int MONERO_Wallet_daemonBlockChainHeight_cached(MONERO_wallet ptr) {
   return daemonBlockChainHeight;
 }
 
-bool MONERO_Wallet_daemonBlockChainHeight_enableRefresh(
+void MONERO_Wallet_daemonBlockChainHeight_runThread(
     MONERO_wallet ptr, int seconds) {
   debugStart?.call('MONERO_Wallet_daemonBlockChainHeight_enableRefresh');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
-  final ret =
-      lib!.MONERO_Wallet_daemonBlockChainHeight_enableRefresh(ptr, seconds);
+  final ret = lib!.MONERO_Wallet_daemonBlockChainHeight_runThread(ptr, seconds);
   debugEnd?.call('MONERO_Wallet_daemonBlockChainHeight_enableRefresh');
   return ret;
 }
