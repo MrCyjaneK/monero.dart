@@ -15,7 +15,8 @@ String libPath = 'libwallet2_api_c.so';
 
 Map<String, List<int>> debugCallLength = {};
 
-final defaultSeparator = ";".toNativeUtf8().cast<Char>();
+final defaultSeparatorStr = ";";
+final defaultSeparator = defaultSeparatorStr.toNativeUtf8().cast<Char>();
 
 final Stopwatch sw = Stopwatch()..start();
 
@@ -1016,6 +1017,23 @@ bool MONERO_CoinsInfo_coinbase(MONERO_CoinsInfo addressBook_ptr) {
   return v;
 }
 
+String MONERO_CoinsInfo_description(MONERO_CoinsInfo addressBookRow_ptr) {
+  debugStart?.call('MONERO_CoinsInfo_description');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  try {
+    final v = lib!
+        .MONERO_CoinsInfo_description(addressBookRow_ptr)
+        .cast<Utf8>()
+        .toDartString();
+    debugEnd?.call('MONERO_CoinsInfo_description');
+    return v;
+  } catch (e) {
+    errorHandler?.call('MONERO_CoinsInfo_description', e);
+    debugEnd?.call('MONERO_CoinsInfo_description');
+    return "";
+  }
+}
+
 typedef MONERO_Coins = Pointer<Void>;
 
 int MONERO_Coins_count(MONERO_Coins addressBook_ptr) {
@@ -1034,6 +1052,17 @@ void MONERO_Coins_refresh(MONERO_Coins addressBook_ptr) {
   return v;
 }
 
+void MONERO_Coins_setFrozenByPublicKey(MONERO_Coins addressBook_ptr,
+    {required String publicKey}) {
+  debugStart?.call('MONERO_Coins_setFrozenByPublicKey');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final publicKey_ = publicKey.toNativeUtf8().cast<Char>();
+  final v = lib!.MONERO_Coins_setFrozenByPublicKey(addressBook_ptr, publicKey_);
+  calloc.free(publicKey_);
+  debugEnd?.call('MONERO_Coins_setFrozenByPublicKey');
+  return v;
+}
+
 void MONERO_Coins_setFrozen(MONERO_Coins addressBook_ptr,
     {required int index}) {
   debugStart?.call('MONERO_Coins_setFrozen');
@@ -1048,6 +1077,17 @@ void MONERO_Coins_thaw(MONERO_Coins addressBook_ptr, {required int index}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   final v = lib!.MONERO_Coins_thaw(addressBook_ptr, index);
   debugEnd?.call('MONERO_Coins_thaw');
+  return v;
+}
+
+void MONERO_Coins_thawByPublicKey(MONERO_Coins addressBook_ptr,
+    {required String publicKey}) {
+  debugStart?.call('MONERO_Coins_thawByPublicKey');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final publicKey_ = publicKey.toNativeUtf8().cast<Char>();
+  final v = lib!.MONERO_Coins_thawByPublicKey(addressBook_ptr, publicKey_);
+  calloc.free(publicKey_);
+  debugEnd?.call('MONERO_Coins_thawByPublicKey');
   return v;
 }
 
@@ -1856,6 +1896,15 @@ int MONERO_Wallet_unlockedBalance(MONERO_wallet ptr,
   return unlockedBalance;
 }
 
+int MONERO_Wallet_viewOnlyBalance(MONERO_wallet ptr,
+    {required int accountIndex}) {
+  debugStart?.call('MONERO_Wallet_viewOnlyBalance');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final unlockedBalance = lib!.MONERO_Wallet_viewOnlyBalance(ptr, accountIndex);
+  debugEnd?.call('MONERO_Wallet_viewOnlyBalance');
+  return unlockedBalance;
+}
+
 bool MONERO_Wallet_watchOnly(MONERO_wallet ptr) {
   debugStart?.call('MONERO_Wallet_watchOnly');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
@@ -2089,6 +2138,41 @@ void MONERO_Wallet_init3(
   return s;
 }
 
+String MONERO_Wallet_getPolyseed(MONERO_wallet ptr,
+    {required String passphrase}) {
+  debugStart?.call('MONERO_Wallet_getPolyseed');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  try {
+    final passphrase_ = passphrase.toNativeUtf8().cast<Char>();
+    final seed = lib!
+        .MONERO_Wallet_getPolyseed(ptr, passphrase_)
+        .cast<Utf8>()
+        .toDartString();
+    calloc.free(passphrase_);
+    debugEnd?.call('MONERO_Wallet_getPolyseed');
+    return seed;
+  } catch (e) {
+    errorHandler?.call('MONERO_Wallet_getPolyseed', e);
+    debugEnd?.call('MONERO_Wallet_getPolyseed');
+    return "";
+  }
+}
+
+String MONERO_Wallet_createPolyseed() {
+  debugStart?.call('MONERO_Wallet_createPolyseed');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  try {
+    final seed =
+        lib!.MONERO_Wallet_createPolyseed().cast<Utf8>().toDartString();
+    debugEnd?.call('MONERO_Wallet_createPolyseed');
+    return seed;
+  } catch (e) {
+    errorHandler?.call('MONERO_Wallet_createPolyseed', e);
+    debugEnd?.call('MONERO_Wallet_createPolyseed');
+    return "";
+  }
+}
+
 void MONERO_Wallet_startRefresh(MONERO_wallet ptr) {
   debugStart?.call('MONERO_Wallet_startRefresh');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
@@ -2248,14 +2332,26 @@ MONERO_PendingTransaction MONERO_Wallet_createTransaction(MONERO_wallet ptr,
     required int amount,
     required int mixin_count,
     required int pendingTransactionPriority,
-    required int subaddr_account}) {
+    required int subaddr_account,
+    List<String> preferredInputs = const []}) {
   debugStart?.call('MONERO_Wallet_createTransaction');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
 
   final dst_addr_ = dst_addr.toNativeUtf8().cast<Char>();
   final payment_id_ = payment_id.toNativeUtf8().cast<Char>();
-  final s = lib!.MONERO_Wallet_createTransaction(ptr, dst_addr_, payment_id_,
-      amount, mixin_count, pendingTransactionPriority, subaddr_account);
+  final preferredInputs_ =
+      preferredInputs.join(defaultSeparatorStr).toNativeUtf8().cast<Char>();
+  final s = lib!.MONERO_Wallet_createTransaction(
+    ptr,
+    dst_addr_,
+    payment_id_,
+    amount,
+    mixin_count,
+    pendingTransactionPriority,
+    subaddr_account,
+    preferredInputs_,
+    defaultSeparator,
+  );
   calloc.free(dst_addr_);
   calloc.free(payment_id_);
   debugEnd?.call('MONERO_Wallet_createTransaction');
@@ -2282,6 +2378,14 @@ bool MONERO_Wallet_submitTransaction(MONERO_wallet ptr, String filename) {
   final s = lib!.MONERO_Wallet_submitTransaction(ptr, filename_);
   calloc.free(filename_);
   debugEnd?.call('MONERO_Wallet_submitTransaction');
+  return s;
+}
+
+bool MONERO_Wallet_hasUnknownKeyImages(MONERO_wallet ptr) {
+  debugStart?.call('MONERO_Wallet_hasUnknownKeyImages');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final s = lib!.MONERO_Wallet_hasUnknownKeyImages(ptr);
+  debugEnd?.call('MONERO_Wallet_hasUnknownKeyImages');
   return s;
 }
 
@@ -2329,6 +2433,69 @@ bool MONERO_Wallet_importOutputs(MONERO_wallet ptr, String filename) {
   calloc.free(filename_);
   debugEnd?.call('MONERO_Wallet_importOutputs');
   return s;
+}
+
+bool MONERO_Wallet_setupBackgroundSync(
+  MONERO_wallet ptr, {
+  required int backgroundSyncType,
+  required String walletPassword,
+  required String backgroundCachePassword,
+}) {
+  debugStart?.call('MONERO_Wallet_setupBackgroundSync');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final walletPassword_ = walletPassword.toNativeUtf8().cast<Char>();
+  final backgroundCachePassword_ =
+      backgroundCachePassword.toNativeUtf8().cast<Char>();
+  final s = lib!.MONERO_Wallet_setupBackgroundSync(
+      ptr, backgroundSyncType, walletPassword_, backgroundCachePassword_);
+  calloc.free(walletPassword_);
+  calloc.free(backgroundCachePassword_);
+  debugEnd?.call('MONERO_Wallet_setupBackgroundSync');
+  return s;
+}
+
+int MONERO_Wallet_getBackgroundSyncType(MONERO_wallet ptr) {
+  debugStart?.call('MONERO_Wallet_getBackgroundSyncType');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final v = lib!.MONERO_Wallet_getBackgroundSyncType(ptr);
+  debugEnd?.call('MONERO_Wallet_getBackgroundSyncType');
+  return v;
+}
+
+bool MONERO_Wallet_startBackgroundSync(MONERO_wallet ptr) {
+  debugStart?.call('MONERO_Wallet_startBackgroundSync');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final v = lib!.MONERO_Wallet_startBackgroundSync(ptr);
+  debugEnd?.call('MONERO_Wallet_startBackgroundSync');
+  return v;
+}
+
+bool MONERO_Wallet_stopBackgroundSync(
+    MONERO_wallet ptr, String walletPassword) {
+  debugStart?.call('MONERO_Wallet_stopBackgroundSync');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final walletPassword_ = walletPassword.toNativeUtf8().cast<Char>();
+  final v = lib!.MONERO_Wallet_stopBackgroundSync(ptr, walletPassword_);
+  calloc.free(walletPassword_);
+  debugEnd?.call('MONERO_Wallet_stopBackgroundSync');
+  return v;
+}
+
+bool MONERO_Wallet_isBackgroundSyncing(MONERO_wallet ptr) {
+  debugStart?.call('MONERO_Wallet_isBackgroundSyncing');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final v = lib!.MONERO_Wallet_isBackgroundSyncing(ptr);
+  debugEnd?.call('MONERO_Wallet_isBackgroundSyncing');
+  return v;
+}
+
+bool MONERO_Wallet_isBackgroundWallet(MONERO_wallet ptr) {
+  debugStart?.call('MONERO_Wallet_isBackgroundWallet');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final v = lib!.MONERO_Wallet_isBackgroundWallet(ptr);
+  debugEnd?.call('MONERO_Wallet_isBackgroundWallet');
+  return v;
 }
 
 MONERO_TransactionHistory MONERO_Wallet_history(MONERO_wallet ptr) {
@@ -2667,6 +2834,32 @@ MONERO_wallet MONERO_WalletManager_recoveryWallet({
   calloc.free(mnemonic_);
   calloc.free(seedOffset_);
   debugEnd?.call('MONERO_WalletManager_recoveryWallet');
+  return w;
+}
+
+MONERO_wallet MONERO_WalletManager_createWalletFromPolyseed({
+  required String path,
+  required String password,
+  int networkType = 0,
+  required String mnemonic,
+  required String seedOffset,
+  required bool newWallet,
+  required int restoreHeight,
+  required int kdfRounds,
+}) {
+  debugStart?.call('MONERO_WalletManager_createWalletFromPolyseed');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final path_ = path.toNativeUtf8().cast<Char>();
+  final password_ = password.toNativeUtf8().cast<Char>();
+  final mnemonic_ = mnemonic.toNativeUtf8().cast<Char>();
+  final seedOffset_ = seedOffset.toNativeUtf8().cast<Char>();
+  final w = lib!.MONERO_WalletManager_createWalletFromPolyseed(path_, password_,
+      networkType, mnemonic_, seedOffset_, newWallet, restoreHeight, kdfRounds);
+  calloc.free(path_);
+  calloc.free(password_);
+  calloc.free(mnemonic_);
+  calloc.free(seedOffset_);
+  debugEnd?.call('MONERO_WalletManager_createWalletFromPolyseed');
   return w;
 }
 

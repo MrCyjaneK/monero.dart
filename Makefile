@@ -1,4 +1,4 @@
-MONERO_C_COMMIT='ded4e17853ddeac99ecfc776d1011ddd7325811a'
+MONERO_C_COMMIT='12bc3aaaa9aafb7db0b08ad1343f830070aa18d3'
 MONERO_C_VERSION=018003001
 #                  v0.18.3.1
 version:
