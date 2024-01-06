@@ -1044,6 +1044,31 @@ int MONERO_Coins_count(MONERO_Coins addressBook_ptr) {
   return v;
 }
 
+MONERO_CoinsInfo MONERO_Coins_coin(MONERO_Coins addressBook_ptr, int index) {
+  debugStart?.call('MONERO_Coins_coin');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final v = lib!.MONERO_Coins_coin(addressBook_ptr, index);
+  debugEnd?.call('MONERO_Coins_coin');
+  return v;
+}
+
+int MONERO_Coins_getAll_size(MONERO_Coins addressBook_ptr) {
+  debugStart?.call('MONERO_Coins_getAll_size');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final v = lib!.MONERO_Coins_getAll_size(addressBook_ptr);
+  debugEnd?.call('MONERO_Coins_getAll_size');
+  return v;
+}
+
+MONERO_CoinsInfo MONERO_Coins_getAll_byIndex(
+    MONERO_Coins addressBook_ptr, int index) {
+  debugStart?.call('MONERO_Coins_getAll_byIndex');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final v = lib!.MONERO_Coins_getAll_byIndex(addressBook_ptr, index);
+  debugEnd?.call('MONERO_Coins_getAll_byIndex');
+  return v;
+}
+
 void MONERO_Coins_refresh(MONERO_Coins addressBook_ptr) {
   debugStart?.call('MONERO_Coins_refresh');
   lib ??= MoneroC(DynamicLibrary.open(libPath));

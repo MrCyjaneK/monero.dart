@@ -3039,6 +3039,37 @@ class MoneroC {
   late final _MONERO_Coins_coin = _MONERO_Coins_coinPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
+  int MONERO_Coins_getAll_size(
+    ffi.Pointer<ffi.Void> coins_ptr,
+  ) {
+    return _MONERO_Coins_getAll_size(
+      coins_ptr,
+    );
+  }
+
+  late final _MONERO_Coins_getAll_sizePtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Coins_getAll_size');
+  late final _MONERO_Coins_getAll_size = _MONERO_Coins_getAll_sizePtr
+      .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
+
+  ffi.Pointer<ffi.Void> MONERO_Coins_getAll_byIndex(
+    ffi.Pointer<ffi.Void> coins_ptr,
+    int index,
+  ) {
+    return _MONERO_Coins_getAll_byIndex(
+      coins_ptr,
+      index,
+    );
+  }
+
+  late final _MONERO_Coins_getAll_byIndexPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Int)>>('MONERO_Coins_getAll_byIndex');
+  late final _MONERO_Coins_getAll_byIndex = _MONERO_Coins_getAll_byIndexPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
+
   void MONERO_Coins_refresh(
     ffi.Pointer<ffi.Void> coins_ptr,
   ) {
