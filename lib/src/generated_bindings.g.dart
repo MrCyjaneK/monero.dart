@@ -5768,6 +5768,55 @@ class MoneroC {
               int,
               ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Void> MONERO_WalletManager_createWalletFromKeys(
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.Char> password,
+    ffi.Pointer<ffi.Char> language,
+    int nettype,
+    int restoreHeight,
+    ffi.Pointer<ffi.Char> addressString,
+    ffi.Pointer<ffi.Char> viewKeyString,
+    ffi.Pointer<ffi.Char> spendKeyString,
+    int kdf_rounds,
+  ) {
+    return _MONERO_WalletManager_createWalletFromKeys(
+      path,
+      password,
+      language,
+      nettype,
+      restoreHeight,
+      addressString,
+      viewKeyString,
+      spendKeyString,
+      kdf_rounds,
+    );
+  }
+
+  late final _MONERO_WalletManager_createWalletFromKeysPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int,
+              ffi.Uint64,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Uint64)>>('MONERO_WalletManager_createWalletFromKeys');
+  late final _MONERO_WalletManager_createWalletFromKeys =
+      _MONERO_WalletManager_createWalletFromKeysPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int,
+              int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int)>();
+
   ffi.Pointer<ffi.Void> MONERO_WalletManager_createWalletFromPolyseed(
     ffi.Pointer<ffi.Char> path,
     ffi.Pointer<ffi.Char> password,

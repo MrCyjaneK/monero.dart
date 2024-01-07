@@ -2862,6 +2862,48 @@ MONERO_wallet MONERO_WalletManager_recoveryWallet({
   return w;
 }
 
+MONERO_wallet MONERO_WalletManager_createWalletFromKeys({
+  required String path,
+  required String password,
+  String language = "English",
+  int nettype = 1,
+  required int restoreHeight,
+  required String addressString,
+  required String viewKeyString,
+  required String spendKeyString,
+  int kdf_rounds = 1,
+}) {
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  debugStart?.call('MONERO_WalletManager_createWalletFromKeys');
+
+  final path_ = path.toNativeUtf8().cast<Char>();
+  final password_ = password.toNativeUtf8().cast<Char>();
+  final language_ = language.toNativeUtf8().cast<Char>();
+  final addressString_ = addressString.toNativeUtf8().cast<Char>();
+  final viewKeyString_ = viewKeyString.toNativeUtf8().cast<Char>();
+  final spendKeyString_ = spendKeyString.toNativeUtf8().cast<Char>();
+
+  final w = lib!.MONERO_WalletManager_createWalletFromKeys(
+    path_,
+    password_,
+    language_,
+    nettype,
+    restoreHeight,
+    addressString_,
+    viewKeyString_,
+    spendKeyString_,
+    kdf_rounds,
+  );
+  calloc.free(path_);
+  calloc.free(password_);
+  calloc.free(language_);
+  calloc.free(addressString_);
+  calloc.free(viewKeyString_);
+  calloc.free(spendKeyString_);
+  debugEnd?.call('MONERO_WalletManager_createWalletFromKeys');
+  return w;
+}
+
 MONERO_wallet MONERO_WalletManager_createWalletFromPolyseed({
   required String path,
   required String password,
