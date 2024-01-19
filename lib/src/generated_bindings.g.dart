@@ -6236,6 +6236,17 @@ class MoneroC {
 
   set LogLevel_Max(int value) => _LogLevel_Max.value = value;
 
+  ffi.Pointer<ffi.Void> MONERO_WalletManagerFactory_getWalletManager() {
+    return _MONERO_WalletManagerFactory_getWalletManager();
+  }
+
+  late final _MONERO_WalletManagerFactory_getWalletManagerPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function()>>(
+          'MONERO_WalletManagerFactory_getWalletManager');
+  late final _MONERO_WalletManagerFactory_getWalletManager =
+      _MONERO_WalletManagerFactory_getWalletManagerPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function()>();
+
   void MONERO_WalletManagerFactory_setLogLevel(
     int level,
   ) {

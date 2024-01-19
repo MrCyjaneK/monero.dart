@@ -3165,6 +3165,14 @@ void MONERO_WalletManagerFactory_setLogCategories(String categories) {
   return s;
 }
 
+MONERO_WalletManager MONERO_WalletManagerFactory_getWalletManager() {
+  debugStart?.call('MONERO_WalletManagerFactory_getWalletManager');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final s = lib!.MONERO_WalletManagerFactory_getWalletManager();
+  debugEnd?.call('MONERO_WalletManagerFactory_getWalletManager');
+  return s;
+}
+
 class LogLevel {
   int get LogLevel_Silent => lib!.LogLevel_Silent;
   int get LogLevel_0 => lib!.LogLevel_0;
