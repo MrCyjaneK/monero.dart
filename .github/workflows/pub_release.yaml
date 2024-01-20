@@ -1,6 +1,9 @@
 name: Pub Release
 run-name: Pub Release
-on: push
+on: 
+  push:
+    branches:    
+      - master
 
 jobs:
   pub-release:
