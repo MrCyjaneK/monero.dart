@@ -5438,6 +5438,55 @@ class MoneroC {
       ffi.Pointer<ffi.Char> Function(
           ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Char> MONERO_Wallet_signMessage(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> message,
+    ffi.Pointer<ffi.Char> address,
+  ) {
+    return _MONERO_Wallet_signMessage(
+      wallet_ptr,
+      message,
+      address,
+    );
+  }
+
+  late final _MONERO_Wallet_signMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_signMessage');
+  late final _MONERO_Wallet_signMessage =
+      _MONERO_Wallet_signMessagePtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  bool MONERO_Wallet_verifySignedMessage(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> message,
+    ffi.Pointer<ffi.Char> address,
+    ffi.Pointer<ffi.Char> signature,
+  ) {
+    return _MONERO_Wallet_verifySignedMessage(
+      wallet_ptr,
+      message,
+      address,
+      signature,
+    );
+  }
+
+  late final _MONERO_Wallet_verifySignedMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_verifySignedMessage');
+  late final _MONERO_Wallet_verifySignedMessage =
+      _MONERO_Wallet_verifySignedMessagePtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
   bool MONERO_Wallet_rescanSpent(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {

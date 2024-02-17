@@ -2661,6 +2661,51 @@ String MONERO_Wallet_getTxKey(MONERO_wallet ptr, {required String txid}) {
   }
 }
 
+String MONERO_Wallet_signMessage(
+  MONERO_wallet ptr, {
+  required String message,
+  required String address,
+}) {
+  debugStart?.call('MONERO_Wallet_signMessage');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  try {
+    final message_ = message.toNativeUtf8().cast<Char>();
+    final address_ = address.toNativeUtf8().cast<Char>();
+    final v = lib!
+        .MONERO_Wallet_signMessage(ptr, message_, address_)
+        .cast<Utf8>()
+        .toDartString();
+    calloc.free(message_);
+    calloc.free(address_);
+    debugEnd?.call('MONERO_Wallet_signMessage');
+    return v;
+  } catch (e) {
+    errorHandler?.call('MONERO_Wallet_signMessage', e);
+    debugEnd?.call('MONERO_Wallet_signMessage');
+    return "";
+  }
+}
+
+bool MONERO_Wallet_verifySignedMessage(
+  MONERO_wallet ptr, {
+  required String message,
+  required String address,
+  required String signature,
+}) {
+  debugStart?.call('MONERO_Wallet_verifySignedMessage');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final message_ = message.toNativeUtf8().cast<Char>();
+  final address_ = address.toNativeUtf8().cast<Char>();
+  final signature_ = signature.toNativeUtf8().cast<Char>();
+  final v = lib!
+      .MONERO_Wallet_verifySignedMessage(ptr, message_, address_, signature_);
+  calloc.free(message_);
+  calloc.free(address_);
+  calloc.free(signature_);
+  debugEnd?.call('MONERO_Wallet_verifySignedMessage');
+  return v;
+}
+
 bool MONERO_Wallet_rescanSpent(MONERO_wallet ptr) {
   debugStart?.call('MONERO_Wallet_rescanSpent');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
