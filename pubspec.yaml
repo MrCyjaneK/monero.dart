@@ -5,7 +5,7 @@ repository: https://git.mrcyjanek.net/mrcyjanek/monero.dart
 publish_to: https://git.mrcyjanek.net/api/packages/mrcyjanek/pub
 
 environment:
-  sdk: ^3.2.3
+  sdk: ^3.0.0
 
 dependencies:
   ffi: ^2.1.0

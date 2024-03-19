@@ -7,7 +7,7 @@ on:
 
 jobs:
   pub-release:
-    runs-on: dart-stable
+    runs-on: androidsdk-flutter
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v3
