@@ -4,6 +4,7 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types
 
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:ffi/ffi.dart';
 import 'package:monero/src/generated_bindings.g.dart';
@@ -11,7 +12,12 @@ import 'package:monero/src/generated_bindings.g.dart';
 typedef MONERO_PendingTransaction = Pointer<Void>;
 
 MoneroC? lib;
-String libPath = 'libwallet2_api_c.so';
+String libPath = (() {
+  if (Platform.isWindows) return 'libwallet2_api_c.dll';
+  if (Platform.isMacOS) return 'libwallet2_api_c.dylib';
+  if (Platform.isIOS) return 'libwallet2_api_c.dylib';
+  return 'libwallet2_api_c.so';
+})();
 
 Map<String, List<int>> debugCallLength = {};
 
