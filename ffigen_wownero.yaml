@@ -1,0 +1,10 @@
+name: WowneroC
+description: wownero_c bindings
+output: 'lib/src/generated_bindings_wownero.g.dart'
+headers:
+  entry-points:
+    - 'wownero_wallet2_api_c.h'
+
+comments:
+  style: any
+  length: full

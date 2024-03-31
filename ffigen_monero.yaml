@@ -1,0 +1,10 @@
+name: MoneroC
+description: monero_c bindings
+output: 'lib/src/generated_bindings_monero.g.dart'
+headers:
+  entry-points:
+    - 'monero_wallet2_api_c.h'
+
+comments:
+  style: any
+  length: full

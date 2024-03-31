@@ -12,9 +12,7 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:ffi/ffi.dart';
-import 'package:monero/src/generated_bindings.g.dart';
-
-export 'src/generated_bindings.g.dart';
+import 'package:monero/src/generated_bindings_monero.g.dart';
 
 typedef PendingTransaction = Pointer<Void>;
 
@@ -3182,22 +3180,22 @@ WalletManager WalletManagerFactory_getWalletManager() {
   return s;
 }
 
-class LogLevel {
-  int get LogLevel_Silent => lib!.LogLevel_Silent;
-  int get LogLevel_0 => lib!.LogLevel_0;
-  int get LogLevel_1 => lib!.LogLevel_1;
-  int get LogLevel_2 => lib!.LogLevel_2;
-  int get LogLevel_3 => lib!.LogLevel_3;
-  int get LogLevel_4 => lib!.LogLevel_4;
-  int get LogLevel_Min => LogLevel_Silent;
-  int get LogLevel_Max => lib!.LogLevel_4;
-}
+// class LogLevel {
+//   int get LogLevel_Silent => lib!.LogLevel_Silent;
+//   int get LogLevel_0 => lib!.LogLevel_0;
+//   int get LogLevel_1 => lib!.LogLevel_1;
+//   int get LogLevel_2 => lib!.LogLevel_2;
+//   int get LogLevel_3 => lib!.LogLevel_3;
+//   int get LogLevel_4 => lib!.LogLevel_4;
+//   int get LogLevel_Min => LogLevel_Silent;
+//   int get LogLevel_Max => lib!.LogLevel_4;
+// }
 
-class ConnectionStatus {
-  int get Disconnected => lib!.WalletConnectionStatus_Disconnected;
-  int get Connected => lib!.WalletConnectionStatus_Connected;
-  int get WrongVersion => lib!.WalletConnectionStatus_WrongVersion;
-}
+// class ConnectionStatus {
+//   int get Disconnected => lib!.WalletConnectionStatus_Disconnected;
+//   int get Connected => lib!.WalletConnectionStatus_Connected;
+//   int get WrongVersion => lib!.WalletConnectionStatus_WrongVersion;
+// }
 
 // DEBUG
 
