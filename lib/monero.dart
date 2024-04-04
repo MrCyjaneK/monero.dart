@@ -59,12 +59,13 @@ String PendingTransaction_errorString(PendingTransaction ptr) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   debugStart?.call('MONERO_PendingTransaction_errorString');
   try {
-    final errorString = lib!
+    final rPtr = lib!
         .MONERO_PendingTransaction_errorString(ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = rPtr.toDartString();
+    malloc.free(rPtr);
     debugEnd?.call('MONERO_PendingTransaction_errorString');
-    return errorString;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_errorString', e);
     debugEnd?.call('MONERO_PendingTransaction_errorString');
@@ -117,9 +118,11 @@ String PendingTransaction_txid(PendingTransaction ptr, String separator) {
   calloc.free(separator_);
   debugEnd?.call('MONERO_PendingTransaction_txid');
   try {
-    final label = txid.cast<Utf8>().toDartString();
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_PendingTransaction_txid');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_txid', e);
     debugEnd?.call('MONERO_PendingTransaction_txid');
@@ -144,9 +147,11 @@ String PendingTransaction_subaddrAccount(
   calloc.free(separator_);
   debugEnd?.call('MONERO_PendingTransaction_subaddrAccount');
   try {
-    final label = txid.cast<Utf8>().toDartString();
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_PendingTransaction_subaddrAccount');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_subaddrAccount', e);
     debugEnd?.call('MONERO_PendingTransaction_subaddrAccount');
@@ -163,9 +168,11 @@ String PendingTransaction_subaddrIndices(
   calloc.free(separator_);
   debugEnd?.call('MONERO_PendingTransaction_subaddrIndices');
   try {
-    final label = txid.cast<Utf8>().toDartString();
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_PendingTransaction_subaddrIndices');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_subaddrIndices', e);
     debugEnd?.call('MONERO_PendingTransaction_subaddrIndices');
@@ -179,9 +186,11 @@ String PendingTransaction_multisigSignData(PendingTransaction ptr) {
   final txid = lib!.MONERO_PendingTransaction_multisigSignData(ptr);
   debugEnd?.call('MONERO_PendingTransaction_multisigSignData');
   try {
-    final label = txid.cast<Utf8>().toDartString();
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_PendingTransaction_multisigSignData');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_multisigSignData', e);
     debugEnd?.call('MONERO_PendingTransaction_multisigSignData');
@@ -206,9 +215,10 @@ String PendingTransaction_signersKeys(
   calloc.free(separator_);
   debugEnd?.call('MONERO_PendingTransaction_signersKeys');
   try {
-    final label = txid.cast<Utf8>().toDartString();
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
     debugEnd?.call('MONERO_PendingTransaction_signersKeys');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_signersKeys', e);
     debugEnd?.call('MONERO_PendingTransaction_signersKeys');
@@ -235,9 +245,10 @@ String UnsignedTransaction_errorString(UnsignedTransaction ptr) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   final errorString = lib!.MONERO_UnsignedTransaction_errorString(ptr);
   try {
-    final label = errorString.cast<Utf8>().toDartString();
+    final strPtr = errorString.cast<Utf8>();
+    final str = strPtr.toDartString();
     debugEnd?.call('MONERO_UnsignedTransaction_errorString');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_UnsignedTransaction_errorString', e);
     debugEnd?.call('MONERO_UnsignedTransaction_errorString');
@@ -252,9 +263,11 @@ String UnsignedTransaction_amount(UnsignedTransaction ptr) {
   final errorString =
       lib!.MONERO_UnsignedTransaction_amount(ptr, defaultSeparator);
   try {
-    final label = errorString.cast<Utf8>().toDartString();
+    final strPtr = errorString.cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_UnsignedTransaction_amount');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_UnsignedTransaction_amount', e);
     debugEnd?.call('MONERO_UnsignedTransaction_amount');
@@ -269,9 +282,11 @@ String UnsignedTransaction_fee(UnsignedTransaction ptr) {
   final errorString =
       lib!.MONERO_UnsignedTransaction_fee(ptr, defaultSeparator);
   try {
-    final label = errorString.cast<Utf8>().toDartString();
+    final strPtr = errorString.cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_UnsignedTransaction_fee');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_UnsignedTransaction_fee', e);
     debugEnd?.call('MONERO_UnsignedTransaction_fee');
@@ -286,9 +301,11 @@ String UnsignedTransaction_mixin(UnsignedTransaction ptr) {
   final errorString =
       lib!.MONERO_UnsignedTransaction_mixin(ptr, defaultSeparator);
   try {
-    final label = errorString.cast<Utf8>().toDartString();
+    final strPtr = errorString.cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_UnsignedTransaction_mixin');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_UnsignedTransaction_mixin', e);
     debugEnd?.call('MONERO_UnsignedTransaction_mixin');
@@ -302,9 +319,11 @@ String UnsignedTransaction_confirmationMessage(UnsignedTransaction ptr) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   final errorString = lib!.MONERO_UnsignedTransaction_confirmationMessage(ptr);
   try {
-    final label = errorString.cast<Utf8>().toDartString();
+    final strPtr = errorString.cast<Utf8>();
+    final str = strPtr.toDartString();
+    calloc.free(strPtr);
     debugEnd?.call('MONERO_UnsignedTransaction_confirmationMessage');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_UnsignedTransaction_confirmationMessage', e);
     debugEnd?.call('MONERO_UnsignedTransaction_confirmationMessage');
@@ -319,9 +338,11 @@ String UnsignedTransaction_paymentId(UnsignedTransaction ptr) {
   final errorString =
       lib!.MONERO_UnsignedTransaction_paymentId(ptr, defaultSeparator);
   try {
-    final label = errorString.cast<Utf8>().toDartString();
+    final strPtr = errorString.cast<Utf8>();
+    final str = strPtr.toDartString();
+    calloc.free(strPtr);
     debugEnd?.call('MONERO_UnsignedTransaction_paymentId');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_UnsignedTransaction_paymentId', e);
     debugEnd?.call('MONERO_UnsignedTransaction_paymentId');
@@ -336,9 +357,11 @@ String UnsignedTransaction_recipientAddress(UnsignedTransaction ptr) {
   final errorString =
       lib!.MONERO_UnsignedTransaction_recipientAddress(ptr, defaultSeparator);
   try {
-    final label = errorString.cast<Utf8>().toDartString();
+    final strPtr = errorString.cast<Utf8>();
+    final str = strPtr.toDartString();
+    calloc.free(strPtr);
     debugEnd?.call('MONERO_UnsignedTransaction_recipientAddress');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_UnsignedTransaction_recipientAddress', e);
     debugEnd?.call('MONERO_UnsignedTransaction_recipientAddress');
@@ -439,10 +462,11 @@ String TransactionInfo_description(TransactionInfo ptr) {
   debugStart?.call('MONERO_TransactionInfo_description');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final str = lib!
+    final strPtr = lib!
         .MONERO_TransactionInfo_description(ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_TransactionInfo_description');
     return str;
   } catch (e) {
@@ -455,10 +479,11 @@ String TransactionInfo_subaddrIndex(TransactionInfo ptr) {
   debugStart?.call('MONERO_TransactionInfo_subaddrIndex');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final str = lib!
+    final strPtr = lib!
         .MONERO_TransactionInfo_subaddrIndex(ptr, defaultSeparator)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_TransactionInfo_subaddrIndex');
     return str;
   } catch (e) {
@@ -479,10 +504,11 @@ String TransactionInfo_label(TransactionInfo ptr) {
   debugStart?.call('MONERO_TransactionInfo_label');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final label =
-        lib!.MONERO_TransactionInfo_label(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_TransactionInfo_label(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_TransactionInfo_label');
-    return label;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_TransactionInfo_label', e);
     debugEnd?.call('MONERO_TransactionInfo_label');
@@ -510,10 +536,12 @@ String TransactionInfo_hash(TransactionInfo ptr) {
   debugStart?.call('MONERO_TransactionInfo_hash');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final hash =
-        lib!.MONERO_TransactionInfo_hash(ptr).cast<Utf8>().toDartString();
+    final strPtr =
+        lib!.MONERO_TransactionInfo_hash(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_TransactionInfo_hash');
-    return hash;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_TransactionInfo_hash', e);
     debugEnd?.call('MONERO_TransactionInfo_hash');
@@ -533,10 +561,12 @@ String TransactionInfo_paymentId(TransactionInfo ptr) {
   debugStart?.call('MONERO_TransactionInfo_paymentId');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final paymentId =
-        lib!.MONERO_TransactionInfo_paymentId(ptr).cast<Utf8>().toDartString();
+    final strPtr =
+        lib!.MONERO_TransactionInfo_paymentId(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_TransactionInfo_paymentId');
-    return paymentId;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_TransactionInfo_paymentId', e);
     debugEnd?.call('MONERO_TransactionInfo_paymentId');
@@ -564,12 +594,13 @@ String TransactionInfo_transfers_address(TransactionInfo ptr, int index) {
   debugStart?.call('MONERO_TransactionInfo_transfers_address');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_TransactionInfo_transfers_address(ptr, index)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_TransactionInfo_transfers_address');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_TransactionInfo_transfers_address', e);
     debugEnd?.call('MONERO_TransactionInfo_transfers_address');
@@ -656,12 +687,13 @@ String AddressBookRow_getAddress(AddressBookRow addressBookRow_ptr) {
   debugStart?.call('MONERO_AddressBookRow_getAddress');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_AddressBookRow_getAddress(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_AddressBookRow_getAddress');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_AddressBookRow_getAddress', e);
     debugEnd?.call('MONERO_AddressBookRow_getAddress');
@@ -673,12 +705,13 @@ String AddressBookRow_getDescription(AddressBookRow addressBookRow_ptr) {
   debugStart?.call('MONERO_AddressBookRow_getDescription');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_AddressBookRow_getDescription(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_AddressBookRow_getDescription');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_AddressBookRow_getDescription', e);
     debugEnd?.call('MONERO_AddressBookRow_getDescription');
@@ -690,12 +723,13 @@ String AddressBookRow_getPaymentId(AddressBookRow addressBookRow_ptr) {
   debugStart?.call('MONERO_AddressBookRow_getPaymentId');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_AddressBookRow_getPaymentId(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_AddressBookRow_getPaymentId');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_AddressBookRow_getPaymentId', e);
     debugEnd?.call('MONERO_AddressBookRow_getPaymentId');
@@ -818,12 +852,13 @@ String CoinsInfo_hash(CoinsInfo addressBookRow_ptr) {
   debugStart?.call('MONERO_CoinsInfo_hash');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_CoinsInfo_hash(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_CoinsInfo_hash');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_CoinsInfo_hash', e);
     debugEnd?.call('MONERO_CoinsInfo_hash');
@@ -923,12 +958,13 @@ String CoinsInfo_address(CoinsInfo addressBookRow_ptr) {
   debugStart?.call('MONERO_CoinsInfo_address');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_CoinsInfo_address(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_CoinsInfo_address');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_CoinsInfo_address', e);
     debugEnd?.call('MONERO_CoinsInfo_address');
@@ -940,12 +976,13 @@ String CoinsInfo_addressLabel(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('MONERO_CoinsInfo_addressLabel');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_CoinsInfo_addressLabel(coinsInfo_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_CoinsInfo_addressLabel');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_CoinsInfo_addressLabel', e);
     debugEnd?.call('MONERO_CoinsInfo_addressLabel');
@@ -957,12 +994,13 @@ String CoinsInfo_keyImage(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('MONERO_CoinsInfo_keyImage');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_CoinsInfo_keyImage(coinsInfo_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_CoinsInfo_keyImage');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_CoinsInfo_keyImage', e);
     debugEnd?.call('MONERO_CoinsInfo_keyImage');
@@ -990,10 +1028,12 @@ String CoinsInfo_pubKey(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('MONERO_CoinsInfo_pubKey');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v =
-        lib!.MONERO_CoinsInfo_pubKey(coinsInfo_ptr).cast<Utf8>().toDartString();
+    final strPtr =
+        lib!.MONERO_CoinsInfo_pubKey(coinsInfo_ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_CoinsInfo_pubKey');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_CoinsInfo_pubKey', e);
     debugEnd?.call('MONERO_CoinsInfo_pubKey');
@@ -1013,12 +1053,13 @@ String CoinsInfo_description(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('MONERO_CoinsInfo_description');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_CoinsInfo_description(coinsInfo_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_CoinsInfo_description');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_CoinsInfo_description', e);
     debugEnd?.call('MONERO_CoinsInfo_description');
@@ -1125,12 +1166,13 @@ String SubaddressRow_extra(SubaddressRow subaddressBookRow_ptr) {
   debugStart?.call('MONERO_SubaddressRow_extra');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressRow_extra(subaddressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressRow_extra');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressRow_extra', e);
     debugEnd?.call('MONERO_SubaddressRow_extra');
@@ -1142,12 +1184,13 @@ String SubaddressRow_getAddress(SubaddressRow subaddressBookRow_ptr) {
   debugStart?.call('MONERO_SubaddressRow_getAddress');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressRow_getAddress(subaddressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    calloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressRow_getAddress');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressRow_getAddress', e);
     debugEnd?.call('MONERO_SubaddressRow_getAddress');
@@ -1159,12 +1202,13 @@ String SubaddressRow_getLabel(SubaddressRow subaddressBookRow_ptr) {
   debugStart?.call('MONERO_SubaddressRow_getLabel');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressRow_getLabel(subaddressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressRow_getLabel');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressRow_getLabel', e);
     debugEnd?.call('MONERO_SubaddressRow_getLabel');
@@ -1244,12 +1288,13 @@ String SubaddressAccountRow_extra(SubaddressAccountRow addressBookRow_ptr) {
   debugStart?.call('MONERO_SubaddressAccountRow_extra');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressAccountRow_extra(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressAccountRow_extra');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressAccountRow_extra', e);
     debugEnd?.call('MONERO_SubaddressAccountRow_extra');
@@ -1262,12 +1307,13 @@ String SubaddressAccountRow_getAddress(
   debugStart?.call('MONERO_SubaddressAccountRow_getAddress');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressAccountRow_getAddress(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressAccountRow_getAddress');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressAccountRow_getAddress', e);
     debugEnd?.call('MONERO_SubaddressAccountRow_getAddress');
@@ -1279,12 +1325,13 @@ String SubaddressAccountRow_getLabel(SubaddressAccountRow addressBookRow_ptr) {
   debugStart?.call('MONERO_SubaddressAccountRow_getLabel');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressAccountRow_getLabel(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressAccountRow_getLabel');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressAccountRow_getLabel', e);
     debugEnd?.call('MONERO_SubaddressAccountRow_getLabel');
@@ -1315,12 +1362,12 @@ String SubaddressAccountRow_getUnlockedBalance(
   debugStart?.call('MONERO_SubaddressAccountRow_getUnlockedBalance');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressAccountRow_getUnlockedBalance(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
     debugEnd?.call('MONERO_SubaddressAccountRow_getUnlockedBalance');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressAccountRow_getUnlockedBalance', e);
     debugEnd?.call('MONERO_SubaddressAccountRow_getUnlockedBalance');
@@ -1449,11 +1496,13 @@ String Wallet_seed(wallet ptr, {required String seedOffset}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final seedOffset_ = seedOffset.toNativeUtf8().cast<Char>();
-    final seed =
-        lib!.MONERO_Wallet_seed(ptr, seedOffset_).cast<Utf8>().toDartString();
+    final strPtr =
+        lib!.MONERO_Wallet_seed(ptr, seedOffset_).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(seedOffset_);
     debugEnd?.call('MONERO_Wallet_seed');
-    return seed;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_seed', e);
     debugEnd?.call('MONERO_Wallet_seed');
@@ -1465,10 +1514,12 @@ String Wallet_getSeedLanguage(wallet ptr) {
   debugStart?.call('MONERO_Wallet_getSeedLanguage');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v =
-        lib!.MONERO_Wallet_getSeedLanguage(ptr).cast<Utf8>().toDartString();
+    final strPtr =
+        lib!.MONERO_Wallet_getSeedLanguage(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_getSeedLanguage');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getSeedLanguage', e);
     debugEnd?.call('MONERO_Wallet_getSeedLanguage');
@@ -1498,10 +1549,11 @@ String Wallet_errorString(wallet ptr) {
   debugStart?.call('MONERO_Wallet_errorString');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final errorString =
-        lib!.MONERO_Wallet_errorString(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_errorString(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_errorString');
-    return errorString;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_errorString', e);
     debugEnd?.call('MONERO_Wallet_errorString');
@@ -1523,10 +1575,11 @@ String Wallet_getPassword(wallet ptr) {
   debugStart?.call('MONERO_Wallet_getPassword');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final errorString =
-        lib!.MONERO_Wallet_getPassword(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_getPassword(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_getPassword');
-    return errorString;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getPassword', e);
     debugEnd?.call('MONERO_Wallet_getPassword');
@@ -1549,12 +1602,13 @@ String Wallet_address(wallet ptr,
   debugStart?.call('MONERO_Wallet_address');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final address = lib!
+    final strPtr = lib!
         .MONERO_Wallet_address(ptr, accountIndex, addressIndex)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_address');
-    return address;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_address', e);
     debugEnd?.call('MONERO_Wallet_address');
@@ -1566,10 +1620,11 @@ String Wallet_path(wallet ptr) {
   debugStart?.call('MONERO_Wallet_path');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final errorString =
-        lib!.MONERO_Wallet_path(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_path(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_path');
-    return errorString;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_path', e);
     debugEnd?.call('MONERO_Wallet_path');
@@ -1602,13 +1657,14 @@ String Wallet_integratedAddress(wallet ptr, {required String paymentId}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final paymentId_ = paymentId.toNativeUtf8().cast<Char>();
-    final errorString = lib!
+    final strPtr = lib!
         .MONERO_Wallet_integratedAddress(ptr, paymentId_)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_integratedAddress');
     calloc.free(paymentId_);
-    return errorString;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_integratedAddress', e);
     debugEnd?.call('MONERO_Wallet_integratedAddress');
@@ -1620,10 +1676,11 @@ String Wallet_secretViewKey(wallet ptr) {
   debugStart?.call('MONERO_Wallet_secretViewKey');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final secretViewKey =
-        lib!.MONERO_Wallet_secretViewKey(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_secretViewKey(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_secretViewKey');
-    return secretViewKey;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_secretViewKey', e);
     debugEnd?.call('MONERO_Wallet_secretViewKey');
@@ -1635,10 +1692,11 @@ String Wallet_publicViewKey(wallet ptr) {
   debugStart?.call('MONERO_Wallet_publicViewKey');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final publicViewKey =
-        lib!.MONERO_Wallet_publicViewKey(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_publicViewKey(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    calloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_publicViewKey');
-    return publicViewKey;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_publicViewKey', e);
     debugEnd?.call('MONERO_Wallet_publicViewKey');
@@ -1650,10 +1708,11 @@ String Wallet_secretSpendKey(wallet ptr) {
   debugStart?.call('MONERO_Wallet_secretSpendKey');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final secretSpendKey =
-        lib!.MONERO_Wallet_secretSpendKey(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_secretSpendKey(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_secretSpendKey');
-    return secretSpendKey;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_secretSpendKey', e);
     debugEnd?.call('MONERO_Wallet_secretSpendKey');
@@ -1665,10 +1724,11 @@ String Wallet_publicSpendKey(wallet ptr) {
   debugStart?.call('MONERO_Wallet_publicSpendKey');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final publicSpendKey =
-        lib!.MONERO_Wallet_publicSpendKey(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_publicSpendKey(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_publicSpendKey');
-    return publicSpendKey;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_publicSpendKey', e);
     debugEnd?.call('MONERO_Wallet_publicSpendKey');
@@ -1680,12 +1740,13 @@ String Wallet_publicMultisigSignerKey(wallet ptr) {
   debugStart?.call('MONERO_Wallet_publicMultisigSignerKey');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final publicSpendKey = lib!
+    final strPtr = lib!
         .MONERO_Wallet_publicMultisigSignerKey(ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_publicMultisigSignerKey');
-    return publicSpendKey;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_publicMultisigSignerKey', e);
     debugEnd?.call('MONERO_Wallet_publicMultisigSignerKey');
@@ -1715,10 +1776,11 @@ String Wallet_filename(wallet ptr) {
   debugStart?.call('MONERO_Wallet_filename');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final publicSpendKey =
-        lib!.MONERO_Wallet_filename(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_filename(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_filename');
-    return publicSpendKey;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_filename', e);
     debugEnd?.call('MONERO_Wallet_filename');
@@ -1730,10 +1792,11 @@ String Wallet_keysFilename(wallet ptr) {
   debugStart?.call('MONERO_Wallet_keysFilename');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final publicSpendKey =
-        lib!.MONERO_Wallet_keysFilename(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_keysFilename(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_keysFilename');
-    return publicSpendKey;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_keysFilename', e);
     debugEnd?.call('MONERO_Wallet_keysFilename');
@@ -1980,10 +2043,11 @@ String Wallet_displayAmount(int amount) {
   debugStart?.call('MONERO_Wallet_displayAmount');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final displayAmount =
-        lib!.MONERO_Wallet_displayAmount(amount).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_displayAmount(amount).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_displayAmount');
-    return displayAmount;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_displayAmount', e);
     debugEnd?.call('MONERO_Wallet_displayAmount');
@@ -2015,10 +2079,11 @@ String Wallet_genPaymentId() {
   debugStart?.call('MONERO_Wallet_genPaymentId');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final displayAmount =
-        lib!.MONERO_Wallet_genPaymentId().cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_genPaymentId().cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_genPaymentId');
-    return displayAmount;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_genPaymentId', e);
     debugEnd?.call('MONERO_Wallet_genPaymentId');
@@ -2076,14 +2141,15 @@ String Wallet_keyValid_error(
   try {
     final secret_key_string_ = secret_key_string.toNativeUtf8().cast<Char>();
     final address_string_ = address_string.toNativeUtf8().cast<Char>();
-    final s = lib!
+    final strPtr = lib!
         .MONERO_Wallet_keyValid_error(
             secret_key_string_, address_string_, isViewKey, nettype)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(secret_key_string_);
     calloc.free(address_string_);
-    return s;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_keyValid_error', e);
     debugEnd?.call('MONERO_Wallet_keyValid_error');
@@ -2097,12 +2163,12 @@ String Wallet_paymentIdFromAddress(
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final strarg_ = strarg.toNativeUtf8().cast<Char>();
-    final s = lib!
+    final strPtr = lib!
         .MONERO_Wallet_paymentIdFromAddress(strarg_, nettype)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
     calloc.free(strarg_);
-    return s;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_paymentIdFromAddress', e);
     debugEnd?.call('MONERO_Wallet_paymentIdFromAddress');
@@ -2146,13 +2212,14 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final passphrase_ = passphrase.toNativeUtf8().cast<Char>();
-    final seed = lib!
+    final strPtr = lib!
         .MONERO_Wallet_getPolyseed(ptr, passphrase_)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    calloc.free(strPtr);
     calloc.free(passphrase_);
     debugEnd?.call('MONERO_Wallet_getPolyseed');
-    return seed;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getPolyseed', e);
     debugEnd?.call('MONERO_Wallet_getPolyseed');
@@ -2164,10 +2231,11 @@ String Wallet_createPolyseed() {
   debugStart?.call('MONERO_Wallet_createPolyseed');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final seed =
-        lib!.MONERO_Wallet_createPolyseed().cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_createPolyseed().cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_createPolyseed');
-    return seed;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_createPolyseed', e);
     debugEnd?.call('MONERO_Wallet_createPolyseed');
@@ -2284,12 +2352,13 @@ String Wallet_getSubaddressLabel(wallet ptr,
   debugStart?.call('MONERO_Wallet_getSubaddressLabel');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final getSubaddressLabel = lib!
+    final strPtr = lib!
         .MONERO_Wallet_getSubaddressLabel(ptr, accountIndex, addressIndex)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_getSubaddressLabel');
-    return getSubaddressLabel;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getSubaddressLabel', e);
     debugEnd?.call('MONERO_Wallet_getSubaddressLabel');
@@ -2316,10 +2385,11 @@ String Wallet_getMultisigInfo(wallet ptr) {
   debugStart?.call('MONERO_Wallet_getMultisigInfo');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final getMultisigInfo =
-        lib!.MONERO_Wallet_getMultisigInfo(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_getMultisigInfo(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_getMultisigInfo');
-    return getMultisigInfo;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getMultisigInfo', e);
     debugEnd?.call('MONERO_Wallet_getMultisigInfo');
@@ -2570,13 +2640,14 @@ String Wallet_getCacheAttribute(wallet ptr, {required String key}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final key_ = key.toNativeUtf8().cast<Char>();
-    final v = lib!
+    final strPtr = lib!
         .MONERO_Wallet_getCacheAttribute(ptr, key_)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(key_);
     debugEnd?.call('MONERO_Wallet_getCacheAttribute');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getCacheAttribute', e);
     debugEnd?.call('MONERO_Wallet_getCacheAttribute');
@@ -2602,11 +2673,12 @@ String Wallet_getUserNote(wallet ptr, {required String txid}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final txid_ = txid.toNativeUtf8().cast<Char>();
-    final v =
-        lib!.MONERO_Wallet_getUserNote(ptr, txid_).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_getUserNote(ptr, txid_).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(txid_);
     debugEnd?.call('MONERO_Wallet_getUserNote');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getUserNote', e);
     debugEnd?.call('MONERO_Wallet_getUserNote');
@@ -2619,11 +2691,12 @@ String Wallet_getTxKey(wallet ptr, {required String txid}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final txid_ = txid.toNativeUtf8().cast<Char>();
-    final v =
-        lib!.MONERO_Wallet_getTxKey(ptr, txid_).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_getTxKey(ptr, txid_).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(txid_);
     debugEnd?.call('MONERO_Wallet_getTxKey');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_getTxKey', e);
     debugEnd?.call('MONERO_Wallet_getTxKey');
@@ -2641,14 +2714,15 @@ String Wallet_signMessage(
   try {
     final message_ = message.toNativeUtf8().cast<Char>();
     final address_ = address.toNativeUtf8().cast<Char>();
-    final v = lib!
+    final strPtr = lib!
         .MONERO_Wallet_signMessage(ptr, message_, address_)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(message_);
     calloc.free(address_);
     debugEnd?.call('MONERO_Wallet_signMessage');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_signMessage', e);
     debugEnd?.call('MONERO_Wallet_signMessage');
@@ -2770,12 +2844,13 @@ String Wallet_deviceShowAddress(wallet ptr,
   debugStart?.call('MONERO_Wallet_deviceShowAddress');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_Wallet_deviceShowAddress(ptr, accountIndex, addressIndex)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_deviceShowAddress');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_deviceShowAddress', e);
     debugEnd?.call('MONERO_Wallet_deviceShowAddress');
@@ -2787,10 +2862,11 @@ String Wallet_reconnectDevice(wallet ptr) {
   debugStart?.call('MONERO_Wallet_reconnectDevice');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v =
-        lib!.MONERO_Wallet_reconnectDevice(ptr).cast<Utf8>().toDartString();
+    final strPtr = lib!.MONERO_Wallet_reconnectDevice(ptr).cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_reconnectDevice');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_Wallet_reconnectDevice', e);
     debugEnd?.call('MONERO_Wallet_reconnectDevice');
@@ -3004,12 +3080,13 @@ String WalletManager_findWallets(WalletManager wm_ptr, {required String path}) {
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final path_ = path.toNativeUtf8().cast<Char>();
-    final v = lib!
+    final strPtr = lib!
         .MONERO_WalletManager_findWallets(wm_ptr, path_, defaultSeparator)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_WalletManager_findWallets');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_WalletManager_findWallets', e);
     debugEnd?.call('MONERO_WalletManager_findWallets');
@@ -3021,12 +3098,13 @@ String WalletManager_errorString(WalletManager wm_ptr) {
   debugStart?.call('MONERO_WalletManager_errorString');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final errorString = lib!
+    final strPtr = lib!
         .MONERO_WalletManager_errorString(wm_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_WalletManager_errorString');
-    return errorString;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_WalletManager_errorString', e);
     debugEnd?.call('MONERO_WalletManager_errorString');
@@ -3129,13 +3207,13 @@ String WalletManager_resolveOpenAlias(
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
     final address_ = address.toNativeUtf8().cast<Char>();
-    final errorString = lib!
+    final strPtr = lib!
         .MONERO_WalletManager_resolveOpenAlias(wm_ptr, address_, dnssecValid)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
     debugEnd?.call('MONERO_WalletManager_resolveOpenAlias');
     calloc.free(address_);
-    return errorString;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_WalletManager_resolveOpenAlias', e);
     debugEnd?.call('MONERO_WalletManager_resolveOpenAlias');
