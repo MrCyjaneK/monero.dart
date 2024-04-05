@@ -1,10 +1,9 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library;
 
 // Wrapper around generated_bindings.g.dart - to provide easy access to the
 // underlying functions, feel free to not use it at all.
+
+// Check monero.dart for comments
 
 // ignore_for_file: non_constant_identifier_names, camel_case_types
 

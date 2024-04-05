@@ -1,10 +1,64 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library;
 
 // Wrapper around generated_bindings.g.dart - to provide easy access to the
 // underlying functions, feel free to not use it at all.
+
+//  _____________ PendingTransaction is just a typedef for Pointer<Void> (which is void* on C side)
+// /                   _____________ Wallet class, we didn't specify the MONERO prefix because we import the monero.dart code with monero prefix
+// |                  /       _____________ createTransaction function, from the upstream in the class Wallet
+// |                  |      /
+// PendingTransaction Wallet_createTransaction(wallet ptr, <------------- wallet is a typedef for Pointer<Void>
+//     {required String dst_addr,--------------------------------\ All of the parameters that are used in this function
+//     required String payment_id,                  _____________/ String - will get casted into const char*
+//     required int amount,                        / 
+//     required int mixin_count,                  /                int - goes as it is
+//     required int pendingTransactionPriority,  /
+//     required int subaddr_account,            /
+//     List<String> preferredInputs = const []}) {                 List<String> - gets joined and passed as 2 separate parameters to be split in the C side____
+//   debugStart?.call('MONERO_Wallet_createTransaction'); <------------- debugStart functions just marks the function as currently being executed, used        |
+//   lib ??= MoneroC(DynamicLibrary.open(libPath));                    \_for performance debugging                                                             |
+//   \_____________ Load the library in case it is not loaded                                                                                                  |
+//   final dst_addr_ = dst_addr.toNativeUtf8().cast<Char>(); -----------------| Cast the strings into Chars so it can be used as a parameter in a function     |
+//   final payment_id_ = payment_id.toNativeUtf8().cast<Char>(); -------------| generated via ffigen                                                           |
+//   final preferredInputs_ = preferredInputs.join(defaultSeparatorStr).toNativeUtf8().cast<Char>(); <---------------------------------------------------------/
+//   final s = lib!.WOWNERO_Wallet_createTransaction(-------------|
+//     ptr,                                                       |
+//     dst_addr_,                                                 |
+//     payment_id_,                                               |
+//     amount,                                                    |
+//     mixin_count,                                               | Call the native function using generated code
+//     pendingTransactionPriority,                                |
+//     subaddr_account,                                           |
+//     preferredInputs_,                                          |
+//     defaultSeparator,                                          |
+//   );___________________________________________________________/
+//   calloc.free(dst_addr_);---------------| Free the memory once we don't need it
+//   calloc.free(payment_id_);-------------| 
+//   debugEnd?.call('MONERO_Wallet_createTransaction'); <------------- Mark the function as executed
+//   return s; <------------- return the value
+// }
+//
+// Extra case is happening when we have a function call that returns const char* as we have to be memory safe
+// String PendingTransaction_txid(PendingTransaction ptr, String separator) {
+//   debugStart?.call('MONERO_PendingTransaction_txid');
+//   lib ??= MoneroC(DynamicLibrary.open(libPath));
+//   final separator_ = separator.toNativeUtf8().cast<Char>();
+//   final txid = lib!.MONERO_PendingTransaction_txid(ptr, separator_);
+//   calloc.free(separator_);
+//   debugEnd?.call('MONERO_PendingTransaction_txid');
+//   try { <------------- We need to try-catch these calls because they may fail in an unlikely case when we get an invalid UTF-8 string,
+//     final strPtr = txid.cast<Utf8>();                                            it is better to throw than to crash main isolate imo.
+//     final str = strPtr.toDartString(); <------------- convert the pointer to const char* to dart String
+//     malloc.free(strPtr); <------------- free the memory
+//     debugEnd?.call('MONERO_PendingTransaction_txid');
+//     return str; <------------- return the value
+//   } catch (e) {
+//     errorHandler?.call('MONERO_PendingTransaction_txid', e);
+//     debugEnd?.call('MONERO_PendingTransaction_txid');
+//     return ""; <------------- return an empty string in case of an error.
+//   }
+// }
+//
 
 // ignore_for_file: non_constant_identifier_names, camel_case_types
 
