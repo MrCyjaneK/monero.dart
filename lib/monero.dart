@@ -75,6 +75,7 @@ String libPath = (() {
   if (Platform.isWindows) return 'monero_libwallet2_api_c.dll';
   if (Platform.isMacOS) return 'monero_libwallet2_api_c.dylib';
   if (Platform.isIOS) return 'monero_libwallet2_api_c.dylib';
+  if (Platform.isAndroid) return 'libmonero_libwallet2_api_c.so';
   return 'monero_libwallet2_api_c.so';
 })();
 
