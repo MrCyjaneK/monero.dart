@@ -11,7 +11,6 @@ $ dart pub add monero --hosted-url=https://git.mrcyjanek.net/api/packages/mrcyja
 ## Building
 
 ```bash
-$ make wallet2_api_c.h
-$ make lib/src/generated_bindings.g.dart
+$ bash update_bindings.sh
 $ # you are done, this is a library, what more did you expect?
 ```
