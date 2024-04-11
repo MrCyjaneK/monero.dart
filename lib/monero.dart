@@ -2282,11 +2282,15 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
   }
 }
 
-String Wallet_createPolyseed() {
+String Wallet_createPolyseed({
+  String language = "English"
+}) {
   debugStart?.call('MONERO_Wallet_createPolyseed');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!.MONERO_Wallet_createPolyseed().cast<Utf8>();
+    final language_ = language.toNativeUtf8();
+    final strPtr = lib!.MONERO_Wallet_createPolyseed(language_.cast()).cast<Utf8>();
+    calloc.free(language_);
     final str = strPtr.toDartString();
     malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_createPolyseed');
