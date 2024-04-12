@@ -5049,20 +5049,15 @@ class WowneroC {
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   /// static bool createPolyseed(std::string &seed_words, std::string &err, const std::string &language = "English");
-  ffi.Pointer<ffi.Char> WOWNERO_Wallet_createPolyseed(
-    ffi.Pointer<ffi.Char> language,
-  ) {
-    return _WOWNERO_Wallet_createPolyseed(
-      language,
-    );
+  ffi.Pointer<ffi.Char> WOWNERO_Wallet_createPolyseed() {
+    return _WOWNERO_Wallet_createPolyseed();
   }
 
-  late final _WOWNERO_Wallet_createPolyseedPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>)>>('WOWNERO_Wallet_createPolyseed');
+  late final _WOWNERO_Wallet_createPolyseedPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'WOWNERO_Wallet_createPolyseed');
   late final _WOWNERO_Wallet_createPolyseed = _WOWNERO_Wallet_createPolyseedPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+      .asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   void WOWNERO_Wallet_startRefresh(
     ffi.Pointer<ffi.Void> wallet_ptr,

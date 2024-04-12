@@ -2227,15 +2227,11 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
   }
 }
 
-String Wallet_createPolyseed({
-  String language = "English"
-}) {
+String Wallet_createPolyseed() {
   debugStart?.call('WOWNERO_Wallet_createPolyseed');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final language_ = language.toNativeUtf8();
-    final strPtr = lib!.WOWNERO_Wallet_createPolyseed(language_.cast()).cast<Utf8>();
-    calloc.free(language_);
+    final strPtr = lib!.WOWNERO_Wallet_createPolyseed().cast<Utf8>();
     final str = strPtr.toDartString();
     malloc.free(strPtr);
     debugEnd?.call('WOWNERO_Wallet_createPolyseed');

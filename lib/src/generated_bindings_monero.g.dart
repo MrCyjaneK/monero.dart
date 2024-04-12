@@ -4751,20 +4751,15 @@ class MoneroC {
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   /// static bool createPolyseed(std::string &seed_words, std::string &err, const std::string &language = "English");
-  ffi.Pointer<ffi.Char> MONERO_Wallet_createPolyseed(
-    ffi.Pointer<ffi.Char> language,
-  ) {
-    return _MONERO_Wallet_createPolyseed(
-      language,
-    );
+  ffi.Pointer<ffi.Char> MONERO_Wallet_createPolyseed() {
+    return _MONERO_Wallet_createPolyseed();
   }
 
-  late final _MONERO_Wallet_createPolyseedPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_createPolyseed');
+  late final _MONERO_Wallet_createPolyseedPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
+          'MONERO_Wallet_createPolyseed');
   late final _MONERO_Wallet_createPolyseed = _MONERO_Wallet_createPolyseedPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+      .asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   void MONERO_Wallet_startRefresh(
     ffi.Pointer<ffi.Void> wallet_ptr,
