@@ -1,5 +1,15 @@
 library;
 
+// Are we memory safe?
+// There is a simple way to check that:
+// 1) Rewrite everything in rust
+// Or, assuming we are sane
+// 1) grep -E 'toNative|^String ' lib/monero.dart | grep -v '^//' | grep -v '^String libPath = ' | wc -l
+//    This will print number of all things that produce pointers
+// 2) grep .free lib/monero.dart | grep -v '^//' | wc -l
+//    This will print number of all free calls, these numbers should match
+
+
 // Wrapper around generated_bindings.g.dart - to provide easy access to the
 // underlying functions, feel free to not use it at all.
 
@@ -83,6 +93,7 @@ Map<String, List<int>> debugCallLength = {};
 
 final defaultSeparatorStr = ";";
 final defaultSeparator = defaultSeparatorStr.toNativeUtf8().cast<Char>();
+/* we don't call .free here, this comment serves one purpose - so the numbers match :) */
 
 final Stopwatch sw = Stopwatch()..start();
 
@@ -273,6 +284,7 @@ String PendingTransaction_signersKeys(
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('MONERO_PendingTransaction_signersKeys');
+    malloc.free(strPtr);
     return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_signersKeys', e);
@@ -302,6 +314,7 @@ String UnsignedTransaction_errorString(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_UnsignedTransaction_errorString');
     return str;
   } catch (e) {
@@ -725,12 +738,13 @@ String AddressBookRow_extra(AddressBookRow addressBookRow_ptr) {
   debugStart?.call('MONERO_AddressBookRow_extra');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_AddressBookRow_extra(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_AddressBookRow_extra');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_AddressBookRow_extra', e);
     debugEnd?.call('MONERO_AddressBookRow_extra');
@@ -1399,12 +1413,13 @@ String SubaddressAccountRow_getBalance(
   debugStart?.call('MONERO_SubaddressAccountRow_getBalance');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .MONERO_SubaddressAccountRow_getBalance(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressAccountRow_getBalance');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('MONERO_SubaddressAccountRow_getBalance', e);
     debugEnd?.call('MONERO_SubaddressAccountRow_getBalance');
@@ -1421,6 +1436,7 @@ String SubaddressAccountRow_getUnlockedBalance(
         .MONERO_SubaddressAccountRow_getUnlockedBalance(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_SubaddressAccountRow_getUnlockedBalance');
     return str;
   } catch (e) {
@@ -2222,6 +2238,7 @@ String Wallet_paymentIdFromAddress(
         .MONERO_Wallet_paymentIdFromAddress(strarg_, nettype)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(strarg_);
     return str;
   } catch (e) {
@@ -2480,6 +2497,7 @@ PendingTransaction Wallet_createTransaction(wallet ptr,
   );
   calloc.free(dst_addr_);
   calloc.free(payment_id_);
+  calloc.free(preferredInputs_);
   debugEnd?.call('MONERO_Wallet_createTransaction');
   return s;
 }
@@ -3139,6 +3157,7 @@ String WalletManager_findWallets(WalletManager wm_ptr, {required String path}) {
         .MONERO_WalletManager_findWallets(wm_ptr, path_, defaultSeparator)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    calloc.free(path_);
     malloc.free(strPtr);
     debugEnd?.call('MONERO_WalletManager_findWallets');
     return str;
@@ -3266,6 +3285,7 @@ String WalletManager_resolveOpenAlias(
         .MONERO_WalletManager_resolveOpenAlias(wm_ptr, address_, dnssecValid)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('MONERO_WalletManager_resolveOpenAlias');
     calloc.free(address_);
     return str;

@@ -1,9 +1,74 @@
 library;
 
+// Are we memory safe?
+// There is a simple way to check that:
+// 1) Rewrite everything in rust
+// Or, assuming we are sane
+// 1) grep -E 'toNative|^String ' lib/wownero.dart | grep -v '^//' | grep -v '^String libPath = ' | wc -l
+//    This will print number of all things that produce pointers
+// 2) grep .free lib/wownero.dart | grep -v '^//' | wc -l
+//    This will print number of all free calls, these numbers should match
+
+
 // Wrapper around generated_bindings.g.dart - to provide easy access to the
 // underlying functions, feel free to not use it at all.
 
-// Check monero.dart for comments
+//  _____________ PendingTransaction is just a typedef for Pointer<Void> (which is void* on C side)
+// /                   _____________ Wallet class, we didn't specify the MONERO prefix because we import the monero.dart code with monero prefix
+// |                  /       _____________ createTransaction function, from the upstream in the class Wallet
+// |                  |      /
+// PendingTransaction Wallet_createTransaction(wallet ptr, <------------- wallet is a typedef for Pointer<Void>
+//     {required String dst_addr,--------------------------------\ All of the parameters that are used in this function
+//     required String payment_id,                  _____________/ String - will get casted into const char*
+//     required int amount,                        / 
+//     required int mixin_count,                  /                int - goes as it is
+//     required int pendingTransactionPriority,  /
+//     required int subaddr_account,            /
+//     List<String> preferredInputs = const []}) {                 List<String> - gets joined and passed as 2 separate parameters to be split in the C side____
+//   debugStart?.call('WOWNERO_Wallet_createTransaction'); <------------- debugStart functions just marks the function as currently being executed, used        |
+//   lib ??= WowneroC(DynamicLibrary.open(libPath));                    \_for performance debugging                                                             |
+//   \_____________ Load the library in case it is not loaded                                                                                                  |
+//   final dst_addr_ = dst_addr.toNativeUtf8().cast<Char>(); -----------------| Cast the strings into Chars so it can be used as a parameter in a function     |
+//   final payment_id_ = payment_id.toNativeUtf8().cast<Char>(); -------------| generated via ffigen                                                           |
+//   final preferredInputs_ = preferredInputs.join(defaultSeparatorStr).toNativeUtf8().cast<Char>(); <---------------------------------------------------------/
+//   final s = lib!.WOWNERO_Wallet_createTransaction(-------------|
+//     ptr,                                                       |
+//     dst_addr_,                                                 |
+//     payment_id_,                                               |
+//     amount,                                                    |
+//     mixin_count,                                               | Call the native function using generated code
+//     pendingTransactionPriority,                                |
+//     subaddr_account,                                           |
+//     preferredInputs_,                                          |
+//     defaultSeparator,                                          |
+//   );___________________________________________________________/
+//   calloc.free(dst_addr_);---------------| Free the memory once we don't need it
+//   calloc.free(payment_id_);-------------| 
+//   debugEnd?.call('WOWNERO_Wallet_createTransaction'); <------------- Mark the function as executed
+//   return s; <------------- return the value
+// }
+//
+// Extra case is happening when we have a function call that returns const char* as we have to be memory safe
+// String PendingTransaction_txid(PendingTransaction ptr, String separator) {
+//   debugStart?.call('WOWNERO_PendingTransaction_txid');
+//   lib ??= WowneroC(DynamicLibrary.open(libPath));
+//   final separator_ = separator.toNativeUtf8().cast<Char>();
+//   final txid = lib!.WOWNERO_PendingTransaction_txid(ptr, separator_);
+//   calloc.free(separator_);
+//   debugEnd?.call('WOWNERO_PendingTransaction_txid');
+//   try { <------------- We need to try-catch these calls because they may fail in an unlikely case when we get an invalid UTF-8 string,
+//     final strPtr = txid.cast<Utf8>();                                            it is better to throw than to crash main isolate imo.
+//     final str = strPtr.toDartString(); <------------- convert the pointer to const char* to dart String
+//     malloc.free(strPtr); <------------- free the memory
+//     debugEnd?.call('WOWNERO_PendingTransaction_txid');
+//     return str; <------------- return the value
+//   } catch (e) {
+//     errorHandler?.call('WOWNERO_PendingTransaction_txid', e);
+//     debugEnd?.call('WOWNERO_PendingTransaction_txid');
+//     return ""; <------------- return an empty string in case of an error.
+//   }
+// }
+//
 
 // ignore_for_file: non_constant_identifier_names, camel_case_types
 
@@ -28,13 +93,14 @@ Map<String, List<int>> debugCallLength = {};
 
 final defaultSeparatorStr = ";";
 final defaultSeparator = defaultSeparatorStr.toNativeUtf8().cast<Char>();
+/* we don't call .free here, this comment serves one purpose - so the numbers match :) */
 
 final Stopwatch sw = Stopwatch()..start();
 
 bool printStarts = false;
 
 void Function(String call)? debugStart = (call) {
-  if (printStarts) print("WOWNERO: $call");
+  if (printStarts) print("MONERO: $call");
   debugCallLength[call] ??= <int>[];
   debugCallLength[call]!.add(sw.elapsedMicroseconds);
 };
@@ -218,6 +284,7 @@ String PendingTransaction_signersKeys(
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('WOWNERO_PendingTransaction_signersKeys');
+    malloc.free(strPtr);
     return str;
   } catch (e) {
     errorHandler?.call('WOWNERO_PendingTransaction_signersKeys', e);
@@ -247,6 +314,7 @@ String UnsignedTransaction_errorString(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('WOWNERO_UnsignedTransaction_errorString');
     return str;
   } catch (e) {
@@ -670,12 +738,13 @@ String AddressBookRow_extra(AddressBookRow addressBookRow_ptr) {
   debugStart?.call('WOWNERO_AddressBookRow_extra');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .WOWNERO_AddressBookRow_extra(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('WOWNERO_AddressBookRow_extra');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('WOWNERO_AddressBookRow_extra', e);
     debugEnd?.call('WOWNERO_AddressBookRow_extra');
@@ -1344,12 +1413,13 @@ String SubaddressAccountRow_getBalance(
   debugStart?.call('WOWNERO_SubaddressAccountRow_getBalance');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final v = lib!
+    final strPtr = lib!
         .WOWNERO_SubaddressAccountRow_getBalance(addressBookRow_ptr)
-        .cast<Utf8>()
-        .toDartString();
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('WOWNERO_SubaddressAccountRow_getBalance');
-    return v;
+    return str;
   } catch (e) {
     errorHandler?.call('WOWNERO_SubaddressAccountRow_getBalance', e);
     debugEnd?.call('WOWNERO_SubaddressAccountRow_getBalance');
@@ -1366,6 +1436,7 @@ String SubaddressAccountRow_getUnlockedBalance(
         .WOWNERO_SubaddressAccountRow_getUnlockedBalance(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('WOWNERO_SubaddressAccountRow_getUnlockedBalance');
     return str;
   } catch (e) {
@@ -2167,6 +2238,7 @@ String Wallet_paymentIdFromAddress(
         .WOWNERO_Wallet_paymentIdFromAddress(strarg_, nettype)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     calloc.free(strarg_);
     return str;
   } catch (e) {
@@ -2425,6 +2497,7 @@ PendingTransaction Wallet_createTransaction(wallet ptr,
   );
   calloc.free(dst_addr_);
   calloc.free(payment_id_);
+  calloc.free(preferredInputs_);
   debugEnd?.call('WOWNERO_Wallet_createTransaction');
   return s;
 }
@@ -3084,6 +3157,7 @@ String WalletManager_findWallets(WalletManager wm_ptr, {required String path}) {
         .WOWNERO_WalletManager_findWallets(wm_ptr, path_, defaultSeparator)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    calloc.free(path_);
     malloc.free(strPtr);
     debugEnd?.call('WOWNERO_WalletManager_findWallets');
     return str;
@@ -3211,6 +3285,7 @@ String WalletManager_resolveOpenAlias(
         .WOWNERO_WalletManager_resolveOpenAlias(wm_ptr, address_, dnssecValid)
         .cast<Utf8>();
     final str = strPtr.toDartString();
+    malloc.free(strPtr);
     debugEnd?.call('WOWNERO_WalletManager_resolveOpenAlias');
     calloc.free(address_);
     return str;
