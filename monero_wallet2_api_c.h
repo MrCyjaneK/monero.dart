@@ -645,7 +645,7 @@ extern ADDAPI void MONERO_Wallet_init3(void* wallet_ptr, const char* argv0, cons
 //     virtual bool getPolyseed(std::string &seed, std::string &passphrase) const = 0;
 extern ADDAPI const char* MONERO_Wallet_getPolyseed(void* wallet_ptr, const char* passphrase);
 //     static bool createPolyseed(std::string &seed_words, std::string &err, const std::string &language = "English");
-extern ADDAPI const char* MONERO_Wallet_createPolyseed();
+extern ADDAPI const char* MONERO_Wallet_createPolyseed(const char* language);
 extern ADDAPI void MONERO_Wallet_startRefresh(void* wallet_ptr);
 //     virtual void pauseRefresh() = 0;
 extern ADDAPI void MONERO_Wallet_pauseRefresh(void* wallet_ptr);
@@ -975,6 +975,15 @@ extern ADDAPI void* MONERO_DEBUG_test4(uint64_t x);
 extern ADDAPI const char* MONERO_DEBUG_test5();
 extern ADDAPI const char* MONERO_DEBUG_test5_std();
 extern ADDAPI bool MONERO_DEBUG_isPointerNull(void* wallet_ptr);
+
+// cake world
+
+extern ADDAPI void* MONERO_cw_getWalletListener(void* wallet_ptr);
+extern ADDAPI void MONERO_cw_WalletListener_resetNeedToRefresh(void* cw_walletListener_ptr);
+extern ADDAPI bool MONERO_cw_WalletListener_isNeedToRefresh(void* cw_walletListener_ptr);
+extern ADDAPI bool MONERO_cw_WalletListener_isNewTransactionExist(void* cw_walletListener_ptr);
+extern ADDAPI void MONERO_cw_WalletListener_resetIsNewTransactionExist(void* cw_walletListener_ptr);
+extern ADDAPI uint64_t MONERO_cw_WalletListener_height(void* cw_walletListener_ptr);
 
 #ifdef __cplusplus
 }

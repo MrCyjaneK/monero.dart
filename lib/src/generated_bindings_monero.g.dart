@@ -6340,15 +6340,20 @@ class MoneroC {
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   /// static bool createPolyseed(std::string &seed_words, std::string &err, const std::string &language = "English");
-  ffi.Pointer<ffi.Char> MONERO_Wallet_createPolyseed() {
-    return _MONERO_Wallet_createPolyseed();
+  ffi.Pointer<ffi.Char> MONERO_Wallet_createPolyseed(
+    ffi.Pointer<ffi.Char> language,
+  ) {
+    return _MONERO_Wallet_createPolyseed(
+      language,
+    );
   }
 
-  late final _MONERO_Wallet_createPolyseedPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
-          'MONERO_Wallet_createPolyseed');
+  late final _MONERO_Wallet_createPolyseedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_createPolyseed');
   late final _MONERO_Wallet_createPolyseed = _MONERO_Wallet_createPolyseedPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function()>();
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   void MONERO_Wallet_startRefresh(
     ffi.Pointer<ffi.Void> wallet_ptr,
@@ -8314,6 +8319,97 @@ class MoneroC {
           'MONERO_DEBUG_isPointerNull');
   late final _MONERO_DEBUG_isPointerNull = _MONERO_DEBUG_isPointerNullPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
+
+  /// cake world
+  ffi.Pointer<ffi.Void> MONERO_cw_getWalletListener(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_cw_getWalletListener(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_cw_getWalletListenerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>)>>('MONERO_cw_getWalletListener');
+  late final _MONERO_cw_getWalletListener = _MONERO_cw_getWalletListenerPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
+
+  void MONERO_cw_WalletListener_resetNeedToRefresh(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _MONERO_cw_WalletListener_resetNeedToRefresh(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _MONERO_cw_WalletListener_resetNeedToRefreshPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_cw_WalletListener_resetNeedToRefresh');
+  late final _MONERO_cw_WalletListener_resetNeedToRefresh =
+      _MONERO_cw_WalletListener_resetNeedToRefreshPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Void>)>();
+
+  bool MONERO_cw_WalletListener_isNeedToRefresh(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _MONERO_cw_WalletListener_isNeedToRefresh(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _MONERO_cw_WalletListener_isNeedToRefreshPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_cw_WalletListener_isNeedToRefresh');
+  late final _MONERO_cw_WalletListener_isNeedToRefresh =
+      _MONERO_cw_WalletListener_isNeedToRefreshPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>)>();
+
+  bool MONERO_cw_WalletListener_isNewTransactionExist(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _MONERO_cw_WalletListener_isNewTransactionExist(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _MONERO_cw_WalletListener_isNewTransactionExistPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_cw_WalletListener_isNewTransactionExist');
+  late final _MONERO_cw_WalletListener_isNewTransactionExist =
+      _MONERO_cw_WalletListener_isNewTransactionExistPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>)>();
+
+  void MONERO_cw_WalletListener_resetIsNewTransactionExist(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _MONERO_cw_WalletListener_resetIsNewTransactionExist(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _MONERO_cw_WalletListener_resetIsNewTransactionExistPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_cw_WalletListener_resetIsNewTransactionExist');
+  late final _MONERO_cw_WalletListener_resetIsNewTransactionExist =
+      _MONERO_cw_WalletListener_resetIsNewTransactionExistPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Void>)>();
+
+  int MONERO_cw_WalletListener_height(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _MONERO_cw_WalletListener_height(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _MONERO_cw_WalletListener_heightPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_cw_WalletListener_height');
+  late final _MONERO_cw_WalletListener_height =
+      _MONERO_cw_WalletListener_heightPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Void>)>();
 }
 
 /// mbstate_t is an opaque object to keep conversion state, during multibyte

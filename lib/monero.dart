@@ -2299,11 +2299,15 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
   }
 }
 
-String Wallet_createPolyseed() {
+String Wallet_createPolyseed({
+  String language = "English",
+}) {
   debugStart?.call('MONERO_Wallet_createPolyseed');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!.MONERO_Wallet_createPolyseed().cast<Utf8>();
+    final language_ = language.toNativeUtf8();
+    final strPtr = lib!.MONERO_Wallet_createPolyseed(language_.cast()).cast<Utf8>();
+    calloc.free(language_);
     final str = strPtr.toDartString();
     malloc.free(strPtr);
     debugEnd?.call('MONERO_Wallet_createPolyseed');
@@ -3423,4 +3427,63 @@ libOk isLibOk() {
   final test5 = lib!.MONERO_DEBUG_test5();
   final test5_std = lib!.MONERO_DEBUG_test5_std();
   return libOk(test1, test2, test3, test4, test5, test5_std);
+}
+
+// cake world
+
+typedef WalletListener = Pointer<Void>;
+
+WalletListener MONERO_cw_getWalletListener(wallet wptr) {
+  debugStart?.call('MONERO_cw_getWalletListener');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.MONERO_cw_getWalletListener(wptr);
+  debugEnd?.call('MONERO_cw_getWalletListener');
+  return s;
+}
+
+void MONERO_cw_WalletListener_resetNeedToRefresh(WalletListener wlptr) {
+  debugStart?.call('MONERO_cw_WalletListener_resetNeedToRefresh');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.MONERO_cw_WalletListener_resetNeedToRefresh(wlptr);
+  debugEnd?.call('MONERO_cw_WalletListener_resetNeedToRefresh');
+  return s;
+}
+
+bool MONERO_cw_WalletListener_isNeedToRefresh(WalletListener wlptr) {
+  debugStart?.call('MONERO_cw_WalletListener_isNeedToRefresh');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.MONERO_cw_WalletListener_isNeedToRefresh(wlptr);
+  debugEnd?.call('MONERO_cw_WalletListener_isNeedToRefresh');
+  return s;
+}
+
+
+bool MONERO_cw_WalletListener_isNewTransactionExist(WalletListener wlptr) {
+  debugStart?.call('MONERO_cw_WalletListener_isNewTransactionExist');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.MONERO_cw_WalletListener_isNewTransactionExist(wlptr);
+  debugEnd?.call('MONERO_cw_WalletListener_isNewTransactionExist');
+  return s;
+}
+
+void MONERO_cw_WalletListener_resetIsNewTransactionExist(WalletListener wlptr) {
+  debugStart?.call('MONERO_cw_WalletListener_resetIsNewTransactionExist');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.MONERO_cw_WalletListener_resetIsNewTransactionExist(wlptr);
+  debugEnd?.call('MONERO_cw_WalletListener_resetIsNewTransactionExist');
+  return s;
+}
+
+int MONERO_cw_WalletListener_height(WalletListener wlptr) {
+  debugStart?.call('MONERO_cw_WalletListener_height');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.MONERO_cw_WalletListener_height(wlptr);
+  debugEnd?.call('MONERO_cw_WalletListener_height');
+  return s;
 }
