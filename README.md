@@ -2,10 +2,8 @@
 
 ## Usage
 
-[Package link](https://git.mrcyjanek.net/mrcyjanek/-/packages/pub/monero)
-
 ```bash
-$ dart pub add monero --hosted-url=https://git.mrcyjanek.net/api/packages/mrcyjanek/pub/
+$ dart pub add monero --git-url=https://git.mrcyjanek.net/mrcyjanek/monero.dart
 ```
 
 ## Building
