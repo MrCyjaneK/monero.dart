@@ -5,6 +5,7 @@ headers:
   entry-points:
     - 'monero_wallet2_api_c.h'
 
-comments:
-  style: any
-  length: full
+exclude-all-by-default: true
+functions:
+  include:
+    - "MONERO_.+"

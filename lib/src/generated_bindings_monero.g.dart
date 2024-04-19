@@ -19,1632 +19,6 @@ class MoneroC {
           lookup)
       : _lookup = lookup;
 
-  int access(
-    ffi.Pointer<ffi.Char> __name,
-    int __type,
-  ) {
-    return _access(
-      __name,
-      __type,
-    );
-  }
-
-  late final _accessPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int)>>(
-      'access');
-  late final _access =
-      _accessPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int faccessat(
-    int __fd,
-    ffi.Pointer<ffi.Char> __file,
-    int __type,
-    int __flag,
-  ) {
-    return _faccessat(
-      __fd,
-      __file,
-      __type,
-      __flag,
-    );
-  }
-
-  late final _faccessatPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int, ffi.Int)>>('faccessat');
-  late final _faccessat = _faccessatPtr
-      .asFunction<int Function(int, ffi.Pointer<ffi.Char>, int, int)>();
-
-  int lseek(
-    int __fd,
-    int __offset,
-    int __whence,
-  ) {
-    return _lseek(
-      __fd,
-      __offset,
-      __whence,
-    );
-  }
-
-  late final _lseekPtr =
-      _lookup<ffi.NativeFunction<__off_t Function(ffi.Int, __off_t, ffi.Int)>>(
-          'lseek');
-  late final _lseek = _lseekPtr.asFunction<int Function(int, int, int)>();
-
-  int close(
-    int __fd,
-  ) {
-    return _close(
-      __fd,
-    );
-  }
-
-  late final _closePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('close');
-  late final _close = _closePtr.asFunction<int Function(int)>();
-
-  void closefrom(
-    int __lowfd,
-  ) {
-    return _closefrom(
-      __lowfd,
-    );
-  }
-
-  late final _closefromPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('closefrom');
-  late final _closefrom = _closefromPtr.asFunction<void Function(int)>();
-
-  int read(
-    int __fd,
-    ffi.Pointer<ffi.Void> __buf,
-    int __nbytes,
-  ) {
-    return _read(
-      __fd,
-      __buf,
-      __nbytes,
-    );
-  }
-
-  late final _readPtr = _lookup<
-      ffi.NativeFunction<
-          ssize_t Function(ffi.Int, ffi.Pointer<ffi.Void>, ffi.Size)>>('read');
-  late final _read =
-      _readPtr.asFunction<int Function(int, ffi.Pointer<ffi.Void>, int)>();
-
-  int write(
-    int __fd,
-    ffi.Pointer<ffi.Void> __buf,
-    int __n,
-  ) {
-    return _write(
-      __fd,
-      __buf,
-      __n,
-    );
-  }
-
-  late final _writePtr = _lookup<
-      ffi.NativeFunction<
-          ssize_t Function(ffi.Int, ffi.Pointer<ffi.Void>, ffi.Size)>>('write');
-  late final _write =
-      _writePtr.asFunction<int Function(int, ffi.Pointer<ffi.Void>, int)>();
-
-  int pread(
-    int __fd,
-    ffi.Pointer<ffi.Void> __buf,
-    int __nbytes,
-    int __offset,
-  ) {
-    return _pread(
-      __fd,
-      __buf,
-      __nbytes,
-      __offset,
-    );
-  }
-
-  late final _preadPtr = _lookup<
-      ffi.NativeFunction<
-          ssize_t Function(
-              ffi.Int, ffi.Pointer<ffi.Void>, ffi.Size, __off_t)>>('pread');
-  late final _pread = _preadPtr
-      .asFunction<int Function(int, ffi.Pointer<ffi.Void>, int, int)>();
-
-  int pwrite(
-    int __fd,
-    ffi.Pointer<ffi.Void> __buf,
-    int __n,
-    int __offset,
-  ) {
-    return _pwrite(
-      __fd,
-      __buf,
-      __n,
-      __offset,
-    );
-  }
-
-  late final _pwritePtr = _lookup<
-      ffi.NativeFunction<
-          ssize_t Function(
-              ffi.Int, ffi.Pointer<ffi.Void>, ffi.Size, __off_t)>>('pwrite');
-  late final _pwrite = _pwritePtr
-      .asFunction<int Function(int, ffi.Pointer<ffi.Void>, int, int)>();
-
-  int pipe(
-    ffi.Pointer<ffi.Int> __pipedes,
-  ) {
-    return _pipe(
-      __pipedes,
-    );
-  }
-
-  late final _pipePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Int>)>>(
-          'pipe');
-  late final _pipe = _pipePtr.asFunction<int Function(ffi.Pointer<ffi.Int>)>();
-
-  int alarm(
-    int __seconds,
-  ) {
-    return _alarm(
-      __seconds,
-    );
-  }
-
-  late final _alarmPtr =
-      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.UnsignedInt)>>(
-          'alarm');
-  late final _alarm = _alarmPtr.asFunction<int Function(int)>();
-
-  int sleep(
-    int __seconds,
-  ) {
-    return _sleep(
-      __seconds,
-    );
-  }
-
-  late final _sleepPtr =
-      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.UnsignedInt)>>(
-          'sleep');
-  late final _sleep = _sleepPtr.asFunction<int Function(int)>();
-
-  int ualarm(
-    int __value,
-    int __interval,
-  ) {
-    return _ualarm(
-      __value,
-      __interval,
-    );
-  }
-
-  late final _ualarmPtr = _lookup<
-      ffi.NativeFunction<
-          __useconds_t Function(__useconds_t, __useconds_t)>>('ualarm');
-  late final _ualarm = _ualarmPtr.asFunction<int Function(int, int)>();
-
-  int usleep(
-    int __useconds,
-  ) {
-    return _usleep(
-      __useconds,
-    );
-  }
-
-  late final _usleepPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__useconds_t)>>('usleep');
-  late final _usleep = _usleepPtr.asFunction<int Function(int)>();
-
-  int pause() {
-    return _pause();
-  }
-
-  late final _pausePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('pause');
-  late final _pause = _pausePtr.asFunction<int Function()>();
-
-  int chown(
-    ffi.Pointer<ffi.Char> __file,
-    int __owner,
-    int __group,
-  ) {
-    return _chown(
-      __file,
-      __owner,
-      __group,
-    );
-  }
-
-  late final _chownPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, __uid_t, __gid_t)>>('chown');
-  late final _chown =
-      _chownPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, int)>();
-
-  int fchown(
-    int __fd,
-    int __owner,
-    int __group,
-  ) {
-    return _fchown(
-      __fd,
-      __owner,
-      __group,
-    );
-  }
-
-  late final _fchownPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, __uid_t, __gid_t)>>(
-          'fchown');
-  late final _fchown = _fchownPtr.asFunction<int Function(int, int, int)>();
-
-  int lchown(
-    ffi.Pointer<ffi.Char> __file,
-    int __owner,
-    int __group,
-  ) {
-    return _lchown(
-      __file,
-      __owner,
-      __group,
-    );
-  }
-
-  late final _lchownPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, __uid_t, __gid_t)>>('lchown');
-  late final _lchown =
-      _lchownPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int, int)>();
-
-  int fchownat(
-    int __fd,
-    ffi.Pointer<ffi.Char> __file,
-    int __owner,
-    int __group,
-    int __flag,
-  ) {
-    return _fchownat(
-      __fd,
-      __file,
-      __owner,
-      __group,
-      __flag,
-    );
-  }
-
-  late final _fchownatPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, __uid_t, __gid_t,
-              ffi.Int)>>('fchownat');
-  late final _fchownat = _fchownatPtr
-      .asFunction<int Function(int, ffi.Pointer<ffi.Char>, int, int, int)>();
-
-  int chdir(
-    ffi.Pointer<ffi.Char> __path,
-  ) {
-    return _chdir(
-      __path,
-    );
-  }
-
-  late final _chdirPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'chdir');
-  late final _chdir =
-      _chdirPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int fchdir(
-    int __fd,
-  ) {
-    return _fchdir(
-      __fd,
-    );
-  }
-
-  late final _fchdirPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('fchdir');
-  late final _fchdir = _fchdirPtr.asFunction<int Function(int)>();
-
-  ffi.Pointer<ffi.Char> getcwd(
-    ffi.Pointer<ffi.Char> __buf,
-    int __size,
-  ) {
-    return _getcwd(
-      __buf,
-      __size,
-    );
-  }
-
-  late final _getcwdPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Size)>>('getcwd');
-  late final _getcwd = _getcwdPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int)>();
-
-  ffi.Pointer<ffi.Char> getwd(
-    ffi.Pointer<ffi.Char> __buf,
-  ) {
-    return _getwd(
-      __buf,
-    );
-  }
-
-  late final _getwdPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getwd');
-  late final _getwd = _getwdPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int dup(
-    int __fd,
-  ) {
-    return _dup(
-      __fd,
-    );
-  }
-
-  late final _dupPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('dup');
-  late final _dup = _dupPtr.asFunction<int Function(int)>();
-
-  int dup2(
-    int __fd,
-    int __fd2,
-  ) {
-    return _dup2(
-      __fd,
-      __fd2,
-    );
-  }
-
-  late final _dup2Ptr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('dup2');
-  late final _dup2 = _dup2Ptr.asFunction<int Function(int, int)>();
-
-  late final ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Char>>> ___environ =
-      _lookup<ffi.Pointer<ffi.Pointer<ffi.Char>>>('__environ');
-
-  ffi.Pointer<ffi.Pointer<ffi.Char>> get __environ => ___environ.value;
-
-  set __environ(ffi.Pointer<ffi.Pointer<ffi.Char>> value) =>
-      ___environ.value = value;
-
-  int execve(
-    ffi.Pointer<ffi.Char> __path,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __argv,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __envp,
-  ) {
-    return _execve(
-      __path,
-      __argv,
-      __envp,
-    );
-  }
-
-  late final _execvePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('execve');
-  late final _execve = _execvePtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int fexecve(
-    int __fd,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __argv,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __envp,
-  ) {
-    return _fexecve(
-      __fd,
-      __argv,
-      __envp,
-    );
-  }
-
-  late final _fexecvePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('fexecve');
-  late final _fexecve = _fexecvePtr.asFunction<
-      int Function(int, ffi.Pointer<ffi.Pointer<ffi.Char>>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int execv(
-    ffi.Pointer<ffi.Char> __path,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __argv,
-  ) {
-    return _execv(
-      __path,
-      __argv,
-    );
-  }
-
-  late final _execvPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('execv');
-  late final _execv = _execvPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int execle(
-    ffi.Pointer<ffi.Char> __path,
-    ffi.Pointer<ffi.Char> __arg,
-  ) {
-    return _execle(
-      __path,
-      __arg,
-    );
-  }
-
-  late final _execlePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('execle');
-  late final _execle = _execlePtr
-      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int execl(
-    ffi.Pointer<ffi.Char> __path,
-    ffi.Pointer<ffi.Char> __arg,
-  ) {
-    return _execl(
-      __path,
-      __arg,
-    );
-  }
-
-  late final _execlPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('execl');
-  late final _execl = _execlPtr
-      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int execvp(
-    ffi.Pointer<ffi.Char> __file,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> __argv,
-  ) {
-    return _execvp(
-      __file,
-      __argv,
-    );
-  }
-
-  late final _execvpPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('execvp');
-  late final _execvp = _execvpPtr.asFunction<
-      int Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  int execlp(
-    ffi.Pointer<ffi.Char> __file,
-    ffi.Pointer<ffi.Char> __arg,
-  ) {
-    return _execlp(
-      __file,
-      __arg,
-    );
-  }
-
-  late final _execlpPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('execlp');
-  late final _execlp = _execlpPtr
-      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int nice(
-    int __inc,
-  ) {
-    return _nice(
-      __inc,
-    );
-  }
-
-  late final _nicePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('nice');
-  late final _nice = _nicePtr.asFunction<int Function(int)>();
-
-  void _exit(
-    int __status,
-  ) {
-    return __exit(
-      __status,
-    );
-  }
-
-  late final __exitPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>('_exit');
-  late final __exit = __exitPtr.asFunction<void Function(int)>();
-
-  int pathconf(
-    ffi.Pointer<ffi.Char> __path,
-    int __name,
-  ) {
-    return _pathconf(
-      __path,
-      __name,
-    );
-  }
-
-  late final _pathconfPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Long Function(ffi.Pointer<ffi.Char>, ffi.Int)>>('pathconf');
-  late final _pathconf =
-      _pathconfPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int fpathconf(
-    int __fd,
-    int __name,
-  ) {
-    return _fpathconf(
-      __fd,
-      __name,
-    );
-  }
-
-  late final _fpathconfPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Int, ffi.Int)>>(
-          'fpathconf');
-  late final _fpathconf = _fpathconfPtr.asFunction<int Function(int, int)>();
-
-  int sysconf(
-    int __name,
-  ) {
-    return _sysconf(
-      __name,
-    );
-  }
-
-  late final _sysconfPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Int)>>('sysconf');
-  late final _sysconf = _sysconfPtr.asFunction<int Function(int)>();
-
-  int confstr(
-    int __name,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _confstr(
-      __name,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _confstrPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Size Function(
-              ffi.Int, ffi.Pointer<ffi.Char>, ffi.Size)>>('confstr');
-  late final _confstr =
-      _confstrPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  int getpid() {
-    return _getpid();
-  }
-
-  late final _getpidPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function()>>('getpid');
-  late final _getpid = _getpidPtr.asFunction<int Function()>();
-
-  int getppid() {
-    return _getppid();
-  }
-
-  late final _getppidPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function()>>('getppid');
-  late final _getppid = _getppidPtr.asFunction<int Function()>();
-
-  int getpgrp() {
-    return _getpgrp();
-  }
-
-  late final _getpgrpPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function()>>('getpgrp');
-  late final _getpgrp = _getpgrpPtr.asFunction<int Function()>();
-
-  int __getpgid(
-    int __pid,
-  ) {
-    return ___getpgid(
-      __pid,
-    );
-  }
-
-  late final ___getpgidPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function(__pid_t)>>('__getpgid');
-  late final ___getpgid = ___getpgidPtr.asFunction<int Function(int)>();
-
-  int getpgid(
-    int __pid,
-  ) {
-    return _getpgid(
-      __pid,
-    );
-  }
-
-  late final _getpgidPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function(__pid_t)>>('getpgid');
-  late final _getpgid = _getpgidPtr.asFunction<int Function(int)>();
-
-  int setpgid(
-    int __pid,
-    int __pgid,
-  ) {
-    return _setpgid(
-      __pid,
-      __pgid,
-    );
-  }
-
-  late final _setpgidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__pid_t, __pid_t)>>(
-          'setpgid');
-  late final _setpgid = _setpgidPtr.asFunction<int Function(int, int)>();
-
-  int setpgrp() {
-    return _setpgrp();
-  }
-
-  late final _setpgrpPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('setpgrp');
-  late final _setpgrp = _setpgrpPtr.asFunction<int Function()>();
-
-  int setsid() {
-    return _setsid();
-  }
-
-  late final _setsidPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function()>>('setsid');
-  late final _setsid = _setsidPtr.asFunction<int Function()>();
-
-  int getsid(
-    int __pid,
-  ) {
-    return _getsid(
-      __pid,
-    );
-  }
-
-  late final _getsidPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function(__pid_t)>>('getsid');
-  late final _getsid = _getsidPtr.asFunction<int Function(int)>();
-
-  int getuid() {
-    return _getuid();
-  }
-
-  late final _getuidPtr =
-      _lookup<ffi.NativeFunction<__uid_t Function()>>('getuid');
-  late final _getuid = _getuidPtr.asFunction<int Function()>();
-
-  int geteuid() {
-    return _geteuid();
-  }
-
-  late final _geteuidPtr =
-      _lookup<ffi.NativeFunction<__uid_t Function()>>('geteuid');
-  late final _geteuid = _geteuidPtr.asFunction<int Function()>();
-
-  int getgid() {
-    return _getgid();
-  }
-
-  late final _getgidPtr =
-      _lookup<ffi.NativeFunction<__gid_t Function()>>('getgid');
-  late final _getgid = _getgidPtr.asFunction<int Function()>();
-
-  int getegid() {
-    return _getegid();
-  }
-
-  late final _getegidPtr =
-      _lookup<ffi.NativeFunction<__gid_t Function()>>('getegid');
-  late final _getegid = _getegidPtr.asFunction<int Function()>();
-
-  int getgroups(
-    int __size,
-    ffi.Pointer<__gid_t> __list,
-  ) {
-    return _getgroups(
-      __size,
-      __list,
-    );
-  }
-
-  late final _getgroupsPtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Pointer<__gid_t>)>>(
-      'getgroups');
-  late final _getgroups =
-      _getgroupsPtr.asFunction<int Function(int, ffi.Pointer<__gid_t>)>();
-
-  int setuid(
-    int __uid,
-  ) {
-    return _setuid(
-      __uid,
-    );
-  }
-
-  late final _setuidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__uid_t)>>('setuid');
-  late final _setuid = _setuidPtr.asFunction<int Function(int)>();
-
-  int setreuid(
-    int __ruid,
-    int __euid,
-  ) {
-    return _setreuid(
-      __ruid,
-      __euid,
-    );
-  }
-
-  late final _setreuidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__uid_t, __uid_t)>>(
-          'setreuid');
-  late final _setreuid = _setreuidPtr.asFunction<int Function(int, int)>();
-
-  int seteuid(
-    int __uid,
-  ) {
-    return _seteuid(
-      __uid,
-    );
-  }
-
-  late final _seteuidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__uid_t)>>('seteuid');
-  late final _seteuid = _seteuidPtr.asFunction<int Function(int)>();
-
-  int setgid(
-    int __gid,
-  ) {
-    return _setgid(
-      __gid,
-    );
-  }
-
-  late final _setgidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__gid_t)>>('setgid');
-  late final _setgid = _setgidPtr.asFunction<int Function(int)>();
-
-  int setregid(
-    int __rgid,
-    int __egid,
-  ) {
-    return _setregid(
-      __rgid,
-      __egid,
-    );
-  }
-
-  late final _setregidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__gid_t, __gid_t)>>(
-          'setregid');
-  late final _setregid = _setregidPtr.asFunction<int Function(int, int)>();
-
-  int setegid(
-    int __gid,
-  ) {
-    return _setegid(
-      __gid,
-    );
-  }
-
-  late final _setegidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(__gid_t)>>('setegid');
-  late final _setegid = _setegidPtr.asFunction<int Function(int)>();
-
-  int fork() {
-    return _fork();
-  }
-
-  late final _forkPtr = _lookup<ffi.NativeFunction<__pid_t Function()>>('fork');
-  late final _fork = _forkPtr.asFunction<int Function()>();
-
-  int vfork() {
-    return _vfork();
-  }
-
-  late final _vforkPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('vfork');
-  late final _vfork = _vforkPtr.asFunction<int Function()>();
-
-  ffi.Pointer<ffi.Char> ttyname(
-    int __fd,
-  ) {
-    return _ttyname(
-      __fd,
-    );
-  }
-
-  late final _ttynamePtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int)>>(
-          'ttyname');
-  late final _ttyname =
-      _ttynamePtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
-
-  int ttyname_r(
-    int __fd,
-    ffi.Pointer<ffi.Char> __buf,
-    int __buflen,
-  ) {
-    return _ttyname_r(
-      __fd,
-      __buf,
-      __buflen,
-    );
-  }
-
-  late final _ttyname_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int, ffi.Pointer<ffi.Char>, ffi.Size)>>('ttyname_r');
-  late final _ttyname_r =
-      _ttyname_rPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  int isatty(
-    int __fd,
-  ) {
-    return _isatty(
-      __fd,
-    );
-  }
-
-  late final _isattyPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('isatty');
-  late final _isatty = _isattyPtr.asFunction<int Function(int)>();
-
-  int ttyslot() {
-    return _ttyslot();
-  }
-
-  late final _ttyslotPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('ttyslot');
-  late final _ttyslot = _ttyslotPtr.asFunction<int Function()>();
-
-  int link(
-    ffi.Pointer<ffi.Char> __from,
-    ffi.Pointer<ffi.Char> __to,
-  ) {
-    return _link(
-      __from,
-      __to,
-    );
-  }
-
-  late final _linkPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('link');
-  late final _link = _linkPtr
-      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int linkat(
-    int __fromfd,
-    ffi.Pointer<ffi.Char> __from,
-    int __tofd,
-    ffi.Pointer<ffi.Char> __to,
-    int __flags,
-  ) {
-    return _linkat(
-      __fromfd,
-      __from,
-      __tofd,
-      __to,
-      __flags,
-    );
-  }
-
-  late final _linkatPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int,
-              ffi.Pointer<ffi.Char>, ffi.Int)>>('linkat');
-  late final _linkat = _linkatPtr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>, int)>();
-
-  int symlink(
-    ffi.Pointer<ffi.Char> __from,
-    ffi.Pointer<ffi.Char> __to,
-  ) {
-    return _symlink(
-      __from,
-      __to,
-    );
-  }
-
-  late final _symlinkPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('symlink');
-  late final _symlink = _symlinkPtr
-      .asFunction<int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int readlink(
-    ffi.Pointer<ffi.Char> __path,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _readlink(
-      __path,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _readlinkPtr = _lookup<
-      ffi.NativeFunction<
-          ssize_t Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Size)>>('readlink');
-  late final _readlink = _readlinkPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int symlinkat(
-    ffi.Pointer<ffi.Char> __from,
-    int __tofd,
-    ffi.Pointer<ffi.Char> __to,
-  ) {
-    return _symlinkat(
-      __from,
-      __tofd,
-      __to,
-    );
-  }
-
-  late final _symlinkatPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Int,
-              ffi.Pointer<ffi.Char>)>>('symlinkat');
-  late final _symlinkat = _symlinkatPtr.asFunction<
-      int Function(ffi.Pointer<ffi.Char>, int, ffi.Pointer<ffi.Char>)>();
-
-  int readlinkat(
-    int __fd,
-    ffi.Pointer<ffi.Char> __path,
-    ffi.Pointer<ffi.Char> __buf,
-    int __len,
-  ) {
-    return _readlinkat(
-      __fd,
-      __path,
-      __buf,
-      __len,
-    );
-  }
-
-  late final _readlinkatPtr = _lookup<
-      ffi.NativeFunction<
-          ssize_t Function(ffi.Int, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.Size)>>('readlinkat');
-  late final _readlinkat = _readlinkatPtr.asFunction<
-      int Function(int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
-
-  int unlink(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _unlink(
-      __name,
-    );
-  }
-
-  late final _unlinkPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'unlink');
-  late final _unlink =
-      _unlinkPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int unlinkat(
-    int __fd,
-    ffi.Pointer<ffi.Char> __name,
-    int __flag,
-  ) {
-    return _unlinkat(
-      __fd,
-      __name,
-      __flag,
-    );
-  }
-
-  late final _unlinkatPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(
-              ffi.Int, ffi.Pointer<ffi.Char>, ffi.Int)>>('unlinkat');
-  late final _unlinkat =
-      _unlinkatPtr.asFunction<int Function(int, ffi.Pointer<ffi.Char>, int)>();
-
-  int rmdir(
-    ffi.Pointer<ffi.Char> __path,
-  ) {
-    return _rmdir(
-      __path,
-    );
-  }
-
-  late final _rmdirPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'rmdir');
-  late final _rmdir =
-      _rmdirPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int tcgetpgrp(
-    int __fd,
-  ) {
-    return _tcgetpgrp(
-      __fd,
-    );
-  }
-
-  late final _tcgetpgrpPtr =
-      _lookup<ffi.NativeFunction<__pid_t Function(ffi.Int)>>('tcgetpgrp');
-  late final _tcgetpgrp = _tcgetpgrpPtr.asFunction<int Function(int)>();
-
-  int tcsetpgrp(
-    int __fd,
-    int __pgrp_id,
-  ) {
-    return _tcsetpgrp(
-      __fd,
-      __pgrp_id,
-    );
-  }
-
-  late final _tcsetpgrpPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, __pid_t)>>(
-          'tcsetpgrp');
-  late final _tcsetpgrp = _tcsetpgrpPtr.asFunction<int Function(int, int)>();
-
-  ffi.Pointer<ffi.Char> getlogin() {
-    return _getlogin();
-  }
-
-  late final _getloginPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('getlogin');
-  late final _getlogin =
-      _getloginPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
-
-  int getlogin_r(
-    ffi.Pointer<ffi.Char> __name,
-    int __name_len,
-  ) {
-    return _getlogin_r(
-      __name,
-      __name_len,
-    );
-  }
-
-  late final _getlogin_rPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('getlogin_r');
-  late final _getlogin_r =
-      _getlogin_rPtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int setlogin(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _setlogin(
-      __name,
-    );
-  }
-
-  late final _setloginPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'setlogin');
-  late final _setlogin =
-      _setloginPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  late final ffi.Pointer<ffi.Pointer<ffi.Char>> _optarg =
-      _lookup<ffi.Pointer<ffi.Char>>('optarg');
-
-  ffi.Pointer<ffi.Char> get optarg => _optarg.value;
-
-  set optarg(ffi.Pointer<ffi.Char> value) => _optarg.value = value;
-
-  late final ffi.Pointer<ffi.Int> _optind = _lookup<ffi.Int>('optind');
-
-  int get optind => _optind.value;
-
-  set optind(int value) => _optind.value = value;
-
-  late final ffi.Pointer<ffi.Int> _opterr = _lookup<ffi.Int>('opterr');
-
-  int get opterr => _opterr.value;
-
-  set opterr(int value) => _opterr.value = value;
-
-  late final ffi.Pointer<ffi.Int> _optopt = _lookup<ffi.Int>('optopt');
-
-  int get optopt => _optopt.value;
-
-  set optopt(int value) => _optopt.value = value;
-
-  int getopt(
-    int ___argc,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> ___argv,
-    ffi.Pointer<ffi.Char> __shortopts,
-  ) {
-    return _getopt(
-      ___argc,
-      ___argv,
-      __shortopts,
-    );
-  }
-
-  late final _getoptPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Int, ffi.Pointer<ffi.Pointer<ffi.Char>>,
-              ffi.Pointer<ffi.Char>)>>('getopt');
-  late final _getopt = _getoptPtr.asFunction<
-      int Function(
-          int, ffi.Pointer<ffi.Pointer<ffi.Char>>, ffi.Pointer<ffi.Char>)>();
-
-  int gethostname(
-    ffi.Pointer<ffi.Char> __name,
-    int __len,
-  ) {
-    return _gethostname(
-      __name,
-      __len,
-    );
-  }
-
-  late final _gethostnamePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('gethostname');
-  late final _gethostname =
-      _gethostnamePtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int sethostname(
-    ffi.Pointer<ffi.Char> __name,
-    int __len,
-  ) {
-    return _sethostname(
-      __name,
-      __len,
-    );
-  }
-
-  late final _sethostnamePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('sethostname');
-  late final _sethostname =
-      _sethostnamePtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int sethostid(
-    int __id,
-  ) {
-    return _sethostid(
-      __id,
-    );
-  }
-
-  late final _sethostidPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Long)>>('sethostid');
-  late final _sethostid = _sethostidPtr.asFunction<int Function(int)>();
-
-  int getdomainname(
-    ffi.Pointer<ffi.Char> __name,
-    int __len,
-  ) {
-    return _getdomainname(
-      __name,
-      __len,
-    );
-  }
-
-  late final _getdomainnamePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('getdomainname');
-  late final _getdomainname =
-      _getdomainnamePtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int setdomainname(
-    ffi.Pointer<ffi.Char> __name,
-    int __len,
-  ) {
-    return _setdomainname(
-      __name,
-      __len,
-    );
-  }
-
-  late final _setdomainnamePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Char>, ffi.Size)>>('setdomainname');
-  late final _setdomainname =
-      _setdomainnamePtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int vhangup() {
-    return _vhangup();
-  }
-
-  late final _vhangupPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('vhangup');
-  late final _vhangup = _vhangupPtr.asFunction<int Function()>();
-
-  int revoke(
-    ffi.Pointer<ffi.Char> __file,
-  ) {
-    return _revoke(
-      __file,
-    );
-  }
-
-  late final _revokePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'revoke');
-  late final _revoke =
-      _revokePtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  int profil(
-    ffi.Pointer<ffi.UnsignedShort> __sample_buffer,
-    int __size,
-    int __offset,
-    int __scale,
-  ) {
-    return _profil(
-      __sample_buffer,
-      __size,
-      __offset,
-      __scale,
-    );
-  }
-
-  late final _profilPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.UnsignedShort>, ffi.Size, ffi.Size,
-              ffi.UnsignedInt)>>('profil');
-  late final _profil = _profilPtr.asFunction<
-      int Function(ffi.Pointer<ffi.UnsignedShort>, int, int, int)>();
-
-  int acct(
-    ffi.Pointer<ffi.Char> __name,
-  ) {
-    return _acct(
-      __name,
-    );
-  }
-
-  late final _acctPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'acct');
-  late final _acct = _acctPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> getusershell() {
-    return _getusershell();
-  }
-
-  late final _getusershellPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
-          'getusershell');
-  late final _getusershell =
-      _getusershellPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
-
-  void endusershell() {
-    return _endusershell();
-  }
-
-  late final _endusershellPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('endusershell');
-  late final _endusershell = _endusershellPtr.asFunction<void Function()>();
-
-  void setusershell() {
-    return _setusershell();
-  }
-
-  late final _setusershellPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('setusershell');
-  late final _setusershell = _setusershellPtr.asFunction<void Function()>();
-
-  int daemon(
-    int __nochdir,
-    int __noclose,
-  ) {
-    return _daemon(
-      __nochdir,
-      __noclose,
-    );
-  }
-
-  late final _daemonPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('daemon');
-  late final _daemon = _daemonPtr.asFunction<int Function(int, int)>();
-
-  int chroot(
-    ffi.Pointer<ffi.Char> __path,
-  ) {
-    return _chroot(
-      __path,
-    );
-  }
-
-  late final _chrootPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>)>>(
-          'chroot');
-  late final _chroot =
-      _chrootPtr.asFunction<int Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> getpass(
-    ffi.Pointer<ffi.Char> __prompt,
-  ) {
-    return _getpass(
-      __prompt,
-    );
-  }
-
-  late final _getpassPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('getpass');
-  late final _getpass = _getpassPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  int fsync(
-    int __fd,
-  ) {
-    return _fsync(
-      __fd,
-    );
-  }
-
-  late final _fsyncPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('fsync');
-  late final _fsync = _fsyncPtr.asFunction<int Function(int)>();
-
-  int gethostid() {
-    return _gethostid();
-  }
-
-  late final _gethostidPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function()>>('gethostid');
-  late final _gethostid = _gethostidPtr.asFunction<int Function()>();
-
-  void sync1() {
-    return _sync1();
-  }
-
-  late final _sync1Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function()>>('sync');
-  late final _sync1 = _sync1Ptr.asFunction<void Function()>();
-
-  int getpagesize() {
-    return _getpagesize();
-  }
-
-  late final _getpagesizePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('getpagesize');
-  late final _getpagesize = _getpagesizePtr.asFunction<int Function()>();
-
-  int getdtablesize() {
-    return _getdtablesize();
-  }
-
-  late final _getdtablesizePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function()>>('getdtablesize');
-  late final _getdtablesize = _getdtablesizePtr.asFunction<int Function()>();
-
-  int truncate(
-    ffi.Pointer<ffi.Char> __file,
-    int __length,
-  ) {
-    return _truncate(
-      __file,
-      __length,
-    );
-  }
-
-  late final _truncatePtr = _lookup<
-          ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Char>, __off_t)>>(
-      'truncate');
-  late final _truncate =
-      _truncatePtr.asFunction<int Function(ffi.Pointer<ffi.Char>, int)>();
-
-  int ftruncate(
-    int __fd,
-    int __length,
-  ) {
-    return _ftruncate(
-      __fd,
-      __length,
-    );
-  }
-
-  late final _ftruncatePtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, __off_t)>>(
-          'ftruncate');
-  late final _ftruncate = _ftruncatePtr.asFunction<int Function(int, int)>();
-
-  int brk(
-    ffi.Pointer<ffi.Void> __addr,
-  ) {
-    return _brk(
-      __addr,
-    );
-  }
-
-  late final _brkPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>(
-          'brk');
-  late final _brk = _brkPtr.asFunction<int Function(ffi.Pointer<ffi.Void>)>();
-
-  ffi.Pointer<ffi.Void> sbrk(
-    int __delta,
-  ) {
-    return _sbrk(
-      __delta,
-    );
-  }
-
-  late final _sbrkPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Void> Function(ffi.IntPtr)>>(
-          'sbrk');
-  late final _sbrk = _sbrkPtr.asFunction<ffi.Pointer<ffi.Void> Function(int)>();
-
-  int syscall(
-    int __sysno,
-  ) {
-    return _syscall(
-      __sysno,
-    );
-  }
-
-  late final _syscallPtr =
-      _lookup<ffi.NativeFunction<ffi.Long Function(ffi.Long)>>('syscall');
-  late final _syscall = _syscallPtr.asFunction<int Function(int)>();
-
-  int lockf(
-    int __fd,
-    int __cmd,
-    int __len,
-  ) {
-    return _lockf(
-      __fd,
-      __cmd,
-      __len,
-    );
-  }
-
-  late final _lockfPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int, __off_t)>>(
-          'lockf');
-  late final _lockf = _lockfPtr.asFunction<int Function(int, int, int)>();
-
-  int fdatasync(
-    int __fildes,
-  ) {
-    return _fdatasync(
-      __fildes,
-    );
-  }
-
-  late final _fdatasyncPtr =
-      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int)>>('fdatasync');
-  late final _fdatasync = _fdatasyncPtr.asFunction<int Function(int)>();
-
-  ffi.Pointer<ffi.Char> crypt(
-    ffi.Pointer<ffi.Char> __key,
-    ffi.Pointer<ffi.Char> __salt,
-  ) {
-    return _crypt(
-      __key,
-      __salt,
-    );
-  }
-
-  late final _cryptPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('crypt');
-  late final _crypt = _cryptPtr.asFunction<
-      ffi.Pointer<ffi.Char> Function(
-          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
-
-  int getentropy(
-    ffi.Pointer<ffi.Void> __buffer,
-    int __length,
-  ) {
-    return _getentropy(
-      __buffer,
-      __length,
-    );
-  }
-
-  late final _getentropyPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Int Function(ffi.Pointer<ffi.Void>, ffi.Size)>>('getentropy');
-  late final _getentropy =
-      _getentropyPtr.asFunction<int Function(ffi.Pointer<ffi.Void>, int)>();
-
-  /// namespace Monero {
-  /// enum NetworkType : uint8_t {
-  /// MAINNET = 0,
-  late final ffi.Pointer<ffi.Int> _NetworkType_MAINNET =
-      _lookup<ffi.Int>('NetworkType_MAINNET');
-
-  int get NetworkType_MAINNET => _NetworkType_MAINNET.value;
-
-  /// TESTNET,
-  late final ffi.Pointer<ffi.Int> _NetworkType_TESTNET =
-      _lookup<ffi.Int>('NetworkType_TESTNET');
-
-  int get NetworkType_TESTNET => _NetworkType_TESTNET.value;
-
-  /// STAGENET
-  late final ffi.Pointer<ffi.Int> _NetworkType_STAGENET =
-      _lookup<ffi.Int>('NetworkType_STAGENET');
-
-  int get NetworkType_STAGENET => _NetworkType_STAGENET.value;
-
-  /// struct PendingTransaction
-  /// {
-  /// enum Status {
-  /// Status_Ok,
-  late final ffi.Pointer<ffi.Int> _PendingTransactionStatus_Ok =
-      _lookup<ffi.Int>('PendingTransactionStatus_Ok');
-
-  int get PendingTransactionStatus_Ok => _PendingTransactionStatus_Ok.value;
-
-  /// Status_Error,
-  late final ffi.Pointer<ffi.Int> _PendingTransactionStatus_Error =
-      _lookup<ffi.Int>('PendingTransactionStatus_Error');
-
-  int get PendingTransactionStatus_Error =>
-      _PendingTransactionStatus_Error.value;
-
-  /// Status_Critical
-  late final ffi.Pointer<ffi.Int> _PendingTransactionStatus_Critical =
-      _lookup<ffi.Int>('PendingTransactionStatus_Critical');
-
-  int get PendingTransactionStatus_Critical =>
-      _PendingTransactionStatus_Critical.value;
-
-  /// };
-  /// enum Priority {
-  /// Priority_Default = 0,
-  late final ffi.Pointer<ffi.Int> _Priority_Default =
-      _lookup<ffi.Int>('Priority_Default');
-
-  int get Priority_Default => _Priority_Default.value;
-
-  /// Priority_Low = 1,
-  late final ffi.Pointer<ffi.Int> _Priority_Low =
-      _lookup<ffi.Int>('Priority_Low');
-
-  int get Priority_Low => _Priority_Low.value;
-
-  /// Priority_Medium = 2,
-  late final ffi.Pointer<ffi.Int> _Priority_Medium =
-      _lookup<ffi.Int>('Priority_Medium');
-
-  int get Priority_Medium => _Priority_Medium.value;
-
-  /// Priority_High = 3,
-  late final ffi.Pointer<ffi.Int> _Priority_High =
-      _lookup<ffi.Int>('Priority_High');
-
-  int get Priority_High => _Priority_High.value;
-
-  /// Priority_Last
-  late final ffi.Pointer<ffi.Int> _Priority_Last =
-      _lookup<ffi.Int>('Priority_Last');
-
-  int get Priority_Last => _Priority_Last.value;
-
-  /// };
-  /// virtual ~PendingTransaction() = 0;
-  /// virtual int status() const = 0;
   int MONERO_PendingTransaction_status(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1660,7 +34,6 @@ class MoneroC {
       _MONERO_PendingTransaction_statusPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string errorString() const = 0;
   ffi.Pointer<ffi.Char> MONERO_PendingTransaction_errorString(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1677,7 +50,6 @@ class MoneroC {
       _MONERO_PendingTransaction_errorStringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool commit(const std::string &filename = "", bool overwrite = false) = 0;
   bool MONERO_PendingTransaction_commit(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
     ffi.Pointer<ffi.Char> filename,
@@ -1698,7 +70,6 @@ class MoneroC {
       _MONERO_PendingTransaction_commitPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, bool)>();
 
-  /// virtual uint64_t amount() const = 0;
   int MONERO_PendingTransaction_amount(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1714,7 +85,6 @@ class MoneroC {
       _MONERO_PendingTransaction_amountPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t dust() const = 0;
   int MONERO_PendingTransaction_dust(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1730,7 +100,6 @@ class MoneroC {
       _MONERO_PendingTransaction_dustPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t fee() const = 0;
   int MONERO_PendingTransaction_fee(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1745,7 +114,6 @@ class MoneroC {
   late final _MONERO_PendingTransaction_fee = _MONERO_PendingTransaction_feePtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::vector<std::string> txid() const = 0;
   ffi.Pointer<ffi.Char> MONERO_PendingTransaction_txid(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -1765,7 +133,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual uint64_t txCount() const = 0;
   int MONERO_PendingTransaction_txCount(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1781,7 +148,6 @@ class MoneroC {
       _MONERO_PendingTransaction_txCountPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::vector<uint32_t> subaddrAccount() const = 0;
   ffi.Pointer<ffi.Char> MONERO_PendingTransaction_subaddrAccount(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -1802,7 +168,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::vector<std::set<uint32_t>> subaddrIndices() const = 0;
   ffi.Pointer<ffi.Char> MONERO_PendingTransaction_subaddrIndices(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -1823,7 +188,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string multisigSignData() = 0;
   ffi.Pointer<ffi.Char> MONERO_PendingTransaction_multisigSignData(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1840,7 +204,6 @@ class MoneroC {
       _MONERO_PendingTransaction_multisigSignDataPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void signMultisigTx() = 0;
   void MONERO_PendingTransaction_signMultisigTx(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -1856,7 +219,6 @@ class MoneroC {
       _MONERO_PendingTransaction_signMultisigTxPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::vector<std::string> signersKeys() const = 0;
   ffi.Pointer<ffi.Char> MONERO_PendingTransaction_signersKeys(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -1876,32 +238,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// struct UnsignedTransaction
-  /// {
-  /// enum Status {
-  /// Status_Ok,
-  late final ffi.Pointer<ffi.Int> _UnsignedTransactionStatus_Ok =
-      _lookup<ffi.Int>('UnsignedTransactionStatus_Ok');
-
-  int get UnsignedTransactionStatus_Ok => _UnsignedTransactionStatus_Ok.value;
-
-  /// Status_Error,
-  late final ffi.Pointer<ffi.Int> _UnsignedTransactionStatus_Error =
-      _lookup<ffi.Int>('UnsignedTransactionStatus_Error');
-
-  int get UnsignedTransactionStatus_Error =>
-      _UnsignedTransactionStatus_Error.value;
-
-  /// Status_Critical
-  late final ffi.Pointer<ffi.Int> _UnsignedTransactionStatus_Critical =
-      _lookup<ffi.Int>('UnsignedTransactionStatus_Critical');
-
-  int get UnsignedTransactionStatus_Critical =>
-      _UnsignedTransactionStatus_Critical.value;
-
-  /// };
-  /// virtual ~UnsignedTransaction() = 0;
-  /// virtual int status() const = 0;
   int MONERO_UnsignedTransaction_status(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -1917,7 +253,6 @@ class MoneroC {
       _MONERO_UnsignedTransaction_statusPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string errorString() const = 0;
   ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_errorString(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -1934,7 +269,6 @@ class MoneroC {
       _MONERO_UnsignedTransaction_errorStringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::vector<uint64_t> amount() const = 0;
   ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_amount(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -1954,7 +288,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::vector<uint64_t>  fee() const = 0;
   ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_fee(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -1974,7 +307,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::vector<uint64_t> mixin() const = 0;
   ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_mixin(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -1994,7 +326,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string confirmationMessage() const = 0;
   ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_confirmationMessage(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -2011,7 +342,6 @@ class MoneroC {
       _MONERO_UnsignedTransaction_confirmationMessagePtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::vector<std::string> paymentId() const = 0;
   ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_paymentId(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -2031,7 +361,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::vector<std::string> recipientAddress() const = 0;
   ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_recipientAddress(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -2052,7 +381,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual uint64_t minMixinCount() const = 0;
   int MONERO_UnsignedTransaction_minMixinCount(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -2068,7 +396,6 @@ class MoneroC {
       _MONERO_UnsignedTransaction_minMixinCountPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t txCount() const = 0;
   int MONERO_UnsignedTransaction_txCount(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -2084,7 +411,6 @@ class MoneroC {
       _MONERO_UnsignedTransaction_txCountPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool sign(const std::string &signedFileName) = 0;
   bool MONERO_UnsignedTransaction_sign(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
     ffi.Pointer<ffi.Char> signedFileName,
@@ -2103,30 +429,6 @@ class MoneroC {
       _MONERO_UnsignedTransaction_signPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// };
-  /// struct TransactionInfo
-  /// {
-  /// enum Direction {
-  /// Direction_In,
-  late final ffi.Pointer<ffi.Int> _TransactionInfoDirection_In =
-      _lookup<ffi.Int>('TransactionInfoDirection_In');
-
-  int get TransactionInfoDirection_In => _TransactionInfoDirection_In.value;
-
-  /// Direction_Out
-  late final ffi.Pointer<ffi.Int> _TransactionInfoDirection_Out =
-      _lookup<ffi.Int>('TransactionInfoDirection_Out');
-
-  int get TransactionInfoDirection_Out => _TransactionInfoDirection_Out.value;
-
-  /// };
-  /// struct Transfer {
-  /// Transfer(uint64_t _amount, const std::string &address);
-  /// const uint64_t amount;
-  /// const std::string address;
-  /// };
-  /// virtual ~TransactionInfo() = 0;
-  /// virtual int  direction() const = 0;
   int MONERO_TransactionInfo_direction(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2142,7 +444,6 @@ class MoneroC {
       _MONERO_TransactionInfo_directionPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool isPending() const = 0;
   bool MONERO_TransactionInfo_isPending(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2158,7 +459,6 @@ class MoneroC {
       _MONERO_TransactionInfo_isPendingPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool isFailed() const = 0;
   bool MONERO_TransactionInfo_isFailed(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2174,7 +474,6 @@ class MoneroC {
       _MONERO_TransactionInfo_isFailedPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool isCoinbase() const = 0;
   bool MONERO_TransactionInfo_isCoinbase(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2190,7 +489,6 @@ class MoneroC {
       _MONERO_TransactionInfo_isCoinbasePtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t amount() const = 0;
   int MONERO_TransactionInfo_amount(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2205,7 +503,6 @@ class MoneroC {
   late final _MONERO_TransactionInfo_amount = _MONERO_TransactionInfo_amountPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t fee() const = 0;
   int MONERO_TransactionInfo_fee(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2220,7 +517,6 @@ class MoneroC {
   late final _MONERO_TransactionInfo_fee = _MONERO_TransactionInfo_feePtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t blockHeight() const = 0;
   int MONERO_TransactionInfo_blockHeight(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2236,7 +532,6 @@ class MoneroC {
       _MONERO_TransactionInfo_blockHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string description() const = 0;
   ffi.Pointer<ffi.Char> MONERO_TransactionInfo_description(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2253,7 +548,6 @@ class MoneroC {
       _MONERO_TransactionInfo_descriptionPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::set<uint32_t> subaddrIndex() const = 0;
   ffi.Pointer<ffi.Char> MONERO_TransactionInfo_subaddrIndex(
     ffi.Pointer<ffi.Void> txInfo_ptr,
     ffi.Pointer<ffi.Char> separator,
@@ -2273,7 +567,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual uint32_t subaddrAccount() const = 0;
   int MONERO_TransactionInfo_subaddrAccount(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2289,7 +582,6 @@ class MoneroC {
       _MONERO_TransactionInfo_subaddrAccountPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string label() const = 0;
   ffi.Pointer<ffi.Char> MONERO_TransactionInfo_label(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2305,7 +597,6 @@ class MoneroC {
   late final _MONERO_TransactionInfo_label = _MONERO_TransactionInfo_labelPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t confirmations() const = 0;
   int MONERO_TransactionInfo_confirmations(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2321,7 +612,6 @@ class MoneroC {
       _MONERO_TransactionInfo_confirmationsPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t unlockTime() const = 0;
   int MONERO_TransactionInfo_unlockTime(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2337,7 +627,6 @@ class MoneroC {
       _MONERO_TransactionInfo_unlockTimePtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string hash() const = 0;
   ffi.Pointer<ffi.Char> MONERO_TransactionInfo_hash(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2353,7 +642,6 @@ class MoneroC {
   late final _MONERO_TransactionInfo_hash = _MONERO_TransactionInfo_hashPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::time_t timestamp() const = 0;
   int MONERO_TransactionInfo_timestamp(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2369,7 +657,6 @@ class MoneroC {
       _MONERO_TransactionInfo_timestampPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string paymentId() const = 0;
   ffi.Pointer<ffi.Char> MONERO_TransactionInfo_paymentId(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2386,7 +673,6 @@ class MoneroC {
       _MONERO_TransactionInfo_paymentIdPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual const std::vector<Transfer> & transfers() const = 0;
   int MONERO_TransactionInfo_transfers_count(
     ffi.Pointer<ffi.Void> txInfo_ptr,
   ) {
@@ -2438,11 +724,6 @@ class MoneroC {
       _MONERO_TransactionInfo_transfers_addressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// };
-  /// struct TransactionHistory
-  /// {
-  /// virtual ~TransactionHistory() = 0;
-  /// virtual int count() const = 0;
   int MONERO_TransactionHistory_count(
     ffi.Pointer<ffi.Void> txHistory_ptr,
   ) {
@@ -2458,7 +739,6 @@ class MoneroC {
       _MONERO_TransactionHistory_countPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual TransactionInfo * transaction(int index)  const = 0;
   ffi.Pointer<ffi.Void> MONERO_TransactionHistory_transaction(
     ffi.Pointer<ffi.Void> txHistory_ptr,
     int index,
@@ -2477,7 +757,6 @@ class MoneroC {
       _MONERO_TransactionHistory_transactionPtr.asFunction<
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual TransactionInfo * transaction(const std::string &id) const = 0;
   ffi.Pointer<ffi.Void> MONERO_TransactionHistory_transactionById(
     ffi.Pointer<ffi.Void> txHistory_ptr,
     ffi.Pointer<ffi.Char> id,
@@ -2498,8 +777,6 @@ class MoneroC {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::vector<TransactionInfo*> getAll() const = 0;
-  /// virtual void refresh() = 0;
   void MONERO_TransactionHistory_refresh(
     ffi.Pointer<ffi.Void> txHistory_ptr,
   ) {
@@ -2515,7 +792,6 @@ class MoneroC {
       _MONERO_TransactionHistory_refreshPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setTxNote(const std::string &txid, const std::string &note) = 0;
   void MONERO_TransactionHistory_setTxNote(
     ffi.Pointer<ffi.Void> txHistory_ptr,
     ffi.Pointer<ffi.Char> txid,
@@ -2537,13 +813,6 @@ class MoneroC {
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  /// private:
-  /// std::size_t m_rowId;
-  /// std::string m_address;
-  /// std::string m_paymentId;
-  /// std::string m_description;
-  /// public:
-  /// std::string extra;
   ffi.Pointer<ffi.Char> MONERO_AddressBookRow_extra(
     ffi.Pointer<ffi.Void> addressBookRow_ptr,
   ) {
@@ -2559,7 +828,6 @@ class MoneroC {
   late final _MONERO_AddressBookRow_extra = _MONERO_AddressBookRow_extraPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getAddress() const {return m_address;}
   ffi.Pointer<ffi.Char> MONERO_AddressBookRow_getAddress(
     ffi.Pointer<ffi.Void> addressBookRow_ptr,
   ) {
@@ -2576,7 +844,6 @@ class MoneroC {
       _MONERO_AddressBookRow_getAddressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getDescription() const {return m_description;}
   ffi.Pointer<ffi.Char> MONERO_AddressBookRow_getDescription(
     ffi.Pointer<ffi.Void> addressBookRow_ptr,
   ) {
@@ -2593,7 +860,6 @@ class MoneroC {
       _MONERO_AddressBookRow_getDescriptionPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getPaymentId() const {return m_paymentId;}
   ffi.Pointer<ffi.Char> MONERO_AddressBookRow_getPaymentId(
     ffi.Pointer<ffi.Void> addressBookRow_ptr,
   ) {
@@ -2610,7 +876,6 @@ class MoneroC {
       _MONERO_AddressBookRow_getPaymentIdPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::size_t getRowId() const {return m_rowId;}
   int MONERO_AddressBookRow_getRowId(
     ffi.Pointer<ffi.Void> addressBookRow_ptr,
   ) {
@@ -2626,40 +891,6 @@ class MoneroC {
       _MONERO_AddressBookRow_getRowIdPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// };
-  /// struct AddressBook
-  /// {
-  /// enum ErrorCode {
-  /// Status_Ok,
-  late final ffi.Pointer<ffi.Int> _AddressBookErrorCodeStatus_Ok =
-      _lookup<ffi.Int>('AddressBookErrorCodeStatus_Ok');
-
-  int get AddressBookErrorCodeStatus_Ok => _AddressBookErrorCodeStatus_Ok.value;
-
-  /// General_Error,
-  late final ffi.Pointer<ffi.Int> _AddressBookErrorCodeGeneral_Error =
-      _lookup<ffi.Int>('AddressBookErrorCodeGeneral_Error');
-
-  int get AddressBookErrorCodeGeneral_Error =>
-      _AddressBookErrorCodeGeneral_Error.value;
-
-  /// Invalid_Address,
-  late final ffi.Pointer<ffi.Int> _AddressBookErrorCodeInvalid_Address =
-      _lookup<ffi.Int>('AddressBookErrorCodeInvalid_Address');
-
-  int get AddressBookErrorCodeInvalid_Address =>
-      _AddressBookErrorCodeInvalid_Address.value;
-
-  /// Invalid_Payment_Id
-  late final ffi.Pointer<ffi.Int> _AddressBookErrorCodeInvalidPaymentId =
-      _lookup<ffi.Int>('AddressBookErrorCodeInvalidPaymentId');
-
-  int get AddressBookErrorCodeInvalidPaymentId =>
-      _AddressBookErrorCodeInvalidPaymentId.value;
-
-  /// };
-  /// virtual ~AddressBook() = 0;
-  /// virtual std::vector<AddressBookRow*> getAll() const = 0;
   int MONERO_AddressBook_getAll_size(
     ffi.Pointer<ffi.Void> addressBook_ptr,
   ) {
@@ -2693,7 +924,6 @@ class MoneroC {
       _MONERO_AddressBook_getAll_byIndexPtr.asFunction<
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual bool addRow(const std::string &dst_addr , const std::string &payment_id, const std::string &description) = 0;
   bool MONERO_AddressBook_addRow(
     ffi.Pointer<ffi.Void> addressBook_ptr,
     ffi.Pointer<ffi.Char> dst_addr,
@@ -2720,7 +950,6 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool deleteRow(std::size_t rowId) = 0;
   bool MONERO_AddressBook_deleteRow(
     ffi.Pointer<ffi.Void> addressBook_ptr,
     int rowId,
@@ -2738,7 +967,6 @@ class MoneroC {
   late final _MONERO_AddressBook_deleteRow = _MONERO_AddressBook_deleteRowPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual bool setDescription(std::size_t index, const std::string &description) = 0;
   bool MONERO_AddressBook_setDescription(
     ffi.Pointer<ffi.Void> addressBook_ptr,
     int rowId,
@@ -2759,7 +987,6 @@ class MoneroC {
       _MONERO_AddressBook_setDescriptionPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void refresh() = 0;
   void MONERO_AddressBook_refresh(
     ffi.Pointer<ffi.Void> addressBook_ptr,
   ) {
@@ -2774,7 +1001,6 @@ class MoneroC {
   late final _MONERO_AddressBook_refresh = _MONERO_AddressBook_refreshPtr
       .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string errorString() const = 0;
   ffi.Pointer<ffi.Char> MONERO_AddressBook_errorString(
     ffi.Pointer<ffi.Void> addressBook_ptr,
   ) {
@@ -2791,7 +1017,6 @@ class MoneroC {
       _MONERO_AddressBook_errorStringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual int errorCode() const = 0;
   int MONERO_AddressBook_errorCode(
     ffi.Pointer<ffi.Void> addressBook_ptr,
   ) {
@@ -2806,7 +1031,6 @@ class MoneroC {
   late final _MONERO_AddressBook_errorCode = _MONERO_AddressBook_errorCodePtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual int lookupPaymentID(const std::string &payment_id) const = 0;
   int MONERO_AddressBook_lookupPaymentID(
     ffi.Pointer<ffi.Void> addressBook_ptr,
     ffi.Pointer<ffi.Char> payment_id,
@@ -2825,11 +1049,6 @@ class MoneroC {
       _MONERO_AddressBook_lookupPaymentIDPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// };
-  /// struct CoinsInfo
-  /// {
-  /// virtual ~CoinsInfo() = 0;
-  /// virtual uint64_t blockHeight() const = 0;
   int MONERO_CoinsInfo_blockHeight(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2844,7 +1063,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_blockHeight = _MONERO_CoinsInfo_blockHeightPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string hash() const = 0;
   ffi.Pointer<ffi.Char> MONERO_CoinsInfo_hash(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2860,7 +1078,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_hash = _MONERO_CoinsInfo_hashPtr.asFunction<
       ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual size_t internalOutputIndex() const = 0;
   int MONERO_CoinsInfo_internalOutputIndex(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2876,7 +1093,6 @@ class MoneroC {
       _MONERO_CoinsInfo_internalOutputIndexPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t globalOutputIndex() const = 0;
   int MONERO_CoinsInfo_globalOutputIndex(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2892,7 +1108,6 @@ class MoneroC {
       _MONERO_CoinsInfo_globalOutputIndexPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool spent() const = 0;
   bool MONERO_CoinsInfo_spent(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2907,7 +1122,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_spent = _MONERO_CoinsInfo_spentPtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool frozen() const = 0;
   bool MONERO_CoinsInfo_frozen(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2922,7 +1136,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_frozen = _MONERO_CoinsInfo_frozenPtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t spentHeight() const = 0;
   int MONERO_CoinsInfo_spentHeight(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2937,7 +1150,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_spentHeight = _MONERO_CoinsInfo_spentHeightPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t amount() const = 0;
   int MONERO_CoinsInfo_amount(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2952,7 +1164,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_amount = _MONERO_CoinsInfo_amountPtr.asFunction<
       int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool rct() const = 0;
   bool MONERO_CoinsInfo_rct(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2967,7 +1178,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_rct = _MONERO_CoinsInfo_rctPtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool keyImageKnown() const = 0;
   bool MONERO_CoinsInfo_keyImageKnown(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2983,7 +1193,6 @@ class MoneroC {
       _MONERO_CoinsInfo_keyImageKnownPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual size_t pkIndex() const = 0;
   int MONERO_CoinsInfo_pkIndex(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -2998,7 +1207,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_pkIndex = _MONERO_CoinsInfo_pkIndexPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint32_t subaddrIndex() const = 0;
   int MONERO_CoinsInfo_subaddrIndex(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3013,7 +1221,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_subaddrIndex = _MONERO_CoinsInfo_subaddrIndexPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint32_t subaddrAccount() const = 0;
   int MONERO_CoinsInfo_subaddrAccount(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3029,7 +1236,6 @@ class MoneroC {
       _MONERO_CoinsInfo_subaddrAccountPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string address() const = 0;
   ffi.Pointer<ffi.Char> MONERO_CoinsInfo_address(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3045,7 +1251,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_address = _MONERO_CoinsInfo_addressPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string addressLabel() const = 0;
   ffi.Pointer<ffi.Char> MONERO_CoinsInfo_addressLabel(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3061,7 +1266,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_addressLabel = _MONERO_CoinsInfo_addressLabelPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string keyImage() const = 0;
   ffi.Pointer<ffi.Char> MONERO_CoinsInfo_keyImage(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3077,7 +1281,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_keyImage = _MONERO_CoinsInfo_keyImagePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t unlockTime() const = 0;
   int MONERO_CoinsInfo_unlockTime(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3092,7 +1295,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_unlockTime = _MONERO_CoinsInfo_unlockTimePtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool unlocked() const = 0;
   bool MONERO_CoinsInfo_unlocked(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3107,7 +1309,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_unlocked = _MONERO_CoinsInfo_unlockedPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string pubKey() const = 0;
   ffi.Pointer<ffi.Char> MONERO_CoinsInfo_pubKey(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3123,7 +1324,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_pubKey = _MONERO_CoinsInfo_pubKeyPtr.asFunction<
       ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool coinbase() const = 0;
   bool MONERO_CoinsInfo_coinbase(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3138,7 +1338,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_coinbase = _MONERO_CoinsInfo_coinbasePtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string description() const = 0;
   ffi.Pointer<ffi.Char> MONERO_CoinsInfo_description(
     ffi.Pointer<ffi.Void> coinsInfo_ptr,
   ) {
@@ -3154,11 +1353,6 @@ class MoneroC {
   late final _MONERO_CoinsInfo_description = _MONERO_CoinsInfo_descriptionPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// };
-  /// struct Coins
-  /// {
-  /// virtual ~Coins() = 0;
-  /// virtual int count() const = 0;
   int MONERO_Coins_count(
     ffi.Pointer<ffi.Void> coins_ptr,
   ) {
@@ -3173,7 +1367,6 @@ class MoneroC {
   late final _MONERO_Coins_count =
       _MONERO_Coins_countPtr.asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual CoinsInfo * coin(int index)  const = 0;
   ffi.Pointer<ffi.Void> MONERO_Coins_coin(
     ffi.Pointer<ffi.Void> coins_ptr,
     int index,
@@ -3191,7 +1384,6 @@ class MoneroC {
   late final _MONERO_Coins_coin = _MONERO_Coins_coinPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual std::vector<CoinsInfo*> getAll() const = 0;
   int MONERO_Coins_getAll_size(
     ffi.Pointer<ffi.Void> coins_ptr,
   ) {
@@ -3223,7 +1415,6 @@ class MoneroC {
   late final _MONERO_Coins_getAll_byIndex = _MONERO_Coins_getAll_byIndexPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual void refresh() = 0;
   void MONERO_Coins_refresh(
     ffi.Pointer<ffi.Void> coins_ptr,
   ) {
@@ -3238,7 +1429,6 @@ class MoneroC {
   late final _MONERO_Coins_refresh = _MONERO_Coins_refreshPtr.asFunction<
       void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setFrozen(std::string public_key) = 0;
   void MONERO_Coins_setFrozenByPublicKey(
     ffi.Pointer<ffi.Void> coins_ptr,
     ffi.Pointer<ffi.Char> public_key,
@@ -3257,7 +1447,6 @@ class MoneroC {
       _MONERO_Coins_setFrozenByPublicKeyPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void setFrozen(int index) = 0;
   void MONERO_Coins_setFrozen(
     ffi.Pointer<ffi.Void> coins_ptr,
     int index,
@@ -3275,7 +1464,6 @@ class MoneroC {
   late final _MONERO_Coins_setFrozen = _MONERO_Coins_setFrozenPtr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual void thaw(int index) = 0;
   void MONERO_Coins_thaw(
     ffi.Pointer<ffi.Void> coins_ptr,
     int index,
@@ -3293,7 +1481,6 @@ class MoneroC {
   late final _MONERO_Coins_thaw = _MONERO_Coins_thawPtr.asFunction<
       void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual void thaw(std::string public_key) = 0;
   void MONERO_Coins_thawByPublicKey(
     ffi.Pointer<ffi.Void> coins_ptr,
     ffi.Pointer<ffi.Char> public_key,
@@ -3312,7 +1499,6 @@ class MoneroC {
       _MONERO_Coins_thawByPublicKeyPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool isTransferUnlocked(uint64_t unlockTime, uint64_t blockHeight) = 0;
   bool MONERO_Coins_isTransferUnlocked(
     ffi.Pointer<ffi.Void> coins_ptr,
     int unlockTime,
@@ -3333,7 +1519,6 @@ class MoneroC {
       _MONERO_Coins_isTransferUnlockedPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  /// virtual void setDescription(const std::string &public_key, const std::string &description) = 0;
   void MONERO_Coins_setDescription(
     ffi.Pointer<ffi.Void> coins_ptr,
     ffi.Pointer<ffi.Char> public_key,
@@ -3355,12 +1540,6 @@ class MoneroC {
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  /// private:
-  /// std::size_t m_rowId;
-  /// std::string m_address;
-  /// std::string m_label;
-  /// public:
-  /// std::string extra;
   ffi.Pointer<ffi.Char> MONERO_SubaddressRow_extra(
     ffi.Pointer<ffi.Void> subaddressRow_ptr,
   ) {
@@ -3376,7 +1555,6 @@ class MoneroC {
   late final _MONERO_SubaddressRow_extra = _MONERO_SubaddressRow_extraPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getAddress() const {return m_address;}
   ffi.Pointer<ffi.Char> MONERO_SubaddressRow_getAddress(
     ffi.Pointer<ffi.Void> subaddressRow_ptr,
   ) {
@@ -3393,7 +1571,6 @@ class MoneroC {
       _MONERO_SubaddressRow_getAddressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getLabel() const {return m_label;}
   ffi.Pointer<ffi.Char> MONERO_SubaddressRow_getLabel(
     ffi.Pointer<ffi.Void> subaddressRow_ptr,
   ) {
@@ -3409,7 +1586,6 @@ class MoneroC {
   late final _MONERO_SubaddressRow_getLabel = _MONERO_SubaddressRow_getLabelPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::size_t getRowId() const {return m_rowId;}
   int MONERO_SubaddressRow_getRowId(
     ffi.Pointer<ffi.Void> subaddressRow_ptr,
   ) {
@@ -3424,10 +1600,6 @@ class MoneroC {
   late final _MONERO_SubaddressRow_getRowId = _MONERO_SubaddressRow_getRowIdPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// struct Subaddress
-  /// {
-  /// virtual ~Subaddress() = 0;
-  /// virtual std::vector<SubaddressRow*> getAll() const = 0;
   int MONERO_Subaddress_getAll_size(
     ffi.Pointer<ffi.Void> subaddress_ptr,
   ) {
@@ -3460,7 +1632,6 @@ class MoneroC {
       _MONERO_Subaddress_getAll_byIndexPtr.asFunction<
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual void addRow(uint32_t accountIndex, const std::string &label) = 0;
   void MONERO_Subaddress_addRow(
     ffi.Pointer<ffi.Void> subaddress_ptr,
     int accountIndex,
@@ -3481,7 +1652,6 @@ class MoneroC {
       _MONERO_Subaddress_addRowPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void setLabel(uint32_t accountIndex, uint32_t addressIndex, const std::string &label) = 0;
   void MONERO_Subaddress_setLabel(
     ffi.Pointer<ffi.Void> subaddress_ptr,
     int accountIndex,
@@ -3505,7 +1675,6 @@ class MoneroC {
           void Function(
               ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void refresh(uint32_t accountIndex) = 0;
   void MONERO_Subaddress_refresh(
     ffi.Pointer<ffi.Void> subaddress_ptr,
     int accountIndex,
@@ -3523,14 +1692,6 @@ class MoneroC {
   late final _MONERO_Subaddress_refresh = _MONERO_Subaddress_refreshPtr
       .asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// private:
-  /// std::size_t m_rowId;
-  /// std::string m_address;
-  /// std::string m_label;
-  /// std::string m_balance;
-  /// std::string m_unlockedBalance;
-  /// public:
-  /// std::string extra;
   ffi.Pointer<ffi.Char> MONERO_SubaddressAccountRow_extra(
     ffi.Pointer<ffi.Void> subaddressAccountRow_ptr,
   ) {
@@ -3547,7 +1708,6 @@ class MoneroC {
       _MONERO_SubaddressAccountRow_extraPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getAddress() const {return m_address;}
   ffi.Pointer<ffi.Char> MONERO_SubaddressAccountRow_getAddress(
     ffi.Pointer<ffi.Void> subaddressAccountRow_ptr,
   ) {
@@ -3564,7 +1724,6 @@ class MoneroC {
       _MONERO_SubaddressAccountRow_getAddressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getLabel() const {return m_label;}
   ffi.Pointer<ffi.Char> MONERO_SubaddressAccountRow_getLabel(
     ffi.Pointer<ffi.Void> subaddressAccountRow_ptr,
   ) {
@@ -3581,7 +1740,6 @@ class MoneroC {
       _MONERO_SubaddressAccountRow_getLabelPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getBalance() const {return m_balance;}
   ffi.Pointer<ffi.Char> MONERO_SubaddressAccountRow_getBalance(
     ffi.Pointer<ffi.Void> subaddressAccountRow_ptr,
   ) {
@@ -3598,7 +1756,6 @@ class MoneroC {
       _MONERO_SubaddressAccountRow_getBalancePtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::string getUnlockedBalance() const {return m_unlockedBalance;}
   ffi.Pointer<ffi.Char> MONERO_SubaddressAccountRow_getUnlockedBalance(
     ffi.Pointer<ffi.Void> subaddressAccountRow_ptr,
   ) {
@@ -3615,7 +1772,6 @@ class MoneroC {
       _MONERO_SubaddressAccountRow_getUnlockedBalancePtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// std::size_t getRowId() const {return m_rowId;}
   int MONERO_SubaddressAccountRow_getRowId(
     ffi.Pointer<ffi.Void> subaddressAccountRow_ptr,
   ) {
@@ -3631,10 +1787,6 @@ class MoneroC {
       _MONERO_SubaddressAccountRow_getRowIdPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// struct SubaddressAccount
-  /// {
-  /// virtual ~SubaddressAccount() = 0;
-  /// virtual std::vector<SubaddressAccountRow*> getAll() const = 0;
   int MONERO_SubaddressAccount_getAll_size(
     ffi.Pointer<ffi.Void> subaddressAccount_ptr,
   ) {
@@ -3668,7 +1820,6 @@ class MoneroC {
       _MONERO_SubaddressAccount_getAll_byIndexPtr.asFunction<
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual void addRow(const std::string &label) = 0;
   void MONERO_SubaddressAccount_addRow(
     ffi.Pointer<ffi.Void> subaddressAccount_ptr,
     ffi.Pointer<ffi.Char> label,
@@ -3687,7 +1838,6 @@ class MoneroC {
       _MONERO_SubaddressAccount_addRowPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void setLabel(uint32_t accountIndex, const std::string &label) = 0;
   void MONERO_SubaddressAccount_setLabel(
     ffi.Pointer<ffi.Void> subaddressAccount_ptr,
     int accountIndex,
@@ -3708,7 +1858,6 @@ class MoneroC {
       _MONERO_SubaddressAccount_setLabelPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void refresh() = 0;
   void MONERO_SubaddressAccount_refresh(
     ffi.Pointer<ffi.Void> subaddressAccount_ptr,
   ) {
@@ -3724,7 +1873,6 @@ class MoneroC {
       _MONERO_SubaddressAccount_refreshPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// bool isMultisig;
   bool MONERO_MultisigState_isMultisig(
     ffi.Pointer<ffi.Void> multisigState_ptr,
   ) {
@@ -3740,7 +1888,6 @@ class MoneroC {
       _MONERO_MultisigState_isMultisigPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// bool isReady;
   bool MONERO_MultisigState_isReady(
     ffi.Pointer<ffi.Void> multisigState_ptr,
   ) {
@@ -3755,7 +1902,6 @@ class MoneroC {
   late final _MONERO_MultisigState_isReady = _MONERO_MultisigState_isReadyPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// uint32_t threshold;
   int MONERO_MultisigState_threshold(
     ffi.Pointer<ffi.Void> multisigState_ptr,
   ) {
@@ -3771,7 +1917,6 @@ class MoneroC {
       _MONERO_MultisigState_thresholdPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// uint32_t total;
   int MONERO_MultisigState_total(
     ffi.Pointer<ffi.Void> multisigState_ptr,
   ) {
@@ -3786,7 +1931,6 @@ class MoneroC {
   late final _MONERO_MultisigState_total = _MONERO_MultisigState_totalPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual double progress() const { return m_progress; }
   bool MONERO_DeviceProgress_progress(
     ffi.Pointer<ffi.Void> deviceProgress_ptr,
   ) {
@@ -3802,7 +1946,6 @@ class MoneroC {
       _MONERO_DeviceProgress_progressPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool indeterminate() const { return m_indeterminate; }
   bool MONERO_DeviceProgress_indeterminate(
     ffi.Pointer<ffi.Void> deviceProgress_ptr,
   ) {
@@ -3818,116 +1961,6 @@ class MoneroC {
       _MONERO_DeviceProgress_indeterminatePtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// struct Wallet;
-  /// struct WalletListener
-  /// {
-  /// virtual ~WalletListener() = 0;
-  /// virtual void moneySpent(const std::string &txId, uint64_t amount) = 0;
-  /// virtual void moneyReceived(const std::string &txId, uint64_t amount) = 0;
-  /// virtual void unconfirmedMoneyReceived(const std::string &txId, uint64_t amount) = 0;
-  /// virtual void newBlock(uint64_t height) = 0;
-  /// virtual void updated() = 0;
-  /// virtual void refreshed() = 0;
-  /// virtual void onDeviceButtonRequest(uint64_t code) { (void)code; }
-  /// virtual void onDeviceButtonPressed() { }
-  /// virtual optional<std::string> onDevicePinRequest() {
-  /// throw std::runtime_error("Not supported");
-  /// }
-  /// virtual optional<std::string> onDevicePassphraseRequest(bool & on_device) {
-  /// on_device = true;
-  /// return optional<std::string>();
-  /// }
-  /// virtual void onDeviceProgress(const DeviceProgress & event) { (void)event; };
-  /// virtual void onSetWallet(Wallet * wallet) { (void)wallet; };
-  /// };
-  /// struct Wallet
-  /// {
-  /// enum Device {
-  /// Device_Software = 0,
-  late final ffi.Pointer<ffi.Int> _WalletDevice_Software =
-      _lookup<ffi.Int>('WalletDevice_Software');
-
-  int get WalletDevice_Software => _WalletDevice_Software.value;
-
-  /// Device_Ledger = 1,
-  late final ffi.Pointer<ffi.Int> _WalletDevice_Ledger =
-      _lookup<ffi.Int>('WalletDevice_Ledger');
-
-  int get WalletDevice_Ledger => _WalletDevice_Ledger.value;
-
-  /// Device_Trezor = 2
-  late final ffi.Pointer<ffi.Int> _WalletDevice_Trezor =
-      _lookup<ffi.Int>('WalletDevice_Trezor');
-
-  int get WalletDevice_Trezor => _WalletDevice_Trezor.value;
-
-  /// };
-  /// enum Status {
-  /// Status_Ok,
-  late final ffi.Pointer<ffi.Int> _WalletStatus_Ok =
-      _lookup<ffi.Int>('WalletStatus_Ok');
-
-  int get WalletStatus_Ok => _WalletStatus_Ok.value;
-
-  /// Status_Error,
-  late final ffi.Pointer<ffi.Int> _WalletStatus_Error =
-      _lookup<ffi.Int>('WalletStatus_Error');
-
-  int get WalletStatus_Error => _WalletStatus_Error.value;
-
-  /// Status_Critical
-  late final ffi.Pointer<ffi.Int> _WalletStatus_Critical =
-      _lookup<ffi.Int>('WalletStatus_Critical');
-
-  int get WalletStatus_Critical => _WalletStatus_Critical.value;
-
-  /// };
-  /// enum ConnectionStatus {
-  /// ConnectionStatus_Disconnected,
-  late final ffi.Pointer<ffi.Int> _WalletConnectionStatus_Disconnected =
-      _lookup<ffi.Int>('WalletConnectionStatus_Disconnected');
-
-  int get WalletConnectionStatus_Disconnected =>
-      _WalletConnectionStatus_Disconnected.value;
-
-  /// ConnectionStatus_Connected,
-  late final ffi.Pointer<ffi.Int> _WalletConnectionStatus_Connected =
-      _lookup<ffi.Int>('WalletConnectionStatus_Connected');
-
-  int get WalletConnectionStatus_Connected =>
-      _WalletConnectionStatus_Connected.value;
-
-  /// ConnectionStatus_WrongVersion
-  late final ffi.Pointer<ffi.Int> _WalletConnectionStatus_WrongVersion =
-      _lookup<ffi.Int>('WalletConnectionStatus_WrongVersion');
-
-  int get WalletConnectionStatus_WrongVersion =>
-      _WalletConnectionStatus_WrongVersion.value;
-
-  /// };
-  /// enum BackgroundSyncType {
-  /// BackgroundSync_Off = 0,
-  late final ffi.Pointer<ffi.Int> _WalletBackgroundSync_Off =
-      _lookup<ffi.Int>('WalletBackgroundSync_Off');
-
-  int get WalletBackgroundSync_Off => _WalletBackgroundSync_Off.value;
-
-  /// BackgroundSync_ReusePassword = 1,
-  late final ffi.Pointer<ffi.Int> _WalletBackgroundSync_ReusePassword =
-      _lookup<ffi.Int>('WalletBackgroundSync_ReusePassword');
-
-  int get WalletBackgroundSync_ReusePassword =>
-      _WalletBackgroundSync_ReusePassword.value;
-
-  /// BackgroundSync_CustomPassword = 2
-  late final ffi.Pointer<ffi.Int> _BackgroundSync_CustomPassword =
-      _lookup<ffi.Int>('BackgroundSync_CustomPassword');
-
-  int get BackgroundSync_CustomPassword => _BackgroundSync_CustomPassword.value;
-
-  /// };
-  /// virtual ~Wallet() = 0;
-  /// virtual std::string seed(const std::string& seed_offset = "") const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_seed(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> seed_offset,
@@ -3946,7 +1979,6 @@ class MoneroC {
       ffi.Pointer<ffi.Char> Function(
           ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string getSeedLanguage() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getSeedLanguage(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -3962,7 +1994,6 @@ class MoneroC {
   late final _MONERO_Wallet_getSeedLanguage = _MONERO_Wallet_getSeedLanguagePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setSeedLanguage(const std::string &arg) = 0;
   void MONERO_Wallet_setSeedLanguage(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> arg,
@@ -3981,7 +2012,6 @@ class MoneroC {
       _MONERO_Wallet_setSeedLanguagePtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual int status() const = 0;
   int MONERO_Wallet_status(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -3996,7 +2026,6 @@ class MoneroC {
   late final _MONERO_Wallet_status = _MONERO_Wallet_statusPtr.asFunction<
       int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string errorString() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_errorString(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4012,8 +2041,6 @@ class MoneroC {
   late final _MONERO_Wallet_errorString = _MONERO_Wallet_errorStringPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void statusWithErrorString(int& status, std::string& errorString) const = 0;
-  /// virtual bool setPassword(const std::string &password) = 0;
   bool MONERO_Wallet_setPassword(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> password,
@@ -4032,7 +2059,6 @@ class MoneroC {
       _MONERO_Wallet_setPasswordPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual const std::string& getPassword() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getPassword(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4048,7 +2074,6 @@ class MoneroC {
   late final _MONERO_Wallet_getPassword = _MONERO_Wallet_getPasswordPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool setDevicePin(const std::string &pin) { (void)pin; return false; };
   bool MONERO_Wallet_setDevicePin(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> pin,
@@ -4067,7 +2092,6 @@ class MoneroC {
       _MONERO_Wallet_setDevicePinPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool setDevicePassphrase(const std::string &passphrase) { (void)passphrase; return false; };
   bool MONERO_Wallet_setDevicePassphrase(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> passphrase,
@@ -4086,7 +2110,6 @@ class MoneroC {
       _MONERO_Wallet_setDevicePassphrasePtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string address(uint32_t accountIndex = 0, uint32_t addressIndex = 0) const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_address(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -4106,8 +2129,6 @@ class MoneroC {
   late final _MONERO_Wallet_address = _MONERO_Wallet_addressPtr.asFunction<
       ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  /// std::string mainAddress() const { return address(0, 0); }
-  /// virtual std::string path() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_path(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4123,7 +2144,6 @@ class MoneroC {
   late final _MONERO_Wallet_path = _MONERO_Wallet_pathPtr.asFunction<
       ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual NetworkType nettype() const = 0;
   int MONERO_Wallet_nettype(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4138,11 +2158,6 @@ class MoneroC {
   late final _MONERO_Wallet_nettype = _MONERO_Wallet_nettypePtr.asFunction<
       int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// bool mainnet() const { return nettype() == MAINNET; }
-  /// bool testnet() const { return nettype() == TESTNET; }
-  /// bool stagenet() const { return nettype() == STAGENET; }
-  /// virtual void hardForkInfo(uint8_t &version, uint64_t &earliest_height) const = 0;
-  /// virtual bool useForkRules(uint8_t version, int64_t early_blocks) const = 0;
   int MONERO_Wallet_useForkRules(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int version,
@@ -4162,7 +2177,6 @@ class MoneroC {
   late final _MONERO_Wallet_useForkRules = _MONERO_Wallet_useForkRulesPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  /// virtual std::string integratedAddress(const std::string &payment_id) const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_integratedAddress(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> payment_id,
@@ -4182,7 +2196,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string secretViewKey() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_secretViewKey(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4198,7 +2211,6 @@ class MoneroC {
   late final _MONERO_Wallet_secretViewKey = _MONERO_Wallet_secretViewKeyPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string publicViewKey() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_publicViewKey(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4214,7 +2226,6 @@ class MoneroC {
   late final _MONERO_Wallet_publicViewKey = _MONERO_Wallet_publicViewKeyPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string secretSpendKey() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_secretSpendKey(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4230,7 +2241,6 @@ class MoneroC {
   late final _MONERO_Wallet_secretSpendKey = _MONERO_Wallet_secretSpendKeyPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string publicSpendKey() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_publicSpendKey(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4246,7 +2256,6 @@ class MoneroC {
   late final _MONERO_Wallet_publicSpendKey = _MONERO_Wallet_publicSpendKeyPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string publicMultisigSignerKey() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_publicMultisigSignerKey(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4263,7 +2272,6 @@ class MoneroC {
       _MONERO_Wallet_publicMultisigSignerKeyPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void stop() = 0;
   void MONERO_Wallet_stop(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4278,7 +2286,6 @@ class MoneroC {
   late final _MONERO_Wallet_stop =
       _MONERO_Wallet_stopPtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool store(const std::string &path) = 0;
   bool MONERO_Wallet_store(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -4296,7 +2303,6 @@ class MoneroC {
   late final _MONERO_Wallet_store = _MONERO_Wallet_storePtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string filename() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_filename(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4312,7 +2318,6 @@ class MoneroC {
   late final _MONERO_Wallet_filename = _MONERO_Wallet_filenamePtr.asFunction<
       ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string keysFilename() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_keysFilename(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4328,7 +2333,6 @@ class MoneroC {
   late final _MONERO_Wallet_keysFilename = _MONERO_Wallet_keysFilenamePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool init(const std::string &daemon_address, uint64_t upper_transaction_size_limit = 0, const std::string &daemon_username = "", const std::string &daemon_password = "", bool use_ssl = false, bool lightWallet = false, const std::string &proxy_address = "") = 0;
   bool MONERO_Wallet_init(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> daemon_address,
@@ -4373,7 +2377,6 @@ class MoneroC {
           bool,
           ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool createWatchOnly(const std::string &path, const std::string &password, const std::string &language) const = 0;
   bool MONERO_Wallet_createWatchOnly(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -4400,7 +2403,6 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void setRefreshFromBlockHeight(uint64_t refresh_from_block_height) = 0;
   void MONERO_Wallet_setRefreshFromBlockHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int refresh_from_block_height,
@@ -4419,7 +2421,6 @@ class MoneroC {
       _MONERO_Wallet_setRefreshFromBlockHeightPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual uint64_t getRefreshFromBlockHeight() const = 0;
   int MONERO_Wallet_getRefreshFromBlockHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4435,7 +2436,6 @@ class MoneroC {
       _MONERO_Wallet_getRefreshFromBlockHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setRecoveringFromSeed(bool recoveringFromSeed) = 0;
   void MONERO_Wallet_setRecoveringFromSeed(
     ffi.Pointer<ffi.Void> wallet_ptr,
     bool recoveringFromSeed,
@@ -4454,7 +2454,6 @@ class MoneroC {
       _MONERO_Wallet_setRecoveringFromSeedPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, bool)>();
 
-  /// virtual void setRecoveringFromDevice(bool recoveringFromDevice) = 0;
   void MONERO_Wallet_setRecoveringFromDevice(
     ffi.Pointer<ffi.Void> wallet_ptr,
     bool recoveringFromDevice,
@@ -4473,7 +2472,6 @@ class MoneroC {
       _MONERO_Wallet_setRecoveringFromDevicePtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, bool)>();
 
-  /// virtual void setSubaddressLookahead(uint32_t major, uint32_t minor) = 0;
   void MONERO_Wallet_setSubaddressLookahead(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int major,
@@ -4494,7 +2492,6 @@ class MoneroC {
       _MONERO_Wallet_setSubaddressLookaheadPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  /// virtual bool connectToDaemon() = 0;
   bool MONERO_Wallet_connectToDaemon(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4509,7 +2506,6 @@ class MoneroC {
   late final _MONERO_Wallet_connectToDaemon = _MONERO_Wallet_connectToDaemonPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual ConnectionStatus connected() const = 0;
   int MONERO_Wallet_connected(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4524,7 +2520,6 @@ class MoneroC {
   late final _MONERO_Wallet_connected = _MONERO_Wallet_connectedPtr.asFunction<
       int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setTrustedDaemon(bool arg) = 0;
   void MONERO_Wallet_setTrustedDaemon(
     ffi.Pointer<ffi.Void> wallet_ptr,
     bool arg,
@@ -4543,7 +2538,6 @@ class MoneroC {
       _MONERO_Wallet_setTrustedDaemonPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, bool)>();
 
-  /// virtual bool trustedDaemon() const = 0;
   bool MONERO_Wallet_trustedDaemon(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4558,7 +2552,6 @@ class MoneroC {
   late final _MONERO_Wallet_trustedDaemon = _MONERO_Wallet_trustedDaemonPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool setProxy(const std::string &address) = 0;
   bool MONERO_Wallet_setProxy(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> address,
@@ -4576,7 +2569,6 @@ class MoneroC {
   late final _MONERO_Wallet_setProxy = _MONERO_Wallet_setProxyPtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual uint64_t balance(uint32_t accountIndex = 0) const = 0;
   int MONERO_Wallet_balance(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -4594,13 +2586,6 @@ class MoneroC {
   late final _MONERO_Wallet_balance = _MONERO_Wallet_balancePtr.asFunction<
       int Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// uint64_t balanceAll() const {
-  /// uint64_t result = 0;
-  /// for (uint32_t i = 0; i < numSubaddressAccounts(); ++i)
-  /// result += balance(i);
-  /// return result;
-  /// }
-  /// virtual uint64_t unlockedBalance(uint32_t accountIndex = 0) const = 0;
   int MONERO_Wallet_unlockedBalance(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -4618,14 +2603,6 @@ class MoneroC {
   late final _MONERO_Wallet_unlockedBalance = _MONERO_Wallet_unlockedBalancePtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// uint64_t unlockedBalanceAll() const {
-  /// uint64_t result = 0;
-  /// for (uint32_t i = 0; i < numSubaddressAccounts(); ++i)
-  /// result += unlockedBalance(i);
-  /// return result;
-  /// }
-  /// virtual bool watchOnly() const = 0;
-  /// virtual uint64_t viewOnlyBalance(uint32_t accountIndex, const std::vector<std::string> &key_images = {}) const = 0;
   int MONERO_Wallet_viewOnlyBalance(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -4657,7 +2634,6 @@ class MoneroC {
   late final _MONERO_Wallet_watchOnly = _MONERO_Wallet_watchOnlyPtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool isDeterministic() const = 0;
   bool MONERO_Wallet_isDeterministic(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4672,7 +2648,6 @@ class MoneroC {
   late final _MONERO_Wallet_isDeterministic = _MONERO_Wallet_isDeterministicPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t blockChainHeight() const = 0;
   int MONERO_Wallet_blockChainHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4688,7 +2663,6 @@ class MoneroC {
       _MONERO_Wallet_blockChainHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t approximateBlockChainHeight() const = 0;
   int MONERO_Wallet_approximateBlockChainHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4704,7 +2678,6 @@ class MoneroC {
       _MONERO_Wallet_approximateBlockChainHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t estimateBlockChainHeight() const = 0;
   int MONERO_Wallet_estimateBlockChainHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4720,7 +2693,6 @@ class MoneroC {
       _MONERO_Wallet_estimateBlockChainHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t daemonBlockChainHeight() const = 0;
   int MONERO_Wallet_daemonBlockChainHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4769,7 +2741,6 @@ class MoneroC {
       _MONERO_Wallet_daemonBlockChainHeight_runThreadPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual uint64_t daemonBlockChainTargetHeight() const = 0;
   int MONERO_Wallet_daemonBlockChainTargetHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4785,7 +2756,6 @@ class MoneroC {
       _MONERO_Wallet_daemonBlockChainTargetHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool synchronized() const = 0;
   bool MONERO_Wallet_synchronized(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -4800,7 +2770,6 @@ class MoneroC {
   late final _MONERO_Wallet_synchronized = _MONERO_Wallet_synchronizedPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// static std::string displayAmount(uint64_t amount);
   ffi.Pointer<ffi.Char> MONERO_Wallet_displayAmount(
     int amount,
   ) {
@@ -4815,7 +2784,6 @@ class MoneroC {
   late final _MONERO_Wallet_displayAmount = _MONERO_Wallet_displayAmountPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 
-  /// static uint64_t amountFromString(const std::string &amount);
   int MONERO_Wallet_amountFromString(
     ffi.Pointer<ffi.Char> amount,
   ) {
@@ -4831,7 +2799,6 @@ class MoneroC {
       _MONERO_Wallet_amountFromStringPtr.asFunction<
           int Function(ffi.Pointer<ffi.Char>)>();
 
-  /// static uint64_t amountFromDouble(double amount);
   int MONERO_Wallet_amountFromDouble(
     double amount,
   ) {
@@ -4846,7 +2813,6 @@ class MoneroC {
   late final _MONERO_Wallet_amountFromDouble =
       _MONERO_Wallet_amountFromDoublePtr.asFunction<int Function(double)>();
 
-  /// static std::string genPaymentId();
   ffi.Pointer<ffi.Char> MONERO_Wallet_genPaymentId() {
     return _MONERO_Wallet_genPaymentId();
   }
@@ -4857,7 +2823,6 @@ class MoneroC {
   late final _MONERO_Wallet_genPaymentId = _MONERO_Wallet_genPaymentIdPtr
       .asFunction<ffi.Pointer<ffi.Char> Function()>();
 
-  /// static bool paymentIdValid(const std::string &paiment_id);
   bool MONERO_Wallet_paymentIdValid(
     ffi.Pointer<ffi.Char> paiment_id,
   ) {
@@ -4872,7 +2837,6 @@ class MoneroC {
   late final _MONERO_Wallet_paymentIdValid = _MONERO_Wallet_paymentIdValidPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Char>)>();
 
-  /// static bool addressValid(const std::string &str, NetworkType nettype);
   bool MONERO_Wallet_addressValid(
     ffi.Pointer<ffi.Char> str,
     int nettype,
@@ -4890,10 +2854,6 @@ class MoneroC {
   late final _MONERO_Wallet_addressValid = _MONERO_Wallet_addressValidPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Char>, int)>();
 
-  /// static bool addressValid(const std::string &str, bool testnet)          // deprecated
-  /// {
-  /// return addressValid(str, testnet ? TESTNET : MAINNET);
-  /// }
   bool MONERO_Wallet_keyValid(
     ffi.Pointer<ffi.Char> secret_key_string,
     ffi.Pointer<ffi.Char> address_string,
@@ -4941,12 +2901,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool, int)>();
 
-  /// static bool keyValid(const std::string &secret_key_string, const std::string &address_string, bool isViewKey, NetworkType nettype, std::string &error);
-  /// static bool keyValid(const std::string &secret_key_string, const std::string &address_string, bool isViewKey, bool testnet, std::string &error)     // deprecated
-  /// {
-  /// return keyValid(secret_key_string, address_string, isViewKey, testnet ? TESTNET : MAINNET, error);
-  /// }
-  /// static std::string paymentIdFromAddress(const std::string &str, NetworkType nettype);
   ffi.Pointer<ffi.Char> MONERO_Wallet_paymentIdFromAddress(
     ffi.Pointer<ffi.Char> strarg,
     int nettype,
@@ -4965,11 +2919,6 @@ class MoneroC {
       _MONERO_Wallet_paymentIdFromAddressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int)>();
 
-  /// static std::string paymentIdFromAddress(const std::string &str, bool testnet)       // deprecated
-  /// {
-  /// return paymentIdFromAddress(str, testnet ? TESTNET : MAINNET);
-  /// }
-  /// static uint64_t maximumAllowedAmount();
   int MONERO_Wallet_maximumAllowedAmount() {
     return _MONERO_Wallet_maximumAllowedAmount();
   }
@@ -4980,8 +2929,6 @@ class MoneroC {
   late final _MONERO_Wallet_maximumAllowedAmount =
       _MONERO_Wallet_maximumAllowedAmountPtr.asFunction<int Function()>();
 
-  /// static void init(const char *argv0, const char *default_log_base_name) { init(argv0, default_log_base_name, "", true); }
-  /// static void init(const char *argv0, const char *default_log_base_name, const std::string &log_path, bool console);
   void MONERO_Wallet_init3(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> argv0,
@@ -5010,12 +2957,6 @@ class MoneroC {
       void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
           ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
 
-  /// static void debug(const std::string &category, const std::string &str);
-  /// static void info(const std::string &category, const std::string &str);
-  /// static void warning(const std::string &category, const std::string &str);
-  /// static void error(const std::string &category, const std::string &str);
-  /// virtual void startRefresh() = 0;
-  /// virtual bool getPolyseed(std::string &seed, std::string &passphrase) const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getPolyseed(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> passphrase,
@@ -5035,7 +2976,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// static bool createPolyseed(std::string &seed_words, std::string &err, const std::string &language = "English");
   ffi.Pointer<ffi.Char> MONERO_Wallet_createPolyseed(
     ffi.Pointer<ffi.Char> language,
   ) {
@@ -5065,7 +3005,6 @@ class MoneroC {
   late final _MONERO_Wallet_startRefresh = _MONERO_Wallet_startRefreshPtr
       .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void pauseRefresh() = 0;
   void MONERO_Wallet_pauseRefresh(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5080,7 +3019,6 @@ class MoneroC {
   late final _MONERO_Wallet_pauseRefresh = _MONERO_Wallet_pauseRefreshPtr
       .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool refresh() = 0;
   bool MONERO_Wallet_refresh(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5095,7 +3033,6 @@ class MoneroC {
   late final _MONERO_Wallet_refresh = _MONERO_Wallet_refreshPtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void refreshAsync() = 0;
   void MONERO_Wallet_refreshAsync(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5110,7 +3047,6 @@ class MoneroC {
   late final _MONERO_Wallet_refreshAsync = _MONERO_Wallet_refreshAsyncPtr
       .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool rescanBlockchain() = 0;
   bool MONERO_Wallet_rescanBlockchain(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5126,7 +3062,6 @@ class MoneroC {
       _MONERO_Wallet_rescanBlockchainPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void rescanBlockchainAsync() = 0;
   void MONERO_Wallet_rescanBlockchainAsync(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5142,7 +3077,6 @@ class MoneroC {
       _MONERO_Wallet_rescanBlockchainAsyncPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setAutoRefreshInterval(int millis) = 0;
   void MONERO_Wallet_setAutoRefreshInterval(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int millis,
@@ -5161,7 +3095,6 @@ class MoneroC {
       _MONERO_Wallet_setAutoRefreshIntervalPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual int autoRefreshInterval() const = 0;
   int MONERO_Wallet_autoRefreshInterval(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5177,7 +3110,6 @@ class MoneroC {
       _MONERO_Wallet_autoRefreshIntervalPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void addSubaddressAccount(const std::string& label) = 0;
   void MONERO_Wallet_addSubaddressAccount(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> label,
@@ -5196,7 +3128,6 @@ class MoneroC {
       _MONERO_Wallet_addSubaddressAccountPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual size_t numSubaddressAccounts() const = 0;
   int MONERO_Wallet_numSubaddressAccounts(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5212,7 +3143,6 @@ class MoneroC {
       _MONERO_Wallet_numSubaddressAccountsPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual size_t numSubaddresses(uint32_t accountIndex) const = 0;
   int MONERO_Wallet_numSubaddresses(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -5230,7 +3160,6 @@ class MoneroC {
   late final _MONERO_Wallet_numSubaddresses = _MONERO_Wallet_numSubaddressesPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual void addSubaddress(uint32_t accountIndex, const std::string& label) = 0;
   void MONERO_Wallet_addSubaddress(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -5251,7 +3180,6 @@ class MoneroC {
       _MONERO_Wallet_addSubaddressPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string getSubaddressLabel(uint32_t accountIndex, uint32_t addressIndex) const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getSubaddressLabel(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -5272,7 +3200,6 @@ class MoneroC {
       _MONERO_Wallet_getSubaddressLabelPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  /// virtual void setSubaddressLabel(uint32_t accountIndex, uint32_t addressIndex, const std::string &label) = 0;
   void MONERO_Wallet_setSubaddressLabel(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -5296,8 +3223,6 @@ class MoneroC {
           void Function(
               ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual MultisigState multisig() const = 0;
-  /// virtual std::string getMultisigInfo() const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getMultisigInfo(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5313,23 +3238,6 @@ class MoneroC {
   late final _MONERO_Wallet_getMultisigInfo = _MONERO_Wallet_getMultisigInfoPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual std::string makeMultisig(const std::vector<std::string>& info, uint32_t threshold) = 0;
-  /// virtual std::string exchangeMultisigKeys(const std::vector<std::string> &info, const bool force_update_use_with_caution) = 0;
-  /// virtual bool exportMultisigImages(std::string& images) = 0;
-  /// virtual size_t importMultisigImages(const std::vector<std::string>& images) = 0;
-  /// virtual bool hasMultisigPartialKeyImages() const = 0;
-  /// virtual PendingTransaction*  restoreMultisigTransaction(const std::string& signData) = 0;
-  /// virtual PendingTransaction * createTransactionMultDest(const std::vector<std::string> &dst_addr, const std::string &payment_id,
-  /// optional<std::vector<uint64_t>> amount, uint32_t mixin_count,
-  /// PendingTransaction::Priority = PendingTransaction::Priority_Low,
-  /// uint32_t subaddr_account = 0,
-  /// std::set<uint32_t> subaddr_indices = {}) = 0;
-  /// virtual PendingTransaction * createTransaction(const std::string &dst_addr, const std::string &payment_id,
-  /// optional<uint64_t> amount, uint32_t mixin_count,
-  /// PendingTransaction::Priority = PendingTransaction::Priority_Low,
-  /// uint32_t subaddr_account = 0,
-  /// std::set<uint32_t> subaddr_indices = {},
-  /// const std::set<std::string> &preferred_inputs = {) = 0;
   ffi.Pointer<ffi.Void> MONERO_Wallet_createTransaction(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> dst_addr,
@@ -5379,8 +3287,6 @@ class MoneroC {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  /// virtual PendingTransaction * createSweepUnmixableTransaction() = 0;
-  /// virtual UnsignedTransaction * loadUnsignedTx(const std::string &unsigned_filename) = 0;
   ffi.Pointer<ffi.Void> MONERO_Wallet_loadUnsignedTx(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> unsigned_filename,
@@ -5400,7 +3306,6 @@ class MoneroC {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool submitTransaction(const std::string &fileName) = 0;
   bool MONERO_Wallet_submitTransaction(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> fileName,
@@ -5419,10 +3324,6 @@ class MoneroC {
       _MONERO_Wallet_submitTransactionPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual void disposeTransaction(PendingTransaction * t) = 0;
-  /// virtual uint64_t estimateTransactionFee(const std::vector<std::pair<std::string, uint64_t>> &destinations,
-  /// PendingTransaction::Priority priority) const = 0;
-  /// virtual bool hasUnknownKeyImages() const = 0;
   bool MONERO_Wallet_hasUnknownKeyImages(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5438,7 +3339,6 @@ class MoneroC {
       _MONERO_Wallet_hasUnknownKeyImagesPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool exportKeyImages(const std::string &filename, bool all = false) = 0;
   bool MONERO_Wallet_exportKeyImages(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> filename,
@@ -5459,7 +3359,6 @@ class MoneroC {
       _MONERO_Wallet_exportKeyImagesPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, bool)>();
 
-  /// virtual bool importKeyImages(const std::string &filename) = 0;
   bool MONERO_Wallet_importKeyImages(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> filename,
@@ -5478,7 +3377,6 @@ class MoneroC {
       _MONERO_Wallet_importKeyImagesPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool exportOutputs(const std::string &filename, bool all = false) = 0;
   bool MONERO_Wallet_exportOutputs(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> filename,
@@ -5499,7 +3397,6 @@ class MoneroC {
       _MONERO_Wallet_exportOutputsPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, bool)>();
 
-  /// virtual bool importOutputs(const std::string &filename) = 0;
   bool MONERO_Wallet_importOutputs(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> filename,
@@ -5518,8 +3415,6 @@ class MoneroC {
       _MONERO_Wallet_importOutputsPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool scanTransactions(const std::vector<std::string> &txids) = 0;
-  /// virtual bool setupBackgroundSync(const BackgroundSyncType background_sync_type, const std::string &wallet_password, const optional<std::string> &background_cache_password) = 0;
   bool MONERO_Wallet_setupBackgroundSync(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int background_sync_type,
@@ -5546,7 +3441,6 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, int, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  /// virtual BackgroundSyncType getBackgroundSyncType() const = 0;
   int MONERO_Wallet_getBackgroundSyncType(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5562,7 +3456,6 @@ class MoneroC {
       _MONERO_Wallet_getBackgroundSyncTypePtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool startBackgroundSync() = 0;
   bool MONERO_Wallet_startBackgroundSync(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5578,7 +3471,6 @@ class MoneroC {
       _MONERO_Wallet_startBackgroundSyncPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool stopBackgroundSync(const std::string &wallet_password) = 0;
   bool MONERO_Wallet_stopBackgroundSync(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> wallet_password,
@@ -5597,7 +3489,6 @@ class MoneroC {
       _MONERO_Wallet_stopBackgroundSyncPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool isBackgroundSyncing() const = 0;
   bool MONERO_Wallet_isBackgroundSyncing(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5613,7 +3504,6 @@ class MoneroC {
       _MONERO_Wallet_isBackgroundSyncingPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool isBackgroundWallet() const = 0;
   bool MONERO_Wallet_isBackgroundWallet(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5629,7 +3519,6 @@ class MoneroC {
       _MONERO_Wallet_isBackgroundWalletPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual TransactionHistory * history() = 0;
   ffi.Pointer<ffi.Void> MONERO_Wallet_history(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5645,7 +3534,6 @@ class MoneroC {
   late final _MONERO_Wallet_history = _MONERO_Wallet_historyPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual AddressBook * addressBook() = 0;
   ffi.Pointer<ffi.Void> MONERO_Wallet_addressBook(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5661,7 +3549,6 @@ class MoneroC {
   late final _MONERO_Wallet_addressBook = _MONERO_Wallet_addressBookPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual Coins * coins() = 0;
   ffi.Pointer<ffi.Void> MONERO_Wallet_coins(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5677,7 +3564,6 @@ class MoneroC {
   late final _MONERO_Wallet_coins = _MONERO_Wallet_coinsPtr.asFunction<
       ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual Subaddress * subaddress() = 0;
   ffi.Pointer<ffi.Void> MONERO_Wallet_subaddress(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5693,7 +3579,6 @@ class MoneroC {
   late final _MONERO_Wallet_subaddress = _MONERO_Wallet_subaddressPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual SubaddressAccount * subaddressAccount() = 0;
   ffi.Pointer<ffi.Void> MONERO_Wallet_subaddressAccount(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5710,8 +3595,6 @@ class MoneroC {
       _MONERO_Wallet_subaddressAccountPtr.asFunction<
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setListener(WalletListener *) = 0;
-  /// virtual uint32_t defaultMixin() const = 0;
   int MONERO_Wallet_defaultMixin(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5726,7 +3609,6 @@ class MoneroC {
   late final _MONERO_Wallet_defaultMixin = _MONERO_Wallet_defaultMixinPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setDefaultMixin(uint32_t arg) = 0;
   void MONERO_Wallet_setDefaultMixin(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int arg,
@@ -5744,7 +3626,6 @@ class MoneroC {
   late final _MONERO_Wallet_setDefaultMixin = _MONERO_Wallet_setDefaultMixinPtr
       .asFunction<void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual bool setCacheAttribute(const std::string &key, const std::string &val) = 0;
   bool MONERO_Wallet_setCacheAttribute(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> key,
@@ -5766,7 +3647,6 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string getCacheAttribute(const std::string &key) const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getCacheAttribute(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> key,
@@ -5786,7 +3666,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool setUserNote(const std::string &txid, const std::string &note) = 0;
   bool MONERO_Wallet_setUserNote(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> txid,
@@ -5808,7 +3687,6 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string getUserNote(const std::string &txid) const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getUserNote(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> txid,
@@ -5828,7 +3706,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string getTxKey(const std::string &txid) const = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_getTxKey(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> txid,
@@ -5847,14 +3724,6 @@ class MoneroC {
       ffi.Pointer<ffi.Char> Function(
           ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool checkTxKey(const std::string &txid, std::string tx_key, const std::string &address, uint64_t &received, bool &in_pool, uint64_t &confirmations) = 0;
-  /// virtual std::string getTxProof(const std::string &txid, const std::string &address, const std::string &message) const = 0;
-  /// virtual bool checkTxProof(const std::string &txid, const std::string &address, const std::string &message, const std::string &signature, bool &good, uint64_t &received, bool &in_pool, uint64_t &confirmations) = 0;
-  /// virtual std::string getSpendProof(const std::string &txid, const std::string &message) const = 0;
-  /// virtual bool checkSpendProof(const std::string &txid, const std::string &message, const std::string &signature, bool &good) const = 0;
-  /// virtual std::string getReserveProof(bool all, uint32_t account_index, uint64_t amount, const std::string &message) const = 0;
-  /// virtual bool checkReserveProof(const std::string &address, const std::string &message, const std::string &signature, bool &good, uint64_t &total, uint64_t &spent) const = 0;
-  /// virtual std::string signMessage(const std::string &message, const std::string &address = "") = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_signMessage(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> message,
@@ -5878,7 +3747,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool verifySignedMessage(const std::string &message, const std::string &addres, const std::string &signature) const = 0;
   bool MONERO_Wallet_verifySignedMessage(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> message,
@@ -5905,12 +3773,6 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string signMultisigParticipant(const std::string &message) const = 0;
-  /// virtual bool verifyMessageWithPublicKey(const std::string &message, const std::string &publicKey, const std::string &signature) const = 0;
-  /// virtual bool parse_uri(const std::string &uri, std::string &address, std::string &payment_id, uint64_t &amount, std::string &tx_description, std::string &recipient_name, std::vector<std::string> &unknown_parameters, std::string &error) = 0;
-  /// virtual std::string make_uri(const std::string &address, const std::string &payment_id, uint64_t amount, const std::string &tx_description, const std::string &recipient_name, std::string &error) const = 0;
-  /// virtual std::string getDefaultDataDir() const = 0;
-  /// virtual bool rescanSpent() = 0;
   bool MONERO_Wallet_rescanSpent(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5925,7 +3787,6 @@ class MoneroC {
   late final _MONERO_Wallet_rescanSpent = _MONERO_Wallet_rescanSpentPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setOffline(bool offline) = 0;
   void MONERO_Wallet_setOffline(
     ffi.Pointer<ffi.Void> wallet_ptr,
     bool offline,
@@ -5943,7 +3804,6 @@ class MoneroC {
   late final _MONERO_Wallet_setOffline = _MONERO_Wallet_setOfflinePtr
       .asFunction<void Function(ffi.Pointer<ffi.Void>, bool)>();
 
-  /// virtual bool isOffline() const = 0;
   bool MONERO_Wallet_isOffline(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -5958,13 +3818,6 @@ class MoneroC {
   late final _MONERO_Wallet_isOffline = _MONERO_Wallet_isOfflinePtr.asFunction<
       bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool blackballOutputs(const std::vector<std::string> &outputs, bool add) = 0;
-  /// virtual bool blackballOutput(const std::string &amount, const std::string &offset) = 0;
-  /// virtual bool unblackballOutput(const std::string &amount, const std::string &offset) = 0;
-  /// virtual bool getRing(const std::string &key_image, std::vector<uint64_t> &ring) const = 0;
-  /// virtual bool getRings(const std::string &txid, std::vector<std::pair<std::string, std::vector<uint64_t>>> &rings) const = 0;
-  /// virtual bool setRing(const std::string &key_image, const std::vector<uint64_t> &ring, bool relative) = 0;
-  /// virtual void segregatePreForkOutputs(bool segregate) = 0;
   void MONERO_Wallet_segregatePreForkOutputs(
     ffi.Pointer<ffi.Void> wallet_ptr,
     bool segregate,
@@ -5983,7 +3836,6 @@ class MoneroC {
       _MONERO_Wallet_segregatePreForkOutputsPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, bool)>();
 
-  /// virtual void segregationHeight(uint64_t height) = 0;
   void MONERO_Wallet_segregationHeight(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int height,
@@ -6002,7 +3854,6 @@ class MoneroC {
       _MONERO_Wallet_segregationHeightPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, int)>();
 
-  /// virtual void keyReuseMitigation2(bool mitigation) = 0;
   void MONERO_Wallet_keyReuseMitigation2(
     ffi.Pointer<ffi.Void> wallet_ptr,
     bool mitigation,
@@ -6021,9 +3872,6 @@ class MoneroC {
       _MONERO_Wallet_keyReuseMitigation2Ptr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, bool)>();
 
-  /// virtual bool lightWalletLogin(bool &isNewWallet) const = 0;
-  /// virtual bool lightWalletImportWalletRequest(std::string &payment_id, uint64_t &fee, bool &new_request, bool &request_fulfilled, std::string &payment_address, std::string &status) = 0;
-  /// virtual bool lockKeysFile() = 0;
   bool MONERO_Wallet_lockKeysFile(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -6038,7 +3886,6 @@ class MoneroC {
   late final _MONERO_Wallet_lockKeysFile = _MONERO_Wallet_lockKeysFilePtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool unlockKeysFile() = 0;
   bool MONERO_Wallet_unlockKeysFile(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -6053,7 +3900,6 @@ class MoneroC {
   late final _MONERO_Wallet_unlockKeysFile = _MONERO_Wallet_unlockKeysFilePtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool isKeysFileLocked() = 0;
   bool MONERO_Wallet_isKeysFileLocked(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -6069,7 +3915,6 @@ class MoneroC {
       _MONERO_Wallet_isKeysFileLockedPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual Device getDeviceType() const = 0;
   int MONERO_Wallet_getDeviceType(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -6084,7 +3929,6 @@ class MoneroC {
   late final _MONERO_Wallet_getDeviceType = _MONERO_Wallet_getDeviceTypePtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t coldKeyImageSync(uint64_t &spent, uint64_t &unspent) = 0;
   int MONERO_Wallet_coldKeyImageSync(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int spent,
@@ -6105,7 +3949,6 @@ class MoneroC {
       _MONERO_Wallet_coldKeyImageSyncPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  /// virtual void deviceShowAddress(uint32_t accountIndex, uint32_t addressIndex, const std::string &paymentId) = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_deviceShowAddress(
     ffi.Pointer<ffi.Void> wallet_ptr,
     int accountIndex,
@@ -6126,7 +3969,6 @@ class MoneroC {
       _MONERO_Wallet_deviceShowAddressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  /// virtual bool reconnectDevice() = 0;
   ffi.Pointer<ffi.Char> MONERO_Wallet_reconnectDevice(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -6142,7 +3984,6 @@ class MoneroC {
   late final _MONERO_Wallet_reconnectDevice = _MONERO_Wallet_reconnectDevicePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t getBytesReceived() = 0;
   int MONERO_Wallet_getBytesReceived(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -6158,7 +3999,6 @@ class MoneroC {
       _MONERO_Wallet_getBytesReceivedPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t getBytesSent() = 0;
   int MONERO_Wallet_getBytesSent(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -6173,9 +4013,6 @@ class MoneroC {
   late final _MONERO_Wallet_getBytesSent = _MONERO_Wallet_getBytesSentPtr
       .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// struct WalletManager
-  /// {
-  /// virtual Wallet * createWallet(const std::string &path, const std::string &password, const std::string &language, NetworkType nettype, uint64_t kdf_rounds = 1) = 0;
   ffi.Pointer<ffi.Void> MONERO_WalletManager_createWallet(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -6209,11 +4046,6 @@ class MoneroC {
               ffi.Pointer<ffi.Char>,
               int)>();
 
-  /// Wallet * createWallet(const std::string &path, const std::string &password, const std::string &language, bool testnet = false)      // deprecated
-  /// {
-  /// return createWallet(path, password, language, testnet ? TESTNET : MAINNET);
-  /// }
-  /// virtual Wallet * openWallet(const std::string &path, const std::string &password, NetworkType nettype, uint64_t kdf_rounds = 1, WalletListener * listener = nullptr) = 0;
   ffi.Pointer<ffi.Void> MONERO_WalletManager_openWallet(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -6240,13 +4072,6 @@ class MoneroC {
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
-  /// Wallet * openWallet(const std::string &path, const std::string &password, bool testnet = false)     // deprecated
-  /// {
-  /// return openWallet(path, password, testnet ? TESTNET : MAINNET);
-  /// }
-  /// virtual Wallet * recoveryWallet(const std::string &path, const std::string &password, const std::string &mnemonic,
-  /// NetworkType nettype = MAINNET, uint64_t restoreHeight = 0, uint64_t kdf_rounds = 1,
-  /// const std::string &seed_offset = {}) = 0;
   ffi.Pointer<ffi.Void> MONERO_WalletManager_recoveryWallet(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -6292,25 +4117,6 @@ class MoneroC {
               int,
               ffi.Pointer<ffi.Char>)>();
 
-  /// Wallet * recoveryWallet(const std::string &path, const std::string &password, const std::string &mnemonic,
-  /// bool testnet = false, uint64_t restoreHeight = 0)           // deprecated
-  /// {
-  /// return recoveryWallet(path, password, mnemonic, testnet ? TESTNET : MAINNET, restoreHeight);
-  /// }
-  /// virtual Wallet * recoveryWallet(const std::string &path, const std::string &mnemonic, NetworkType nettype, uint64_t restoreHeight = 0) = 0;
-  /// Wallet * recoveryWallet(const std::string &path, const std::string &mnemonic, bool testnet = false, uint64_t restoreHeight = 0)         // deprecated
-  /// {
-  /// return recoveryWallet(path, mnemonic, testnet ? TESTNET : MAINNET, restoreHeight);
-  /// }
-  /// virtual Wallet * createWalletFromKeys(const std::string &path,
-  /// const std::string &password,
-  /// const std::string &language,
-  /// NetworkType nettype,
-  /// uint64_t restoreHeight,
-  /// const std::string &addressString,
-  /// const std::string &viewKeyString,
-  /// const std::string &spendKeyString = "",
-  /// uint64_t kdf_rounds = 1) = 0;
   ffi.Pointer<ffi.Void> MONERO_WalletManager_createWalletFromKeys(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -6364,50 +4170,6 @@ class MoneroC {
               ffi.Pointer<ffi.Char>,
               int)>();
 
-  /// Wallet * createWalletFromKeys(const std::string &path,
-  /// const std::string &password,
-  /// const std::string &language,
-  /// bool testnet,
-  /// uint64_t restoreHeight,
-  /// const std::string &addressString,
-  /// const std::string &viewKeyString,
-  /// const std::string &spendKeyString = "")       // deprecated
-  /// {
-  /// return createWalletFromKeys(path, password, language, testnet ? TESTNET : MAINNET, restoreHeight, addressString, viewKeyString, spendKeyString);
-  /// }
-  /// virtual Wallet * createWalletFromKeys(const std::string &path,
-  /// const std::string &language,
-  /// NetworkType nettype,
-  /// uint64_t restoreHeight,
-  /// const std::string &addressString,
-  /// const std::string &viewKeyString,
-  /// const std::string &spendKeyString = "") = 0;
-  /// Wallet * createWalletFromKeys(const std::string &path,
-  /// const std::string &language,
-  /// bool testnet,
-  /// uint64_t restoreHeight,
-  /// const std::string &addressString,
-  /// const std::string &viewKeyString,
-  /// const std::string &spendKeyString = "")           // deprecated
-  /// {
-  /// return createWalletFromKeys(path, language, testnet ? TESTNET : MAINNET, restoreHeight, addressString, viewKeyString, spendKeyString);
-  /// }
-  /// virtual Wallet * createWalletFromDevice(const std::string &path,
-  /// const std::string &password,
-  /// NetworkType nettype,
-  /// const std::string &deviceName,
-  /// uint64_t restoreHeight = 0,
-  /// const std::string &subaddressLookahead = "",
-  /// uint64_t kdf_rounds = 1,
-  /// WalletListener * listener = nullptr) = 0;
-  /// virtual Wallet * createWalletFromPolyseed(const std::string &path,
-  /// const std::string &password,
-  /// NetworkType nettype,
-  /// const std::string &mnemonic,
-  /// const std::string &passphrase = "",
-  /// bool newWallet = true,
-  /// uint64_t restore_height = 0,
-  /// uint64_t kdf_rounds = 1) = 0;
   ffi.Pointer<ffi.Void> MONERO_WalletManager_createWalletFromPolyseed(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -6457,7 +4219,6 @@ class MoneroC {
               int,
               int)>();
 
-  /// virtual bool closeWallet(Wallet *wallet, bool store = true) = 0;
   bool MONERO_WalletManager_closeWallet(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Void> wallet_ptr,
@@ -6478,7 +4239,6 @@ class MoneroC {
       _MONERO_WalletManager_closeWalletPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>, bool)>();
 
-  /// virtual bool walletExists(const std::string &path) = 0;
   bool MONERO_WalletManager_walletExists(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -6497,7 +4257,6 @@ class MoneroC {
       _MONERO_WalletManager_walletExistsPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool verifyWalletPassword(const std::string &keys_file_name, const std::string &password, bool no_spend_key, uint64_t kdf_rounds = 1) const = 0;
   bool MONERO_WalletManager_verifyWalletPassword(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> keys_file_name,
@@ -6527,7 +4286,6 @@ class MoneroC {
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>, bool, int)>();
 
-  /// virtual bool queryWalletDevice(Wallet::Device& device_type, const std::string &keys_file_name, const std::string &password, uint64_t kdf_rounds = 1) const = 0;
   bool MONERO_WalletManager_queryWalletDevice(
     int device_type,
     ffi.Pointer<ffi.Char> keys_file_name,
@@ -6554,7 +4312,6 @@ class MoneroC {
           bool Function(
               int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
-  /// virtual std::vector<std::string> findWallets(const std::string &path) = 0;
   ffi.Pointer<ffi.Char> MONERO_WalletManager_findWallets(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> path,
@@ -6578,7 +4335,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string errorString() const = 0;
   ffi.Pointer<ffi.Char> MONERO_WalletManager_errorString(
     ffi.Pointer<ffi.Void> wm_ptr,
   ) {
@@ -6595,7 +4351,6 @@ class MoneroC {
       _MONERO_WalletManager_errorStringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual void setDaemonAddress(const std::string &address) = 0;
   void MONERO_WalletManager_setDaemonAddress(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> address,
@@ -6614,8 +4369,6 @@ class MoneroC {
       _MONERO_WalletManager_setDaemonAddressPtr.asFunction<
           void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual bool connected(uint32_t *version = NULL) = 0;
-  /// virtual uint64_t blockchainHeight() = 0;
   int MONERO_WalletManager_blockchainHeight(
     ffi.Pointer<ffi.Void> wm_ptr,
   ) {
@@ -6631,7 +4384,6 @@ class MoneroC {
       _MONERO_WalletManager_blockchainHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t blockchainTargetHeight() = 0;
   int MONERO_WalletManager_blockchainTargetHeight(
     ffi.Pointer<ffi.Void> wm_ptr,
   ) {
@@ -6647,7 +4399,6 @@ class MoneroC {
       _MONERO_WalletManager_blockchainTargetHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t networkDifficulty() = 0;
   int MONERO_WalletManager_networkDifficulty(
     ffi.Pointer<ffi.Void> wm_ptr,
   ) {
@@ -6663,7 +4414,6 @@ class MoneroC {
       _MONERO_WalletManager_networkDifficultyPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual double miningHashRate() = 0;
   double MONERO_WalletManager_miningHashRate(
     ffi.Pointer<ffi.Void> wm_ptr,
   ) {
@@ -6679,7 +4429,6 @@ class MoneroC {
       _MONERO_WalletManager_miningHashRatePtr.asFunction<
           double Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual uint64_t blockTarget() = 0;
   int MONERO_WalletManager_blockTarget(
     ffi.Pointer<ffi.Void> wm_ptr,
   ) {
@@ -6695,7 +4444,6 @@ class MoneroC {
       _MONERO_WalletManager_blockTargetPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool isMining() = 0;
   bool MONERO_WalletManager_isMining(
     ffi.Pointer<ffi.Void> wm_ptr,
   ) {
@@ -6710,7 +4458,6 @@ class MoneroC {
   late final _MONERO_WalletManager_isMining = _MONERO_WalletManager_isMiningPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// virtual bool startMining(const std::string &address, uint32_t threads = 1, bool background_mining = false, bool ignore_battery = true) = 0;
   bool MONERO_WalletManager_startMining(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> address,
@@ -6740,7 +4487,6 @@ class MoneroC {
           bool Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, int, bool, bool)>();
 
-  /// virtual bool stopMining() = 0;
   bool MONERO_WalletManager_stopMining(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> address,
@@ -6759,7 +4505,6 @@ class MoneroC {
       _MONERO_WalletManager_stopMiningPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// virtual std::string resolveOpenAlias(const std::string &address, bool &dnssec_valid) const = 0;
   ffi.Pointer<ffi.Char> MONERO_WalletManager_resolveOpenAlias(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> address,
@@ -6783,12 +4528,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, bool)>();
 
-  /// static std::tuple<bool, std::string, std::string, std::string, std::string> checkUpdates(
-  /// const std::string &software,
-  /// std::string subdir,
-  /// const char *buildtag = nullptr,
-  /// const char *current_version = nullptr);
-  /// virtual bool setProxy(const std::string &address) = 0;
   bool MONERO_WalletManager_setProxy(
     ffi.Pointer<ffi.Void> wm_ptr,
     ffi.Pointer<ffi.Char> address,
@@ -6807,71 +4546,6 @@ class MoneroC {
       _MONERO_WalletManager_setProxyPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  /// };
-  late final ffi.Pointer<ffi.Int> _LogLevel_Silent =
-      _lookup<ffi.Int>('LogLevel_Silent');
-
-  int get LogLevel_Silent => _LogLevel_Silent.value;
-
-  set LogLevel_Silent(int value) => _LogLevel_Silent.value = value;
-
-  late final ffi.Pointer<ffi.Int> _LogLevel_0 = _lookup<ffi.Int>('LogLevel_0');
-
-  int get LogLevel_0 => _LogLevel_0.value;
-
-  set LogLevel_0(int value) => _LogLevel_0.value = value;
-
-  late final ffi.Pointer<ffi.Int> _LogLevel_1 = _lookup<ffi.Int>('LogLevel_1');
-
-  int get LogLevel_1 => _LogLevel_1.value;
-
-  set LogLevel_1(int value) => _LogLevel_1.value = value;
-
-  late final ffi.Pointer<ffi.Int> _LogLevel_2 = _lookup<ffi.Int>('LogLevel_2');
-
-  int get LogLevel_2 => _LogLevel_2.value;
-
-  set LogLevel_2(int value) => _LogLevel_2.value = value;
-
-  late final ffi.Pointer<ffi.Int> _LogLevel_3 = _lookup<ffi.Int>('LogLevel_3');
-
-  int get LogLevel_3 => _LogLevel_3.value;
-
-  set LogLevel_3(int value) => _LogLevel_3.value = value;
-
-  late final ffi.Pointer<ffi.Int> _LogLevel_4 = _lookup<ffi.Int>('LogLevel_4');
-
-  int get LogLevel_4 => _LogLevel_4.value;
-
-  set LogLevel_4(int value) => _LogLevel_4.value = value;
-
-  late final ffi.Pointer<ffi.Int> _LogLevel_Min =
-      _lookup<ffi.Int>('LogLevel_Min');
-
-  int get LogLevel_Min => _LogLevel_Min.value;
-
-  set LogLevel_Min(int value) => _LogLevel_Min.value = value;
-
-  late final ffi.Pointer<ffi.Int> _LogLevel_Max =
-      _lookup<ffi.Int>('LogLevel_Max');
-
-  int get LogLevel_Max => _LogLevel_Max.value;
-
-  set LogLevel_Max(int value) => _LogLevel_Max.value = value;
-
-  /// struct WalletManagerFactory
-  /// {
-  /// enum LogLevel {
-  /// LogLevel_Silent = -1,
-  /// LogLevel_0 = 0,
-  /// LogLevel_1 = 1,
-  /// LogLevel_2 = 2,
-  /// LogLevel_3 = 3,
-  /// LogLevel_4 = 4,
-  /// LogLevel_Min = LogLevel_Silent,
-  /// LogLevel_Max = LogLevel_4
-  /// };
-  /// static WalletManager * getWalletManager();
   ffi.Pointer<ffi.Void> MONERO_WalletManagerFactory_getWalletManager() {
     return _MONERO_WalletManagerFactory_getWalletManager();
   }
@@ -6883,7 +4557,6 @@ class MoneroC {
       _MONERO_WalletManagerFactory_getWalletManagerPtr.asFunction<
           ffi.Pointer<ffi.Void> Function()>();
 
-  /// static void setLogLevel(int level);
   void MONERO_WalletManagerFactory_setLogLevel(
     int level,
   ) {
@@ -6899,7 +4572,6 @@ class MoneroC {
       _MONERO_WalletManagerFactory_setLogLevelPtr.asFunction<
           void Function(int)>();
 
-  /// static void setLogCategories(const std::string &categories);
   void MONERO_WalletManagerFactory_setLogCategories(
     ffi.Pointer<ffi.Char> categories,
   ) {
@@ -6915,8 +4587,6 @@ class MoneroC {
       _MONERO_WalletManagerFactory_setLogCategoriesPtr.asFunction<
           void Function(ffi.Pointer<ffi.Char>)>();
 
-  /// };
-  /// }
   void MONERO_DEBUG_test0() {
     return _MONERO_DEBUG_test0();
   }
@@ -7016,7 +4686,6 @@ class MoneroC {
   late final _MONERO_DEBUG_isPointerNull = _MONERO_DEBUG_isPointerNullPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
-  /// cake world
   ffi.Pointer<ffi.Void> MONERO_cw_getWalletListener(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -7107,1693 +4776,3 @@ class MoneroC {
       _MONERO_cw_WalletListener_heightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
 }
-
-final class __fsid_t extends ffi.Struct {
-  @ffi.Array.multi([2])
-  external ffi.Array<ffi.Int> __val;
-}
-
-final class max_align_t extends ffi.Opaque {}
-
-typedef __off_t = ffi.Long;
-typedef Dart__off_t = int;
-typedef ssize_t = __ssize_t;
-typedef __ssize_t = ffi.Long;
-typedef Dart__ssize_t = int;
-typedef __useconds_t = ffi.UnsignedInt;
-typedef Dart__useconds_t = int;
-typedef __uid_t = ffi.UnsignedInt;
-typedef Dart__uid_t = int;
-typedef __gid_t = ffi.UnsignedInt;
-typedef Dart__gid_t = int;
-typedef __pid_t = ffi.Int;
-typedef Dart__pid_t = int;
-
-const int _PC_LINK_MAX = 0;
-
-const int _PC_MAX_CANON = 1;
-
-const int _PC_MAX_INPUT = 2;
-
-const int _PC_NAME_MAX = 3;
-
-const int _PC_PATH_MAX = 4;
-
-const int _PC_PIPE_BUF = 5;
-
-const int _PC_CHOWN_RESTRICTED = 6;
-
-const int _PC_NO_TRUNC = 7;
-
-const int _PC_VDISABLE = 8;
-
-const int _PC_SYNC_IO = 9;
-
-const int _PC_ASYNC_IO = 10;
-
-const int _PC_PRIO_IO = 11;
-
-const int _PC_SOCK_MAXBUF = 12;
-
-const int _PC_FILESIZEBITS = 13;
-
-const int _PC_REC_INCR_XFER_SIZE = 14;
-
-const int _PC_REC_MAX_XFER_SIZE = 15;
-
-const int _PC_REC_MIN_XFER_SIZE = 16;
-
-const int _PC_REC_XFER_ALIGN = 17;
-
-const int _PC_ALLOC_SIZE_MIN = 18;
-
-const int _PC_SYMLINK_MAX = 19;
-
-const int _PC_2_SYMLINKS = 20;
-
-const int _SC_ARG_MAX = 0;
-
-const int _SC_CHILD_MAX = 1;
-
-const int _SC_CLK_TCK = 2;
-
-const int _SC_NGROUPS_MAX = 3;
-
-const int _SC_OPEN_MAX = 4;
-
-const int _SC_STREAM_MAX = 5;
-
-const int _SC_TZNAME_MAX = 6;
-
-const int _SC_JOB_CONTROL = 7;
-
-const int _SC_SAVED_IDS = 8;
-
-const int _SC_REALTIME_SIGNALS = 9;
-
-const int _SC_PRIORITY_SCHEDULING = 10;
-
-const int _SC_TIMERS = 11;
-
-const int _SC_ASYNCHRONOUS_IO = 12;
-
-const int _SC_PRIORITIZED_IO = 13;
-
-const int _SC_SYNCHRONIZED_IO = 14;
-
-const int _SC_FSYNC = 15;
-
-const int _SC_MAPPED_FILES = 16;
-
-const int _SC_MEMLOCK = 17;
-
-const int _SC_MEMLOCK_RANGE = 18;
-
-const int _SC_MEMORY_PROTECTION = 19;
-
-const int _SC_MESSAGE_PASSING = 20;
-
-const int _SC_SEMAPHORES = 21;
-
-const int _SC_SHARED_MEMORY_OBJECTS = 22;
-
-const int _SC_AIO_LISTIO_MAX = 23;
-
-const int _SC_AIO_MAX = 24;
-
-const int _SC_AIO_PRIO_DELTA_MAX = 25;
-
-const int _SC_DELAYTIMER_MAX = 26;
-
-const int _SC_MQ_OPEN_MAX = 27;
-
-const int _SC_MQ_PRIO_MAX = 28;
-
-const int _SC_VERSION = 29;
-
-const int _SC_PAGESIZE = 30;
-
-const int _SC_RTSIG_MAX = 31;
-
-const int _SC_SEM_NSEMS_MAX = 32;
-
-const int _SC_SEM_VALUE_MAX = 33;
-
-const int _SC_SIGQUEUE_MAX = 34;
-
-const int _SC_TIMER_MAX = 35;
-
-const int _SC_BC_BASE_MAX = 36;
-
-const int _SC_BC_DIM_MAX = 37;
-
-const int _SC_BC_SCALE_MAX = 38;
-
-const int _SC_BC_STRING_MAX = 39;
-
-const int _SC_COLL_WEIGHTS_MAX = 40;
-
-const int _SC_EQUIV_CLASS_MAX = 41;
-
-const int _SC_EXPR_NEST_MAX = 42;
-
-const int _SC_LINE_MAX = 43;
-
-const int _SC_RE_DUP_MAX = 44;
-
-const int _SC_CHARCLASS_NAME_MAX = 45;
-
-const int _SC_2_VERSION = 46;
-
-const int _SC_2_C_BIND = 47;
-
-const int _SC_2_C_DEV = 48;
-
-const int _SC_2_FORT_DEV = 49;
-
-const int _SC_2_FORT_RUN = 50;
-
-const int _SC_2_SW_DEV = 51;
-
-const int _SC_2_LOCALEDEF = 52;
-
-const int _SC_PII = 53;
-
-const int _SC_PII_XTI = 54;
-
-const int _SC_PII_SOCKET = 55;
-
-const int _SC_PII_INTERNET = 56;
-
-const int _SC_PII_OSI = 57;
-
-const int _SC_POLL = 58;
-
-const int _SC_SELECT = 59;
-
-const int _SC_UIO_MAXIOV = 60;
-
-const int _SC_IOV_MAX = 60;
-
-const int _SC_PII_INTERNET_STREAM = 61;
-
-const int _SC_PII_INTERNET_DGRAM = 62;
-
-const int _SC_PII_OSI_COTS = 63;
-
-const int _SC_PII_OSI_CLTS = 64;
-
-const int _SC_PII_OSI_M = 65;
-
-const int _SC_T_IOV_MAX = 66;
-
-const int _SC_THREADS = 67;
-
-const int _SC_THREAD_SAFE_FUNCTIONS = 68;
-
-const int _SC_GETGR_R_SIZE_MAX = 69;
-
-const int _SC_GETPW_R_SIZE_MAX = 70;
-
-const int _SC_LOGIN_NAME_MAX = 71;
-
-const int _SC_TTY_NAME_MAX = 72;
-
-const int _SC_THREAD_DESTRUCTOR_ITERATIONS = 73;
-
-const int _SC_THREAD_KEYS_MAX = 74;
-
-const int _SC_THREAD_STACK_MIN = 75;
-
-const int _SC_THREAD_THREADS_MAX = 76;
-
-const int _SC_THREAD_ATTR_STACKADDR = 77;
-
-const int _SC_THREAD_ATTR_STACKSIZE = 78;
-
-const int _SC_THREAD_PRIORITY_SCHEDULING = 79;
-
-const int _SC_THREAD_PRIO_INHERIT = 80;
-
-const int _SC_THREAD_PRIO_PROTECT = 81;
-
-const int _SC_THREAD_PROCESS_SHARED = 82;
-
-const int _SC_NPROCESSORS_CONF = 83;
-
-const int _SC_NPROCESSORS_ONLN = 84;
-
-const int _SC_PHYS_PAGES = 85;
-
-const int _SC_AVPHYS_PAGES = 86;
-
-const int _SC_ATEXIT_MAX = 87;
-
-const int _SC_PASS_MAX = 88;
-
-const int _SC_XOPEN_VERSION = 89;
-
-const int _SC_XOPEN_XCU_VERSION = 90;
-
-const int _SC_XOPEN_UNIX = 91;
-
-const int _SC_XOPEN_CRYPT = 92;
-
-const int _SC_XOPEN_ENH_I18N = 93;
-
-const int _SC_XOPEN_SHM = 94;
-
-const int _SC_2_CHAR_TERM = 95;
-
-const int _SC_2_C_VERSION = 96;
-
-const int _SC_2_UPE = 97;
-
-const int _SC_XOPEN_XPG2 = 98;
-
-const int _SC_XOPEN_XPG3 = 99;
-
-const int _SC_XOPEN_XPG4 = 100;
-
-const int _SC_CHAR_BIT = 101;
-
-const int _SC_CHAR_MAX = 102;
-
-const int _SC_CHAR_MIN = 103;
-
-const int _SC_INT_MAX = 104;
-
-const int _SC_INT_MIN = 105;
-
-const int _SC_LONG_BIT = 106;
-
-const int _SC_WORD_BIT = 107;
-
-const int _SC_MB_LEN_MAX = 108;
-
-const int _SC_NZERO = 109;
-
-const int _SC_SSIZE_MAX = 110;
-
-const int _SC_SCHAR_MAX = 111;
-
-const int _SC_SCHAR_MIN = 112;
-
-const int _SC_SHRT_MAX = 113;
-
-const int _SC_SHRT_MIN = 114;
-
-const int _SC_UCHAR_MAX = 115;
-
-const int _SC_UINT_MAX = 116;
-
-const int _SC_ULONG_MAX = 117;
-
-const int _SC_USHRT_MAX = 118;
-
-const int _SC_NL_ARGMAX = 119;
-
-const int _SC_NL_LANGMAX = 120;
-
-const int _SC_NL_MSGMAX = 121;
-
-const int _SC_NL_NMAX = 122;
-
-const int _SC_NL_SETMAX = 123;
-
-const int _SC_NL_TEXTMAX = 124;
-
-const int _SC_XBS5_ILP32_OFF32 = 125;
-
-const int _SC_XBS5_ILP32_OFFBIG = 126;
-
-const int _SC_XBS5_LP64_OFF64 = 127;
-
-const int _SC_XBS5_LPBIG_OFFBIG = 128;
-
-const int _SC_XOPEN_LEGACY = 129;
-
-const int _SC_XOPEN_REALTIME = 130;
-
-const int _SC_XOPEN_REALTIME_THREADS = 131;
-
-const int _SC_ADVISORY_INFO = 132;
-
-const int _SC_BARRIERS = 133;
-
-const int _SC_BASE = 134;
-
-const int _SC_C_LANG_SUPPORT = 135;
-
-const int _SC_C_LANG_SUPPORT_R = 136;
-
-const int _SC_CLOCK_SELECTION = 137;
-
-const int _SC_CPUTIME = 138;
-
-const int _SC_THREAD_CPUTIME = 139;
-
-const int _SC_DEVICE_IO = 140;
-
-const int _SC_DEVICE_SPECIFIC = 141;
-
-const int _SC_DEVICE_SPECIFIC_R = 142;
-
-const int _SC_FD_MGMT = 143;
-
-const int _SC_FIFO = 144;
-
-const int _SC_PIPE = 145;
-
-const int _SC_FILE_ATTRIBUTES = 146;
-
-const int _SC_FILE_LOCKING = 147;
-
-const int _SC_FILE_SYSTEM = 148;
-
-const int _SC_MONOTONIC_CLOCK = 149;
-
-const int _SC_MULTI_PROCESS = 150;
-
-const int _SC_SINGLE_PROCESS = 151;
-
-const int _SC_NETWORKING = 152;
-
-const int _SC_READER_WRITER_LOCKS = 153;
-
-const int _SC_SPIN_LOCKS = 154;
-
-const int _SC_REGEXP = 155;
-
-const int _SC_REGEX_VERSION = 156;
-
-const int _SC_SHELL = 157;
-
-const int _SC_SIGNALS = 158;
-
-const int _SC_SPAWN = 159;
-
-const int _SC_SPORADIC_SERVER = 160;
-
-const int _SC_THREAD_SPORADIC_SERVER = 161;
-
-const int _SC_SYSTEM_DATABASE = 162;
-
-const int _SC_SYSTEM_DATABASE_R = 163;
-
-const int _SC_TIMEOUTS = 164;
-
-const int _SC_TYPED_MEMORY_OBJECTS = 165;
-
-const int _SC_USER_GROUPS = 166;
-
-const int _SC_USER_GROUPS_R = 167;
-
-const int _SC_2_PBS = 168;
-
-const int _SC_2_PBS_ACCOUNTING = 169;
-
-const int _SC_2_PBS_LOCATE = 170;
-
-const int _SC_2_PBS_MESSAGE = 171;
-
-const int _SC_2_PBS_TRACK = 172;
-
-const int _SC_SYMLOOP_MAX = 173;
-
-const int _SC_STREAMS = 174;
-
-const int _SC_2_PBS_CHECKPOINT = 175;
-
-const int _SC_V6_ILP32_OFF32 = 176;
-
-const int _SC_V6_ILP32_OFFBIG = 177;
-
-const int _SC_V6_LP64_OFF64 = 178;
-
-const int _SC_V6_LPBIG_OFFBIG = 179;
-
-const int _SC_HOST_NAME_MAX = 180;
-
-const int _SC_TRACE = 181;
-
-const int _SC_TRACE_EVENT_FILTER = 182;
-
-const int _SC_TRACE_INHERIT = 183;
-
-const int _SC_TRACE_LOG = 184;
-
-const int _SC_LEVEL1_ICACHE_SIZE = 185;
-
-const int _SC_LEVEL1_ICACHE_ASSOC = 186;
-
-const int _SC_LEVEL1_ICACHE_LINESIZE = 187;
-
-const int _SC_LEVEL1_DCACHE_SIZE = 188;
-
-const int _SC_LEVEL1_DCACHE_ASSOC = 189;
-
-const int _SC_LEVEL1_DCACHE_LINESIZE = 190;
-
-const int _SC_LEVEL2_CACHE_SIZE = 191;
-
-const int _SC_LEVEL2_CACHE_ASSOC = 192;
-
-const int _SC_LEVEL2_CACHE_LINESIZE = 193;
-
-const int _SC_LEVEL3_CACHE_SIZE = 194;
-
-const int _SC_LEVEL3_CACHE_ASSOC = 195;
-
-const int _SC_LEVEL3_CACHE_LINESIZE = 196;
-
-const int _SC_LEVEL4_CACHE_SIZE = 197;
-
-const int _SC_LEVEL4_CACHE_ASSOC = 198;
-
-const int _SC_LEVEL4_CACHE_LINESIZE = 199;
-
-const int _SC_IPV6 = 235;
-
-const int _SC_RAW_SOCKETS = 236;
-
-const int _SC_V7_ILP32_OFF32 = 237;
-
-const int _SC_V7_ILP32_OFFBIG = 238;
-
-const int _SC_V7_LP64_OFF64 = 239;
-
-const int _SC_V7_LPBIG_OFFBIG = 240;
-
-const int _SC_SS_REPL_MAX = 241;
-
-const int _SC_TRACE_EVENT_NAME_MAX = 242;
-
-const int _SC_TRACE_NAME_MAX = 243;
-
-const int _SC_TRACE_SYS_MAX = 244;
-
-const int _SC_TRACE_USER_EVENT_MAX = 245;
-
-const int _SC_XOPEN_STREAMS = 246;
-
-const int _SC_THREAD_ROBUST_PRIO_INHERIT = 247;
-
-const int _SC_THREAD_ROBUST_PRIO_PROTECT = 248;
-
-const int _SC_MINSIGSTKSZ = 249;
-
-const int _SC_SIGSTKSZ = 250;
-
-const int _CS_PATH = 0;
-
-const int _CS_V6_WIDTH_RESTRICTED_ENVS = 1;
-
-const int _CS_GNU_LIBC_VERSION = 2;
-
-const int _CS_GNU_LIBPTHREAD_VERSION = 3;
-
-const int _CS_V5_WIDTH_RESTRICTED_ENVS = 4;
-
-const int _CS_V7_WIDTH_RESTRICTED_ENVS = 5;
-
-const int _CS_LFS_CFLAGS = 1000;
-
-const int _CS_LFS_LDFLAGS = 1001;
-
-const int _CS_LFS_LIBS = 1002;
-
-const int _CS_LFS_LINTFLAGS = 1003;
-
-const int _CS_LFS64_CFLAGS = 1004;
-
-const int _CS_LFS64_LDFLAGS = 1005;
-
-const int _CS_LFS64_LIBS = 1006;
-
-const int _CS_LFS64_LINTFLAGS = 1007;
-
-const int _CS_XBS5_ILP32_OFF32_CFLAGS = 1100;
-
-const int _CS_XBS5_ILP32_OFF32_LDFLAGS = 1101;
-
-const int _CS_XBS5_ILP32_OFF32_LIBS = 1102;
-
-const int _CS_XBS5_ILP32_OFF32_LINTFLAGS = 1103;
-
-const int _CS_XBS5_ILP32_OFFBIG_CFLAGS = 1104;
-
-const int _CS_XBS5_ILP32_OFFBIG_LDFLAGS = 1105;
-
-const int _CS_XBS5_ILP32_OFFBIG_LIBS = 1106;
-
-const int _CS_XBS5_ILP32_OFFBIG_LINTFLAGS = 1107;
-
-const int _CS_XBS5_LP64_OFF64_CFLAGS = 1108;
-
-const int _CS_XBS5_LP64_OFF64_LDFLAGS = 1109;
-
-const int _CS_XBS5_LP64_OFF64_LIBS = 1110;
-
-const int _CS_XBS5_LP64_OFF64_LINTFLAGS = 1111;
-
-const int _CS_XBS5_LPBIG_OFFBIG_CFLAGS = 1112;
-
-const int _CS_XBS5_LPBIG_OFFBIG_LDFLAGS = 1113;
-
-const int _CS_XBS5_LPBIG_OFFBIG_LIBS = 1114;
-
-const int _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS = 1115;
-
-const int _CS_POSIX_V6_ILP32_OFF32_CFLAGS = 1116;
-
-const int _CS_POSIX_V6_ILP32_OFF32_LDFLAGS = 1117;
-
-const int _CS_POSIX_V6_ILP32_OFF32_LIBS = 1118;
-
-const int _CS_POSIX_V6_ILP32_OFF32_LINTFLAGS = 1119;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_CFLAGS = 1120;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS = 1121;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_LIBS = 1122;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS = 1123;
-
-const int _CS_POSIX_V6_LP64_OFF64_CFLAGS = 1124;
-
-const int _CS_POSIX_V6_LP64_OFF64_LDFLAGS = 1125;
-
-const int _CS_POSIX_V6_LP64_OFF64_LIBS = 1126;
-
-const int _CS_POSIX_V6_LP64_OFF64_LINTFLAGS = 1127;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS = 1128;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS = 1129;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_LIBS = 1130;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS = 1131;
-
-const int _CS_POSIX_V7_ILP32_OFF32_CFLAGS = 1132;
-
-const int _CS_POSIX_V7_ILP32_OFF32_LDFLAGS = 1133;
-
-const int _CS_POSIX_V7_ILP32_OFF32_LIBS = 1134;
-
-const int _CS_POSIX_V7_ILP32_OFF32_LINTFLAGS = 1135;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_CFLAGS = 1136;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS = 1137;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_LIBS = 1138;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS = 1139;
-
-const int _CS_POSIX_V7_LP64_OFF64_CFLAGS = 1140;
-
-const int _CS_POSIX_V7_LP64_OFF64_LDFLAGS = 1141;
-
-const int _CS_POSIX_V7_LP64_OFF64_LIBS = 1142;
-
-const int _CS_POSIX_V7_LP64_OFF64_LINTFLAGS = 1143;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS = 1144;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS = 1145;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_LIBS = 1146;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS = 1147;
-
-const int _CS_V6_ENV = 1148;
-
-const int _CS_V7_ENV = 1149;
-
-const int _STDINT_H = 1;
-
-const int _FEATURES_H = 1;
-
-const int _DEFAULT_SOURCE = 1;
-
-const int __GLIBC_USE_ISOC2X = 1;
-
-const int __USE_ISOC11 = 1;
-
-const int __USE_ISOC99 = 1;
-
-const int __USE_ISOC95 = 1;
-
-const int _POSIX_SOURCE = 1;
-
-const int _POSIX_C_SOURCE = 200809;
-
-const int __USE_POSIX = 1;
-
-const int __USE_POSIX2 = 1;
-
-const int __USE_POSIX199309 = 1;
-
-const int __USE_POSIX199506 = 1;
-
-const int __USE_XOPEN2K = 1;
-
-const int __USE_XOPEN2K8 = 1;
-
-const int _ATFILE_SOURCE = 1;
-
-const int __WORDSIZE = 64;
-
-const int __WORDSIZE_TIME64_COMPAT32 = 1;
-
-const int __SYSCALL_WORDSIZE = 64;
-
-const int __TIMESIZE = 64;
-
-const int __USE_MISC = 1;
-
-const int __USE_ATFILE = 1;
-
-const int __USE_FORTIFY_LEVEL = 0;
-
-const int __GLIBC_USE_DEPRECATED_GETS = 0;
-
-const int __GLIBC_USE_DEPRECATED_SCANF = 0;
-
-const int _STDC_PREDEF_H = 1;
-
-const int __STDC_IEC_559__ = 1;
-
-const int __STDC_IEC_60559_BFP__ = 201404;
-
-const int __STDC_IEC_559_COMPLEX__ = 1;
-
-const int __STDC_IEC_60559_COMPLEX__ = 201404;
-
-const int __STDC_ISO_10646__ = 201706;
-
-const int __GNU_LIBRARY__ = 6;
-
-const int __GLIBC__ = 2;
-
-const int __GLIBC_MINOR__ = 36;
-
-const int _SYS_CDEFS_H = 1;
-
-const int __THROW = 1;
-
-const int __THROWNL = 1;
-
-const int __glibc_c99_flexarr_available = 1;
-
-const int __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI = 0;
-
-const int __HAVE_GENERIC_SELECTION = 0;
-
-const int __GLIBC_USE_LIB_EXT2 = 1;
-
-const int __GLIBC_USE_IEC_60559_BFP_EXT = 1;
-
-const int __GLIBC_USE_IEC_60559_BFP_EXT_C2X = 1;
-
-const int __GLIBC_USE_IEC_60559_EXT = 1;
-
-const int __GLIBC_USE_IEC_60559_FUNCS_EXT = 1;
-
-const int __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X = 1;
-
-const int __GLIBC_USE_IEC_60559_TYPES_EXT = 1;
-
-const int _BITS_TYPES_H = 1;
-
-const int _BITS_TYPESIZES_H = 1;
-
-const int __OFF_T_MATCHES_OFF64_T = 1;
-
-const int __INO_T_MATCHES_INO64_T = 1;
-
-const int __RLIM_T_MATCHES_RLIM64_T = 1;
-
-const int __STATFS_MATCHES_STATFS64 = 1;
-
-const int __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64 = 1;
-
-const int __FD_SETSIZE = 1024;
-
-const int _BITS_TIME64_H = 1;
-
-const int _BITS_WCHAR_H = 1;
-
-const int __WCHAR_MAX = 2147483647;
-
-const int __WCHAR_MIN = -2147483648;
-
-const int _BITS_STDINT_INTN_H = 1;
-
-const int _BITS_STDINT_UINTN_H = 1;
-
-const int INT8_MIN = -128;
-
-const int INT16_MIN = -32768;
-
-const int INT32_MIN = -2147483648;
-
-const int INT64_MIN = -9223372036854775808;
-
-const int INT8_MAX = 127;
-
-const int INT16_MAX = 32767;
-
-const int INT32_MAX = 2147483647;
-
-const int INT64_MAX = 9223372036854775807;
-
-const int UINT8_MAX = 255;
-
-const int UINT16_MAX = 65535;
-
-const int UINT32_MAX = 4294967295;
-
-const int UINT64_MAX = -1;
-
-const int INT_LEAST8_MIN = -128;
-
-const int INT_LEAST16_MIN = -32768;
-
-const int INT_LEAST32_MIN = -2147483648;
-
-const int INT_LEAST64_MIN = -9223372036854775808;
-
-const int INT_LEAST8_MAX = 127;
-
-const int INT_LEAST16_MAX = 32767;
-
-const int INT_LEAST32_MAX = 2147483647;
-
-const int INT_LEAST64_MAX = 9223372036854775807;
-
-const int UINT_LEAST8_MAX = 255;
-
-const int UINT_LEAST16_MAX = 65535;
-
-const int UINT_LEAST32_MAX = 4294967295;
-
-const int UINT_LEAST64_MAX = -1;
-
-const int INT_FAST8_MIN = -128;
-
-const int INT_FAST16_MIN = -9223372036854775808;
-
-const int INT_FAST32_MIN = -9223372036854775808;
-
-const int INT_FAST64_MIN = -9223372036854775808;
-
-const int INT_FAST8_MAX = 127;
-
-const int INT_FAST16_MAX = 9223372036854775807;
-
-const int INT_FAST32_MAX = 9223372036854775807;
-
-const int INT_FAST64_MAX = 9223372036854775807;
-
-const int UINT_FAST8_MAX = 255;
-
-const int UINT_FAST16_MAX = -1;
-
-const int UINT_FAST32_MAX = -1;
-
-const int UINT_FAST64_MAX = -1;
-
-const int INTPTR_MIN = -9223372036854775808;
-
-const int INTPTR_MAX = 9223372036854775807;
-
-const int UINTPTR_MAX = -1;
-
-const int INTMAX_MIN = -9223372036854775808;
-
-const int INTMAX_MAX = 9223372036854775807;
-
-const int UINTMAX_MAX = -1;
-
-const int PTRDIFF_MIN = -9223372036854775808;
-
-const int PTRDIFF_MAX = 9223372036854775807;
-
-const int SIG_ATOMIC_MIN = -2147483648;
-
-const int SIG_ATOMIC_MAX = 2147483647;
-
-const int SIZE_MAX = -1;
-
-const int WCHAR_MIN = -2147483648;
-
-const int WCHAR_MAX = 2147483647;
-
-const int WINT_MIN = 0;
-
-const int WINT_MAX = 4294967295;
-
-const int true1 = 1;
-
-const int false1 = 0;
-
-const int __bool_true_false_are_defined = 1;
-
-const int NULL = 0;
-
-const int _UNISTD_H = 1;
-
-const int _POSIX_VERSION = 200809;
-
-const int __POSIX2_THIS_VERSION = 200809;
-
-const int _POSIX2_VERSION = 200809;
-
-const int _POSIX2_C_VERSION = 200809;
-
-const int _POSIX2_C_BIND = 200809;
-
-const int _POSIX2_C_DEV = 200809;
-
-const int _POSIX2_SW_DEV = 200809;
-
-const int _POSIX2_LOCALEDEF = 200809;
-
-const int _XOPEN_VERSION = 700;
-
-const int _XOPEN_XCU_VERSION = 4;
-
-const int _XOPEN_XPG2 = 1;
-
-const int _XOPEN_XPG3 = 1;
-
-const int _XOPEN_XPG4 = 1;
-
-const int _XOPEN_UNIX = 1;
-
-const int _XOPEN_ENH_I18N = 1;
-
-const int _XOPEN_LEGACY = 1;
-
-const int _BITS_POSIX_OPT_H = 1;
-
-const int _POSIX_JOB_CONTROL = 1;
-
-const int _POSIX_SAVED_IDS = 1;
-
-const int _POSIX_PRIORITY_SCHEDULING = 200809;
-
-const int _POSIX_SYNCHRONIZED_IO = 200809;
-
-const int _POSIX_FSYNC = 200809;
-
-const int _POSIX_MAPPED_FILES = 200809;
-
-const int _POSIX_MEMLOCK = 200809;
-
-const int _POSIX_MEMLOCK_RANGE = 200809;
-
-const int _POSIX_MEMORY_PROTECTION = 200809;
-
-const int _POSIX_CHOWN_RESTRICTED = 0;
-
-const int _POSIX_VDISABLE = 0;
-
-const int _POSIX_NO_TRUNC = 1;
-
-const int _XOPEN_REALTIME = 1;
-
-const int _XOPEN_REALTIME_THREADS = 1;
-
-const int _XOPEN_SHM = 1;
-
-const int _POSIX_THREADS = 200809;
-
-const int _POSIX_REENTRANT_FUNCTIONS = 1;
-
-const int _POSIX_THREAD_SAFE_FUNCTIONS = 200809;
-
-const int _POSIX_THREAD_PRIORITY_SCHEDULING = 200809;
-
-const int _POSIX_THREAD_ATTR_STACKSIZE = 200809;
-
-const int _POSIX_THREAD_ATTR_STACKADDR = 200809;
-
-const int _POSIX_THREAD_PRIO_INHERIT = 200809;
-
-const int _POSIX_THREAD_PRIO_PROTECT = 200809;
-
-const int _POSIX_THREAD_ROBUST_PRIO_INHERIT = 200809;
-
-const int _POSIX_THREAD_ROBUST_PRIO_PROTECT = -1;
-
-const int _POSIX_SEMAPHORES = 200809;
-
-const int _POSIX_REALTIME_SIGNALS = 200809;
-
-const int _POSIX_ASYNCHRONOUS_IO = 200809;
-
-const int _POSIX_ASYNC_IO = 1;
-
-const int _LFS_ASYNCHRONOUS_IO = 1;
-
-const int _POSIX_PRIORITIZED_IO = 200809;
-
-const int _LFS64_ASYNCHRONOUS_IO = 1;
-
-const int _LFS_LARGEFILE = 1;
-
-const int _LFS64_LARGEFILE = 1;
-
-const int _LFS64_STDIO = 1;
-
-const int _POSIX_SHARED_MEMORY_OBJECTS = 200809;
-
-const int _POSIX_CPUTIME = 0;
-
-const int _POSIX_THREAD_CPUTIME = 0;
-
-const int _POSIX_REGEXP = 1;
-
-const int _POSIX_READER_WRITER_LOCKS = 200809;
-
-const int _POSIX_SHELL = 1;
-
-const int _POSIX_TIMEOUTS = 200809;
-
-const int _POSIX_SPIN_LOCKS = 200809;
-
-const int _POSIX_SPAWN = 200809;
-
-const int _POSIX_TIMERS = 200809;
-
-const int _POSIX_BARRIERS = 200809;
-
-const int _POSIX_MESSAGE_PASSING = 200809;
-
-const int _POSIX_THREAD_PROCESS_SHARED = 200809;
-
-const int _POSIX_MONOTONIC_CLOCK = 0;
-
-const int _POSIX_CLOCK_SELECTION = 200809;
-
-const int _POSIX_ADVISORY_INFO = 200809;
-
-const int _POSIX_IPV6 = 200809;
-
-const int _POSIX_RAW_SOCKETS = 200809;
-
-const int _POSIX2_CHAR_TERM = 200809;
-
-const int _POSIX_SPORADIC_SERVER = -1;
-
-const int _POSIX_THREAD_SPORADIC_SERVER = -1;
-
-const int _POSIX_TRACE = -1;
-
-const int _POSIX_TRACE_EVENT_FILTER = -1;
-
-const int _POSIX_TRACE_INHERIT = -1;
-
-const int _POSIX_TRACE_LOG = -1;
-
-const int _POSIX_TYPED_MEMORY_OBJECTS = -1;
-
-const int _POSIX_V7_LPBIG_OFFBIG = -1;
-
-const int _POSIX_V6_LPBIG_OFFBIG = -1;
-
-const int _XBS5_LPBIG_OFFBIG = -1;
-
-const int _POSIX_V7_LP64_OFF64 = 1;
-
-const int _POSIX_V6_LP64_OFF64 = 1;
-
-const int _XBS5_LP64_OFF64 = 1;
-
-const String __ILP32_OFF32_CFLAGS = '-m32';
-
-const String __ILP32_OFF32_LDFLAGS = '-m32';
-
-const String __ILP32_OFFBIG_CFLAGS =
-    '-m32 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64';
-
-const String __ILP32_OFFBIG_LDFLAGS = '-m32';
-
-const String __LP64_OFF64_CFLAGS = '-m64';
-
-const String __LP64_OFF64_LDFLAGS = '-m64';
-
-const int STDIN_FILENO = 0;
-
-const int STDOUT_FILENO = 1;
-
-const int STDERR_FILENO = 2;
-
-const int R_OK = 4;
-
-const int W_OK = 2;
-
-const int X_OK = 1;
-
-const int F_OK = 0;
-
-const int SEEK_SET = 0;
-
-const int SEEK_CUR = 1;
-
-const int SEEK_END = 2;
-
-const int L_SET = 0;
-
-const int L_INCR = 1;
-
-const int L_XTND = 2;
-
-const int _PC_LINK_MAX1 = 0;
-
-const int _PC_MAX_CANON1 = 1;
-
-const int _PC_MAX_INPUT1 = 2;
-
-const int _PC_NAME_MAX1 = 3;
-
-const int _PC_PATH_MAX1 = 4;
-
-const int _PC_PIPE_BUF1 = 5;
-
-const int _PC_CHOWN_RESTRICTED1 = 6;
-
-const int _PC_NO_TRUNC1 = 7;
-
-const int _PC_VDISABLE1 = 8;
-
-const int _PC_SYNC_IO1 = 9;
-
-const int _PC_ASYNC_IO1 = 10;
-
-const int _PC_PRIO_IO1 = 11;
-
-const int _PC_SOCK_MAXBUF1 = 12;
-
-const int _PC_FILESIZEBITS1 = 13;
-
-const int _PC_REC_INCR_XFER_SIZE1 = 14;
-
-const int _PC_REC_MAX_XFER_SIZE1 = 15;
-
-const int _PC_REC_MIN_XFER_SIZE1 = 16;
-
-const int _PC_REC_XFER_ALIGN1 = 17;
-
-const int _PC_ALLOC_SIZE_MIN1 = 18;
-
-const int _PC_SYMLINK_MAX1 = 19;
-
-const int _PC_2_SYMLINKS1 = 20;
-
-const int _SC_ARG_MAX1 = 0;
-
-const int _SC_CHILD_MAX1 = 1;
-
-const int _SC_CLK_TCK1 = 2;
-
-const int _SC_NGROUPS_MAX1 = 3;
-
-const int _SC_OPEN_MAX1 = 4;
-
-const int _SC_STREAM_MAX1 = 5;
-
-const int _SC_TZNAME_MAX1 = 6;
-
-const int _SC_JOB_CONTROL1 = 7;
-
-const int _SC_SAVED_IDS1 = 8;
-
-const int _SC_REALTIME_SIGNALS1 = 9;
-
-const int _SC_PRIORITY_SCHEDULING1 = 10;
-
-const int _SC_TIMERS1 = 11;
-
-const int _SC_ASYNCHRONOUS_IO1 = 12;
-
-const int _SC_PRIORITIZED_IO1 = 13;
-
-const int _SC_SYNCHRONIZED_IO1 = 14;
-
-const int _SC_FSYNC1 = 15;
-
-const int _SC_MAPPED_FILES1 = 16;
-
-const int _SC_MEMLOCK1 = 17;
-
-const int _SC_MEMLOCK_RANGE1 = 18;
-
-const int _SC_MEMORY_PROTECTION1 = 19;
-
-const int _SC_MESSAGE_PASSING1 = 20;
-
-const int _SC_SEMAPHORES1 = 21;
-
-const int _SC_SHARED_MEMORY_OBJECTS1 = 22;
-
-const int _SC_AIO_LISTIO_MAX1 = 23;
-
-const int _SC_AIO_MAX1 = 24;
-
-const int _SC_AIO_PRIO_DELTA_MAX1 = 25;
-
-const int _SC_DELAYTIMER_MAX1 = 26;
-
-const int _SC_MQ_OPEN_MAX1 = 27;
-
-const int _SC_MQ_PRIO_MAX1 = 28;
-
-const int _SC_VERSION1 = 29;
-
-const int _SC_PAGESIZE1 = 30;
-
-const int _SC_PAGE_SIZE = 30;
-
-const int _SC_RTSIG_MAX1 = 31;
-
-const int _SC_SEM_NSEMS_MAX1 = 32;
-
-const int _SC_SEM_VALUE_MAX1 = 33;
-
-const int _SC_SIGQUEUE_MAX1 = 34;
-
-const int _SC_TIMER_MAX1 = 35;
-
-const int _SC_BC_BASE_MAX1 = 36;
-
-const int _SC_BC_DIM_MAX1 = 37;
-
-const int _SC_BC_SCALE_MAX1 = 38;
-
-const int _SC_BC_STRING_MAX1 = 39;
-
-const int _SC_COLL_WEIGHTS_MAX1 = 40;
-
-const int _SC_EQUIV_CLASS_MAX1 = 41;
-
-const int _SC_EXPR_NEST_MAX1 = 42;
-
-const int _SC_LINE_MAX1 = 43;
-
-const int _SC_RE_DUP_MAX1 = 44;
-
-const int _SC_CHARCLASS_NAME_MAX1 = 45;
-
-const int _SC_2_VERSION1 = 46;
-
-const int _SC_2_C_BIND1 = 47;
-
-const int _SC_2_C_DEV1 = 48;
-
-const int _SC_2_FORT_DEV1 = 49;
-
-const int _SC_2_FORT_RUN1 = 50;
-
-const int _SC_2_SW_DEV1 = 51;
-
-const int _SC_2_LOCALEDEF1 = 52;
-
-const int _SC_PII1 = 53;
-
-const int _SC_PII_XTI1 = 54;
-
-const int _SC_PII_SOCKET1 = 55;
-
-const int _SC_PII_INTERNET1 = 56;
-
-const int _SC_PII_OSI1 = 57;
-
-const int _SC_POLL1 = 58;
-
-const int _SC_SELECT1 = 59;
-
-const int _SC_UIO_MAXIOV1 = 60;
-
-const int _SC_IOV_MAX1 = 60;
-
-const int _SC_PII_INTERNET_STREAM1 = 61;
-
-const int _SC_PII_INTERNET_DGRAM1 = 62;
-
-const int _SC_PII_OSI_COTS1 = 63;
-
-const int _SC_PII_OSI_CLTS1 = 64;
-
-const int _SC_PII_OSI_M1 = 65;
-
-const int _SC_T_IOV_MAX1 = 66;
-
-const int _SC_THREADS1 = 67;
-
-const int _SC_THREAD_SAFE_FUNCTIONS1 = 68;
-
-const int _SC_GETGR_R_SIZE_MAX1 = 69;
-
-const int _SC_GETPW_R_SIZE_MAX1 = 70;
-
-const int _SC_LOGIN_NAME_MAX1 = 71;
-
-const int _SC_TTY_NAME_MAX1 = 72;
-
-const int _SC_THREAD_DESTRUCTOR_ITERATIONS1 = 73;
-
-const int _SC_THREAD_KEYS_MAX1 = 74;
-
-const int _SC_THREAD_STACK_MIN1 = 75;
-
-const int _SC_THREAD_THREADS_MAX1 = 76;
-
-const int _SC_THREAD_ATTR_STACKADDR1 = 77;
-
-const int _SC_THREAD_ATTR_STACKSIZE1 = 78;
-
-const int _SC_THREAD_PRIORITY_SCHEDULING1 = 79;
-
-const int _SC_THREAD_PRIO_INHERIT1 = 80;
-
-const int _SC_THREAD_PRIO_PROTECT1 = 81;
-
-const int _SC_THREAD_PROCESS_SHARED1 = 82;
-
-const int _SC_NPROCESSORS_CONF1 = 83;
-
-const int _SC_NPROCESSORS_ONLN1 = 84;
-
-const int _SC_PHYS_PAGES1 = 85;
-
-const int _SC_AVPHYS_PAGES1 = 86;
-
-const int _SC_ATEXIT_MAX1 = 87;
-
-const int _SC_PASS_MAX1 = 88;
-
-const int _SC_XOPEN_VERSION1 = 89;
-
-const int _SC_XOPEN_XCU_VERSION1 = 90;
-
-const int _SC_XOPEN_UNIX1 = 91;
-
-const int _SC_XOPEN_CRYPT1 = 92;
-
-const int _SC_XOPEN_ENH_I18N1 = 93;
-
-const int _SC_XOPEN_SHM1 = 94;
-
-const int _SC_2_CHAR_TERM1 = 95;
-
-const int _SC_2_C_VERSION1 = 96;
-
-const int _SC_2_UPE1 = 97;
-
-const int _SC_XOPEN_XPG21 = 98;
-
-const int _SC_XOPEN_XPG31 = 99;
-
-const int _SC_XOPEN_XPG41 = 100;
-
-const int _SC_CHAR_BIT1 = 101;
-
-const int _SC_CHAR_MAX1 = 102;
-
-const int _SC_CHAR_MIN1 = 103;
-
-const int _SC_INT_MAX1 = 104;
-
-const int _SC_INT_MIN1 = 105;
-
-const int _SC_LONG_BIT1 = 106;
-
-const int _SC_WORD_BIT1 = 107;
-
-const int _SC_MB_LEN_MAX1 = 108;
-
-const int _SC_NZERO1 = 109;
-
-const int _SC_SSIZE_MAX1 = 110;
-
-const int _SC_SCHAR_MAX1 = 111;
-
-const int _SC_SCHAR_MIN1 = 112;
-
-const int _SC_SHRT_MAX1 = 113;
-
-const int _SC_SHRT_MIN1 = 114;
-
-const int _SC_UCHAR_MAX1 = 115;
-
-const int _SC_UINT_MAX1 = 116;
-
-const int _SC_ULONG_MAX1 = 117;
-
-const int _SC_USHRT_MAX1 = 118;
-
-const int _SC_NL_ARGMAX1 = 119;
-
-const int _SC_NL_LANGMAX1 = 120;
-
-const int _SC_NL_MSGMAX1 = 121;
-
-const int _SC_NL_NMAX1 = 122;
-
-const int _SC_NL_SETMAX1 = 123;
-
-const int _SC_NL_TEXTMAX1 = 124;
-
-const int _SC_XBS5_ILP32_OFF321 = 125;
-
-const int _SC_XBS5_ILP32_OFFBIG1 = 126;
-
-const int _SC_XBS5_LP64_OFF641 = 127;
-
-const int _SC_XBS5_LPBIG_OFFBIG1 = 128;
-
-const int _SC_XOPEN_LEGACY1 = 129;
-
-const int _SC_XOPEN_REALTIME1 = 130;
-
-const int _SC_XOPEN_REALTIME_THREADS1 = 131;
-
-const int _SC_ADVISORY_INFO1 = 132;
-
-const int _SC_BARRIERS1 = 133;
-
-const int _SC_BASE1 = 134;
-
-const int _SC_C_LANG_SUPPORT1 = 135;
-
-const int _SC_C_LANG_SUPPORT_R1 = 136;
-
-const int _SC_CLOCK_SELECTION1 = 137;
-
-const int _SC_CPUTIME1 = 138;
-
-const int _SC_THREAD_CPUTIME1 = 139;
-
-const int _SC_DEVICE_IO1 = 140;
-
-const int _SC_DEVICE_SPECIFIC1 = 141;
-
-const int _SC_DEVICE_SPECIFIC_R1 = 142;
-
-const int _SC_FD_MGMT1 = 143;
-
-const int _SC_FIFO1 = 144;
-
-const int _SC_PIPE1 = 145;
-
-const int _SC_FILE_ATTRIBUTES1 = 146;
-
-const int _SC_FILE_LOCKING1 = 147;
-
-const int _SC_FILE_SYSTEM1 = 148;
-
-const int _SC_MONOTONIC_CLOCK1 = 149;
-
-const int _SC_MULTI_PROCESS1 = 150;
-
-const int _SC_SINGLE_PROCESS1 = 151;
-
-const int _SC_NETWORKING1 = 152;
-
-const int _SC_READER_WRITER_LOCKS1 = 153;
-
-const int _SC_SPIN_LOCKS1 = 154;
-
-const int _SC_REGEXP1 = 155;
-
-const int _SC_REGEX_VERSION1 = 156;
-
-const int _SC_SHELL1 = 157;
-
-const int _SC_SIGNALS1 = 158;
-
-const int _SC_SPAWN1 = 159;
-
-const int _SC_SPORADIC_SERVER1 = 160;
-
-const int _SC_THREAD_SPORADIC_SERVER1 = 161;
-
-const int _SC_SYSTEM_DATABASE1 = 162;
-
-const int _SC_SYSTEM_DATABASE_R1 = 163;
-
-const int _SC_TIMEOUTS1 = 164;
-
-const int _SC_TYPED_MEMORY_OBJECTS1 = 165;
-
-const int _SC_USER_GROUPS1 = 166;
-
-const int _SC_USER_GROUPS_R1 = 167;
-
-const int _SC_2_PBS1 = 168;
-
-const int _SC_2_PBS_ACCOUNTING1 = 169;
-
-const int _SC_2_PBS_LOCATE1 = 170;
-
-const int _SC_2_PBS_MESSAGE1 = 171;
-
-const int _SC_2_PBS_TRACK1 = 172;
-
-const int _SC_SYMLOOP_MAX1 = 173;
-
-const int _SC_STREAMS1 = 174;
-
-const int _SC_2_PBS_CHECKPOINT1 = 175;
-
-const int _SC_V6_ILP32_OFF321 = 176;
-
-const int _SC_V6_ILP32_OFFBIG1 = 177;
-
-const int _SC_V6_LP64_OFF641 = 178;
-
-const int _SC_V6_LPBIG_OFFBIG1 = 179;
-
-const int _SC_HOST_NAME_MAX1 = 180;
-
-const int _SC_TRACE1 = 181;
-
-const int _SC_TRACE_EVENT_FILTER1 = 182;
-
-const int _SC_TRACE_INHERIT1 = 183;
-
-const int _SC_TRACE_LOG1 = 184;
-
-const int _SC_LEVEL1_ICACHE_SIZE1 = 185;
-
-const int _SC_LEVEL1_ICACHE_ASSOC1 = 186;
-
-const int _SC_LEVEL1_ICACHE_LINESIZE1 = 187;
-
-const int _SC_LEVEL1_DCACHE_SIZE1 = 188;
-
-const int _SC_LEVEL1_DCACHE_ASSOC1 = 189;
-
-const int _SC_LEVEL1_DCACHE_LINESIZE1 = 190;
-
-const int _SC_LEVEL2_CACHE_SIZE1 = 191;
-
-const int _SC_LEVEL2_CACHE_ASSOC1 = 192;
-
-const int _SC_LEVEL2_CACHE_LINESIZE1 = 193;
-
-const int _SC_LEVEL3_CACHE_SIZE1 = 194;
-
-const int _SC_LEVEL3_CACHE_ASSOC1 = 195;
-
-const int _SC_LEVEL3_CACHE_LINESIZE1 = 196;
-
-const int _SC_LEVEL4_CACHE_SIZE1 = 197;
-
-const int _SC_LEVEL4_CACHE_ASSOC1 = 198;
-
-const int _SC_LEVEL4_CACHE_LINESIZE1 = 199;
-
-const int _SC_IPV61 = 235;
-
-const int _SC_RAW_SOCKETS1 = 236;
-
-const int _SC_V7_ILP32_OFF321 = 237;
-
-const int _SC_V7_ILP32_OFFBIG1 = 238;
-
-const int _SC_V7_LP64_OFF641 = 239;
-
-const int _SC_V7_LPBIG_OFFBIG1 = 240;
-
-const int _SC_SS_REPL_MAX1 = 241;
-
-const int _SC_TRACE_EVENT_NAME_MAX1 = 242;
-
-const int _SC_TRACE_NAME_MAX1 = 243;
-
-const int _SC_TRACE_SYS_MAX1 = 244;
-
-const int _SC_TRACE_USER_EVENT_MAX1 = 245;
-
-const int _SC_XOPEN_STREAMS1 = 246;
-
-const int _SC_THREAD_ROBUST_PRIO_INHERIT1 = 247;
-
-const int _SC_THREAD_ROBUST_PRIO_PROTECT1 = 248;
-
-const int _SC_MINSIGSTKSZ1 = 249;
-
-const int _SC_SIGSTKSZ1 = 250;
-
-const int _CS_PATH1 = 0;
-
-const int _CS_V6_WIDTH_RESTRICTED_ENVS1 = 1;
-
-const int _CS_POSIX_V6_WIDTH_RESTRICTED_ENVS = 1;
-
-const int _CS_GNU_LIBC_VERSION1 = 2;
-
-const int _CS_GNU_LIBPTHREAD_VERSION1 = 3;
-
-const int _CS_V5_WIDTH_RESTRICTED_ENVS1 = 4;
-
-const int _CS_POSIX_V5_WIDTH_RESTRICTED_ENVS = 4;
-
-const int _CS_V7_WIDTH_RESTRICTED_ENVS1 = 5;
-
-const int _CS_POSIX_V7_WIDTH_RESTRICTED_ENVS = 5;
-
-const int _CS_LFS_CFLAGS1 = 1000;
-
-const int _CS_LFS_LDFLAGS1 = 1001;
-
-const int _CS_LFS_LIBS1 = 1002;
-
-const int _CS_LFS_LINTFLAGS1 = 1003;
-
-const int _CS_LFS64_CFLAGS1 = 1004;
-
-const int _CS_LFS64_LDFLAGS1 = 1005;
-
-const int _CS_LFS64_LIBS1 = 1006;
-
-const int _CS_LFS64_LINTFLAGS1 = 1007;
-
-const int _CS_XBS5_ILP32_OFF32_CFLAGS1 = 1100;
-
-const int _CS_XBS5_ILP32_OFF32_LDFLAGS1 = 1101;
-
-const int _CS_XBS5_ILP32_OFF32_LIBS1 = 1102;
-
-const int _CS_XBS5_ILP32_OFF32_LINTFLAGS1 = 1103;
-
-const int _CS_XBS5_ILP32_OFFBIG_CFLAGS1 = 1104;
-
-const int _CS_XBS5_ILP32_OFFBIG_LDFLAGS1 = 1105;
-
-const int _CS_XBS5_ILP32_OFFBIG_LIBS1 = 1106;
-
-const int _CS_XBS5_ILP32_OFFBIG_LINTFLAGS1 = 1107;
-
-const int _CS_XBS5_LP64_OFF64_CFLAGS1 = 1108;
-
-const int _CS_XBS5_LP64_OFF64_LDFLAGS1 = 1109;
-
-const int _CS_XBS5_LP64_OFF64_LIBS1 = 1110;
-
-const int _CS_XBS5_LP64_OFF64_LINTFLAGS1 = 1111;
-
-const int _CS_XBS5_LPBIG_OFFBIG_CFLAGS1 = 1112;
-
-const int _CS_XBS5_LPBIG_OFFBIG_LDFLAGS1 = 1113;
-
-const int _CS_XBS5_LPBIG_OFFBIG_LIBS1 = 1114;
-
-const int _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS1 = 1115;
-
-const int _CS_POSIX_V6_ILP32_OFF32_CFLAGS1 = 1116;
-
-const int _CS_POSIX_V6_ILP32_OFF32_LDFLAGS1 = 1117;
-
-const int _CS_POSIX_V6_ILP32_OFF32_LIBS1 = 1118;
-
-const int _CS_POSIX_V6_ILP32_OFF32_LINTFLAGS1 = 1119;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_CFLAGS1 = 1120;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS1 = 1121;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_LIBS1 = 1122;
-
-const int _CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS1 = 1123;
-
-const int _CS_POSIX_V6_LP64_OFF64_CFLAGS1 = 1124;
-
-const int _CS_POSIX_V6_LP64_OFF64_LDFLAGS1 = 1125;
-
-const int _CS_POSIX_V6_LP64_OFF64_LIBS1 = 1126;
-
-const int _CS_POSIX_V6_LP64_OFF64_LINTFLAGS1 = 1127;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS1 = 1128;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS1 = 1129;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_LIBS1 = 1130;
-
-const int _CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS1 = 1131;
-
-const int _CS_POSIX_V7_ILP32_OFF32_CFLAGS1 = 1132;
-
-const int _CS_POSIX_V7_ILP32_OFF32_LDFLAGS1 = 1133;
-
-const int _CS_POSIX_V7_ILP32_OFF32_LIBS1 = 1134;
-
-const int _CS_POSIX_V7_ILP32_OFF32_LINTFLAGS1 = 1135;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_CFLAGS1 = 1136;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS1 = 1137;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_LIBS1 = 1138;
-
-const int _CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS1 = 1139;
-
-const int _CS_POSIX_V7_LP64_OFF64_CFLAGS1 = 1140;
-
-const int _CS_POSIX_V7_LP64_OFF64_LDFLAGS1 = 1141;
-
-const int _CS_POSIX_V7_LP64_OFF64_LIBS1 = 1142;
-
-const int _CS_POSIX_V7_LP64_OFF64_LINTFLAGS1 = 1143;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS1 = 1144;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS1 = 1145;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_LIBS1 = 1146;
-
-const int _CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS1 = 1147;
-
-const int _CS_V6_ENV1 = 1148;
-
-const int _CS_V7_ENV1 = 1149;
-
-const int _GETOPT_POSIX_H = 1;
-
-const int _GETOPT_CORE_H = 1;
-
-const int F_ULOCK = 0;
-
-const int F_LOCK = 1;
-
-const int F_TLOCK = 2;
-
-const int F_TEST = 3;
