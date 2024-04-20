@@ -3238,6 +3238,68 @@ class MoneroC {
   late final _MONERO_Wallet_getMultisigInfo = _MONERO_Wallet_getMultisigInfoPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
 
+  ffi.Pointer<ffi.Void> MONERO_Wallet_createTransactionMultDest(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> dst_addr_list,
+    ffi.Pointer<ffi.Char> dst_addr_list_separator,
+    ffi.Pointer<ffi.Char> payment_id,
+    bool amount_sweep_all,
+    ffi.Pointer<ffi.Char> amount_list,
+    ffi.Pointer<ffi.Char> amount_list_separator,
+    int mixin_count,
+    int pendingTransactionPriority,
+    int subaddr_account,
+    ffi.Pointer<ffi.Char> preferredInputs,
+    ffi.Pointer<ffi.Char> preferredInputs_separator,
+  ) {
+    return _MONERO_Wallet_createTransactionMultDest(
+      wallet_ptr,
+      dst_addr_list,
+      dst_addr_list_separator,
+      payment_id,
+      amount_sweep_all,
+      amount_list,
+      amount_list_separator,
+      mixin_count,
+      pendingTransactionPriority,
+      subaddr_account,
+      preferredInputs,
+      preferredInputs_separator,
+    );
+  }
+
+  late final _MONERO_Wallet_createTransactionMultDestPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Bool,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Uint32,
+                  ffi.Int,
+                  ffi.Uint32,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>)>>(
+      'MONERO_Wallet_createTransactionMultDest');
+  late final _MONERO_Wallet_createTransactionMultDest =
+      _MONERO_Wallet_createTransactionMultDestPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              bool,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int,
+              int,
+              int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
+
   ffi.Pointer<ffi.Void> MONERO_Wallet_createTransaction(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> dst_addr,
@@ -3969,7 +4031,7 @@ class MoneroC {
       _MONERO_Wallet_deviceShowAddressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  ffi.Pointer<ffi.Char> MONERO_Wallet_reconnectDevice(
+  bool MONERO_Wallet_reconnectDevice(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
     return _MONERO_Wallet_reconnectDevice(
@@ -3977,12 +4039,11 @@ class MoneroC {
     );
   }
 
-  late final _MONERO_Wallet_reconnectDevicePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Void>)>>('MONERO_Wallet_reconnectDevice');
+  late final _MONERO_Wallet_reconnectDevicePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Wallet_reconnectDevice');
   late final _MONERO_Wallet_reconnectDevice = _MONERO_Wallet_reconnectDevicePtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
+      .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
 
   int MONERO_Wallet_getBytesReceived(
     ffi.Pointer<ffi.Void> wallet_ptr,

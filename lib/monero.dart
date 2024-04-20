@@ -2473,6 +2473,44 @@ String Wallet_getMultisigInfo(wallet ptr) {
   }
 }
 
+PendingTransaction Wallet_createTransactionMultDest(wallet wptr,
+  {
+    required List<String> dstAddr,
+    String paymentId = "",
+    required bool isSweepAll,
+    required List<int> amounts,
+    required int mixinCount,
+    required int pendingTransactionPriority,
+    required int subaddr_account,
+    List<String> preferredInputs = const [],
+  }) {
+  debugStart?.call('Wallet_createTransactionMultDest');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final dst_addr_list = dstAddr.join(defaultSeparatorStr).toNativeUtf8();
+  final payment_id = paymentId.toNativeUtf8();
+  final amount_list = amounts.map((e) => e.toString()).join(defaultSeparatorStr).toNativeUtf8();
+  final preferredInputs_ = preferredInputs.join(defaultSeparatorStr).toNativeUtf8();
+  final ret = lib!.MONERO_Wallet_createTransactionMultDest(
+    wptr,
+    dst_addr_list.cast(),
+    defaultSeparator,
+    payment_id.cast(),
+    isSweepAll,
+    amount_list.cast(),
+    defaultSeparator,
+    mixinCount,
+    pendingTransactionPriority,
+    subaddr_account,
+    preferredInputs_.cast(),
+    defaultSeparator,
+  );
+  calloc.free(dst_addr_list);
+  calloc.free(payment_id);
+  calloc.free(amount_list);
+  calloc.free(preferredInputs_);
+  return ret;
+}
+
 PendingTransaction Wallet_createTransaction(wallet ptr,
     {required String dst_addr,
     required String payment_id,
@@ -2935,20 +2973,12 @@ String Wallet_deviceShowAddress(wallet ptr,
   }
 }
 
-String Wallet_reconnectDevice(wallet ptr) {
+bool Wallet_reconnectDevice(wallet ptr) {
   debugStart?.call('MONERO_Wallet_reconnectDevice');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
-  try {
-    final strPtr = lib!.MONERO_Wallet_reconnectDevice(ptr).cast<Utf8>();
-    final str = strPtr.toDartString();
-    malloc.free(strPtr);
-    debugEnd?.call('MONERO_Wallet_reconnectDevice');
-    return str;
-  } catch (e) {
-    errorHandler?.call('MONERO_Wallet_reconnectDevice', e);
-    debugEnd?.call('MONERO_Wallet_reconnectDevice');
-    return "";
-  }
+  final ret = lib!.MONERO_Wallet_reconnectDevice(ptr);
+  debugEnd?.call('MONERO_Wallet_reconnectDevice');
+  return ret;
 }
 
 int Wallet_getBytesReceived(wallet ptr) {
