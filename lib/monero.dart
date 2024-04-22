@@ -293,6 +293,48 @@ String PendingTransaction_signersKeys(
   }
 }
 
+String PendingTransaction_hex(
+    PendingTransaction ptr, String separator) {
+  debugStart?.call('MONERO_PendingTransaction_hex');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid = lib!.MONERO_PendingTransaction_hex(ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('MONERO_PendingTransaction_hex');
+  try {
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    debugEnd?.call('MONERO_PendingTransaction_hex');
+    malloc.free(strPtr);
+    return str;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_hex', e);
+    debugEnd?.call('MONERO_PendingTransaction_hex');
+    return "";
+  }
+}
+
+String PendingTransaction_txHex(
+    PendingTransaction ptr, String separator) {
+  debugStart?.call('MONERO_PendingTransaction_txHex');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid = lib!.MONERO_PendingTransaction_txHex(ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('MONERO_PendingTransaction_txHex');
+  try {
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    debugEnd?.call('MONERO_PendingTransaction_txHex');
+    malloc.free(strPtr);
+    return str;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_txHex', e);
+    debugEnd?.call('MONERO_PendingTransaction_txHex');
+    return "";
+  }
+}
+
 // UnsignedTransaction
 
 typedef UnsignedTransaction = Pointer<Void>;
@@ -3107,6 +3149,40 @@ wallet WalletManager_createWalletFromKeys(
   calloc.free(viewKeyString_);
   calloc.free(spendKeyString_);
   debugEnd?.call('MONERO_WalletManager_createWalletFromKeys');
+  return w;
+}
+
+wallet WalletManager_createDeterministicWalletFromSpendKey(
+  WalletManager wm_ptr, {
+  required String path,
+  required String password,
+  int networkType = 0,
+  required String language,
+  required String spendKeyString,
+  required bool newWallet,
+  required int restoreHeight,
+  int kdfRounds = 1,
+}) {
+  debugStart?.call('MONERO_WalletManager_createDeterministicWalletFromSpendKey');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final path_ = path.toNativeUtf8().cast<Char>();
+  final password_ = password.toNativeUtf8().cast<Char>();
+  final language_ = language.toNativeUtf8().cast<Char>();
+  final spendKeyString_ = spendKeyString.toNativeUtf8().cast<Char>();
+  final w = lib!.MONERO_WalletManager_createDeterministicWalletFromSpendKey(
+      wm_ptr,
+      path_,
+      password_,
+      language_,
+      networkType,
+      restoreHeight,
+      spendKeyString_,
+      kdfRounds);
+  calloc.free(path_);
+  calloc.free(password_);
+  calloc.free(language_);
+  calloc.free(spendKeyString_);
+  debugEnd?.call('MONERO_WalletManager_createDeterministicWalletFromSpendKey');
   return w;
 }
 

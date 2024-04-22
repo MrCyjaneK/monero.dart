@@ -238,6 +238,44 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Char> MONERO_PendingTransaction_hex(
+    ffi.Pointer<ffi.Void> pendingTx_ptr,
+    ffi.Pointer<ffi.Char> separator,
+  ) {
+    return _MONERO_PendingTransaction_hex(
+      pendingTx_ptr,
+      separator,
+    );
+  }
+
+  late final _MONERO_PendingTransaction_hexPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_PendingTransaction_hex');
+  late final _MONERO_PendingTransaction_hex =
+      _MONERO_PendingTransaction_hexPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> MONERO_PendingTransaction_txHex(
+    ffi.Pointer<ffi.Void> pendingTx_ptr,
+    ffi.Pointer<ffi.Char> separator,
+  ) {
+    return _MONERO_PendingTransaction_txHex(
+      pendingTx_ptr,
+      separator,
+    );
+  }
+
+  late final _MONERO_PendingTransaction_txHexPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_PendingTransaction_txHex');
+  late final _MONERO_PendingTransaction_txHex =
+      _MONERO_PendingTransaction_txHexPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
   int MONERO_UnsignedTransaction_status(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -4228,6 +4266,54 @@ class MoneroC {
               int,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int)>();
+
+  ffi.Pointer<ffi.Void>
+      MONERO_WalletManager_createDeterministicWalletFromSpendKey(
+    ffi.Pointer<ffi.Void> wm_ptr,
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.Char> password,
+    ffi.Pointer<ffi.Char> language,
+    int nettype,
+    int restoreHeight,
+    ffi.Pointer<ffi.Char> spendKeyString,
+    int kdf_rounds,
+  ) {
+    return _MONERO_WalletManager_createDeterministicWalletFromSpendKey(
+      wm_ptr,
+      path,
+      password,
+      language,
+      nettype,
+      restoreHeight,
+      spendKeyString,
+      kdf_rounds,
+    );
+  }
+
+  late final _MONERO_WalletManager_createDeterministicWalletFromSpendKeyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<ffi.Void> Function(
+                      ffi.Pointer<ffi.Void>,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Int,
+                      ffi.Uint64,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Uint64)>>(
+          'MONERO_WalletManager_createDeterministicWalletFromSpendKey');
+  late final _MONERO_WalletManager_createDeterministicWalletFromSpendKey =
+      _MONERO_WalletManager_createDeterministicWalletFromSpendKeyPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int,
+              int,
               ffi.Pointer<ffi.Char>,
               int)>();
 

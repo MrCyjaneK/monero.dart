@@ -240,6 +240,44 @@ class WowneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Char> WOWNERO_PendingTransaction_hex(
+    ffi.Pointer<ffi.Void> pendingTx_ptr,
+    ffi.Pointer<ffi.Char> separator,
+  ) {
+    return _WOWNERO_PendingTransaction_hex(
+      pendingTx_ptr,
+      separator,
+    );
+  }
+
+  late final _WOWNERO_PendingTransaction_hexPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('WOWNERO_PendingTransaction_hex');
+  late final _WOWNERO_PendingTransaction_hex =
+      _WOWNERO_PendingTransaction_hexPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> WOWNERO_PendingTransaction_txHex(
+    ffi.Pointer<ffi.Void> pendingTx_ptr,
+    ffi.Pointer<ffi.Char> separator,
+  ) {
+    return _WOWNERO_PendingTransaction_txHex(
+      pendingTx_ptr,
+      separator,
+    );
+  }
+
+  late final _WOWNERO_PendingTransaction_txHexPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('WOWNERO_PendingTransaction_txHex');
+  late final _WOWNERO_PendingTransaction_txHex =
+      _WOWNERO_PendingTransaction_txHexPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
   int WOWNERO_UnsignedTransaction_status(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -2989,15 +3027,20 @@ class WowneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> WOWNERO_Wallet_createPolyseed() {
-    return _WOWNERO_Wallet_createPolyseed();
+  ffi.Pointer<ffi.Char> WOWNERO_Wallet_createPolyseed(
+    ffi.Pointer<ffi.Char> language,
+  ) {
+    return _WOWNERO_Wallet_createPolyseed(
+      language,
+    );
   }
 
-  late final _WOWNERO_Wallet_createPolyseedPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>(
-          'WOWNERO_Wallet_createPolyseed');
+  late final _WOWNERO_Wallet_createPolyseedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>)>>('WOWNERO_Wallet_createPolyseed');
   late final _WOWNERO_Wallet_createPolyseed = _WOWNERO_Wallet_createPolyseedPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function()>();
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   void WOWNERO_Wallet_startRefresh(
     ffi.Pointer<ffi.Void> wallet_ptr,
@@ -3247,6 +3290,68 @@ class WowneroC {
   late final _WOWNERO_Wallet_getMultisigInfo =
       _WOWNERO_Wallet_getMultisigInfoPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
+
+  ffi.Pointer<ffi.Void> WOWNERO_Wallet_createTransactionMultDest(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> dst_addr_list,
+    ffi.Pointer<ffi.Char> dst_addr_list_separator,
+    ffi.Pointer<ffi.Char> payment_id,
+    bool amount_sweep_all,
+    ffi.Pointer<ffi.Char> amount_list,
+    ffi.Pointer<ffi.Char> amount_list_separator,
+    int mixin_count,
+    int pendingTransactionPriority,
+    int subaddr_account,
+    ffi.Pointer<ffi.Char> preferredInputs,
+    ffi.Pointer<ffi.Char> preferredInputs_separator,
+  ) {
+    return _WOWNERO_Wallet_createTransactionMultDest(
+      wallet_ptr,
+      dst_addr_list,
+      dst_addr_list_separator,
+      payment_id,
+      amount_sweep_all,
+      amount_list,
+      amount_list_separator,
+      mixin_count,
+      pendingTransactionPriority,
+      subaddr_account,
+      preferredInputs,
+      preferredInputs_separator,
+    );
+  }
+
+  late final _WOWNERO_Wallet_createTransactionMultDestPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Bool,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Uint32,
+                  ffi.Int,
+                  ffi.Uint32,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>)>>(
+      'WOWNERO_Wallet_createTransactionMultDest');
+  late final _WOWNERO_Wallet_createTransactionMultDest =
+      _WOWNERO_Wallet_createTransactionMultDestPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              bool,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              int,
+              int,
+              int,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Void> WOWNERO_Wallet_createTransaction(
     ffi.Pointer<ffi.Void> wallet_ptr,
@@ -3980,7 +4085,7 @@ class WowneroC {
       _WOWNERO_Wallet_deviceShowAddressPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int, int)>();
 
-  ffi.Pointer<ffi.Char> WOWNERO_Wallet_reconnectDevice(
+  bool WOWNERO_Wallet_reconnectDevice(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
     return _WOWNERO_Wallet_reconnectDevice(
@@ -3988,13 +4093,12 @@ class WowneroC {
     );
   }
 
-  late final _WOWNERO_Wallet_reconnectDevicePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Void>)>>('WOWNERO_Wallet_reconnectDevice');
+  late final _WOWNERO_Wallet_reconnectDevicePtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'WOWNERO_Wallet_reconnectDevice');
   late final _WOWNERO_Wallet_reconnectDevice =
       _WOWNERO_Wallet_reconnectDevicePtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
+          bool Function(ffi.Pointer<ffi.Void>)>();
 
   int WOWNERO_Wallet_getBytesReceived(
     ffi.Pointer<ffi.Void> wallet_ptr,
@@ -4181,6 +4285,55 @@ class WowneroC {
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               int)>();
+
+  ffi.Pointer<ffi.Void>
+      WOWNERO_WalletManager_createDeterministicWalletFromSpendKey(
+    ffi.Pointer<ffi.Void> wm_ptr,
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.Char> password,
+    ffi.Pointer<ffi.Char> language,
+    int nettype,
+    int restoreHeight,
+    ffi.Pointer<ffi.Char> spendKeyString,
+    int kdf_rounds,
+  ) {
+    return _WOWNERO_WalletManager_createDeterministicWalletFromSpendKey(
+      wm_ptr,
+      path,
+      password,
+      language,
+      nettype,
+      restoreHeight,
+      spendKeyString,
+      kdf_rounds,
+    );
+  }
+
+  late final _WOWNERO_WalletManager_createDeterministicWalletFromSpendKeyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<ffi.Void> Function(
+                      ffi.Pointer<ffi.Void>,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Int,
+                      ffi.Uint64,
+                      ffi.Pointer<ffi.Char>,
+                      ffi.Uint64)>>(
+          'WOWNERO_WalletManager_createDeterministicWalletFromSpendKey');
+  late final _WOWNERO_WalletManager_createDeterministicWalletFromSpendKey =
+      _WOWNERO_WalletManager_createDeterministicWalletFromSpendKeyPtr
+          .asFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  ffi.Pointer<ffi.Char>,
+                  int,
+                  int,
+                  ffi.Pointer<ffi.Char>,
+                  int)>();
 
   ffi.Pointer<ffi.Void> WOWNERO_WalletManager_createWalletFromPolyseed(
     ffi.Pointer<ffi.Void> wm_ptr,
@@ -4698,4 +4851,94 @@ class WowneroC {
           'WOWNERO_DEBUG_isPointerNull');
   late final _WOWNERO_DEBUG_isPointerNull = _WOWNERO_DEBUG_isPointerNullPtr
       .asFunction<bool Function(ffi.Pointer<ffi.Void>)>();
+
+  ffi.Pointer<ffi.Void> WOWNERO_cw_getWalletListener(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _WOWNERO_cw_getWalletListener(
+      wallet_ptr,
+    );
+  }
+
+  late final _WOWNERO_cw_getWalletListenerPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>)>>('WOWNERO_cw_getWalletListener');
+  late final _WOWNERO_cw_getWalletListener = _WOWNERO_cw_getWalletListenerPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
+
+  void WOWNERO_cw_WalletListener_resetNeedToRefresh(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _WOWNERO_cw_WalletListener_resetNeedToRefresh(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _WOWNERO_cw_WalletListener_resetNeedToRefreshPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'WOWNERO_cw_WalletListener_resetNeedToRefresh');
+  late final _WOWNERO_cw_WalletListener_resetNeedToRefresh =
+      _WOWNERO_cw_WalletListener_resetNeedToRefreshPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Void>)>();
+
+  bool WOWNERO_cw_WalletListener_isNeedToRefresh(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _WOWNERO_cw_WalletListener_isNeedToRefresh(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _WOWNERO_cw_WalletListener_isNeedToRefreshPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'WOWNERO_cw_WalletListener_isNeedToRefresh');
+  late final _WOWNERO_cw_WalletListener_isNeedToRefresh =
+      _WOWNERO_cw_WalletListener_isNeedToRefreshPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>)>();
+
+  bool WOWNERO_cw_WalletListener_isNewTransactionExist(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _WOWNERO_cw_WalletListener_isNewTransactionExist(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _WOWNERO_cw_WalletListener_isNewTransactionExistPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<ffi.Void>)>>(
+          'WOWNERO_cw_WalletListener_isNewTransactionExist');
+  late final _WOWNERO_cw_WalletListener_isNewTransactionExist =
+      _WOWNERO_cw_WalletListener_isNewTransactionExistPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>)>();
+
+  void WOWNERO_cw_WalletListener_resetIsNewTransactionExist(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _WOWNERO_cw_WalletListener_resetIsNewTransactionExist(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _WOWNERO_cw_WalletListener_resetIsNewTransactionExistPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'WOWNERO_cw_WalletListener_resetIsNewTransactionExist');
+  late final _WOWNERO_cw_WalletListener_resetIsNewTransactionExist =
+      _WOWNERO_cw_WalletListener_resetIsNewTransactionExistPtr.asFunction<
+          void Function(ffi.Pointer<ffi.Void>)>();
+
+  int WOWNERO_cw_WalletListener_height(
+    ffi.Pointer<ffi.Void> cw_walletListener_ptr,
+  ) {
+    return _WOWNERO_cw_WalletListener_height(
+      cw_walletListener_ptr,
+    );
+  }
+
+  late final _WOWNERO_cw_WalletListener_heightPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<ffi.Void>)>>(
+          'WOWNERO_cw_WalletListener_height');
+  late final _WOWNERO_cw_WalletListener_height =
+      _WOWNERO_cw_WalletListener_heightPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Void>)>();
 }

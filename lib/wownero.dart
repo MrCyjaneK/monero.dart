@@ -293,6 +293,49 @@ String PendingTransaction_signersKeys(
   }
 }
 
+String PendingTransaction_hex(
+    PendingTransaction ptr, String separator) {
+  debugStart?.call('WOWNERO_PendingTransaction_hex');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid = lib!.WOWNERO_PendingTransaction_hex(ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('WOWNERO_PendingTransaction_hex');
+  try {
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    debugEnd?.call('WOWNERO_PendingTransaction_hex');
+    malloc.free(strPtr);
+    return str;
+  } catch (e) {
+    errorHandler?.call('WOWNERO_PendingTransaction_hex', e);
+    debugEnd?.call('WOWNERO_PendingTransaction_hex');
+    return "";
+  }
+}
+
+String PendingTransaction_txHex(
+    PendingTransaction ptr, String separator) {
+  debugStart?.call('WOWNERO_PendingTransaction_txHex');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+  final separator_ = separator.toNativeUtf8().cast<Char>();
+  final txid = lib!.WOWNERO_PendingTransaction_txHex(ptr, separator_);
+  calloc.free(separator_);
+  debugEnd?.call('WOWNERO_PendingTransaction_txHex');
+  try {
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    debugEnd?.call('WOWNERO_PendingTransaction_txHex');
+    malloc.free(strPtr);
+    return str;
+  } catch (e) {
+    errorHandler?.call('WOWNERO_PendingTransaction_txHex', e);
+    debugEnd?.call('WOWNERO_PendingTransaction_txHex');
+    return "";
+  }
+}
+
+
 // UnsignedTransaction
 
 typedef UnsignedTransaction = Pointer<Void>;
@@ -2299,11 +2342,15 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
   }
 }
 
-String Wallet_createPolyseed() {
+String Wallet_createPolyseed({
+    String language = "English",
+  }) {
   debugStart?.call('WOWNERO_Wallet_createPolyseed');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!.WOWNERO_Wallet_createPolyseed().cast<Utf8>();
+    final language_ = language.toNativeUtf8();
+    final strPtr = lib!.WOWNERO_Wallet_createPolyseed(language_.cast()).cast<Utf8>();
+    calloc.free(language_);
     final str = strPtr.toDartString();
     malloc.free(strPtr);
     debugEnd?.call('WOWNERO_Wallet_createPolyseed');
@@ -2931,20 +2978,11 @@ String Wallet_deviceShowAddress(wallet ptr,
   }
 }
 
-String Wallet_reconnectDevice(wallet ptr) {
+bool Wallet_reconnectDevice(wallet ptr) {
   debugStart?.call('WOWNERO_Wallet_reconnectDevice');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-  try {
-    final strPtr = lib!.WOWNERO_Wallet_reconnectDevice(ptr).cast<Utf8>();
-    final str = strPtr.toDartString();
-    malloc.free(strPtr);
-    debugEnd?.call('WOWNERO_Wallet_reconnectDevice');
-    return str;
-  } catch (e) {
-    errorHandler?.call('WOWNERO_Wallet_reconnectDevice', e);
-    debugEnd?.call('WOWNERO_Wallet_reconnectDevice');
-    return "";
-  }
+  final ret = lib!.WOWNERO_Wallet_reconnectDevice(ptr);
+  return ret;
 }
 
 int Wallet_getBytesReceived(wallet ptr) {
@@ -3073,6 +3111,40 @@ wallet WalletManager_createWalletFromKeys(
   calloc.free(viewKeyString_);
   calloc.free(spendKeyString_);
   debugEnd?.call('WOWNERO_WalletManager_createWalletFromKeys');
+  return w;
+}
+
+wallet WalletManager_createDeterministicWalletFromSpendKey(
+  WalletManager wm_ptr, {
+  required String path,
+  required String password,
+  int networkType = 0,
+  required String language,
+  required String spendKeyString,
+  required bool newWallet,
+  required int restoreHeight,
+  int kdfRounds = 1,
+}) {
+  debugStart?.call('WOWNERO_WalletManager_createDeterministicWalletFromSpendKey');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+  final path_ = path.toNativeUtf8().cast<Char>();
+  final password_ = password.toNativeUtf8().cast<Char>();
+  final language_ = language.toNativeUtf8().cast<Char>();
+  final spendKeyString_ = spendKeyString.toNativeUtf8().cast<Char>();
+  final w = lib!.WOWNERO_WalletManager_createDeterministicWalletFromSpendKey(
+      wm_ptr,
+      path_,
+      password_,
+      language_,
+      networkType,
+      restoreHeight,
+      spendKeyString_,
+      kdfRounds);
+  calloc.free(path_);
+  calloc.free(password_);
+  calloc.free(language_);
+  calloc.free(spendKeyString_);
+  debugEnd?.call('WOWNERO_WalletManager_createDeterministicWalletFromSpendKey');
   return w;
 }
 
