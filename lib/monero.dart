@@ -2526,7 +2526,7 @@ PendingTransaction Wallet_createTransactionMultDest(wallet wptr,
     required int subaddr_account,
     List<String> preferredInputs = const [],
   }) {
-  debugStart?.call('Wallet_createTransactionMultDest');
+  debugStart?.call('MONERO_Wallet_createTransactionMultDest');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   final dst_addr_list = dstAddr.join(defaultSeparatorStr).toNativeUtf8();
   final payment_id = paymentId.toNativeUtf8();
@@ -2550,6 +2550,7 @@ PendingTransaction Wallet_createTransactionMultDest(wallet wptr,
   calloc.free(payment_id);
   calloc.free(amount_list);
   calloc.free(preferredInputs_);
+  debugEnd?.call('MONERO_Wallet_createTransactionMultDest');
   return ret;
 }
 
