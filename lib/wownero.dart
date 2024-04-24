@@ -3496,3 +3496,62 @@ libOk isLibOk() {
   final test5_std = lib!.WOWNERO_DEBUG_test5_std();
   return libOk(test1, test2, test3, test4, test5, test5_std);
 }
+
+// cake world
+
+typedef WalletListener = Pointer<Void>;
+
+WalletListener WOWNERO_cw_getWalletListener(wallet wptr) {
+  debugStart?.call('WOWNERO_cw_getWalletListener');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.WOWNERO_cw_getWalletListener(wptr);
+  debugEnd?.call('WOWNERO_cw_getWalletListener');
+  return s;
+}
+
+void WOWNERO_cw_WalletListener_resetNeedToRefresh(WalletListener wlptr) {
+  debugStart?.call('WOWNERO_cw_WalletListener_resetNeedToRefresh');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.WOWNERO_cw_WalletListener_resetNeedToRefresh(wlptr);
+  debugEnd?.call('WOWNERO_cw_WalletListener_resetNeedToRefresh');
+  return s;
+}
+
+bool WOWNERO_cw_WalletListener_isNeedToRefresh(WalletListener wlptr) {
+  debugStart?.call('WOWNERO_cw_WalletListener_isNeedToRefresh');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.WOWNERO_cw_WalletListener_isNeedToRefresh(wlptr);
+  debugEnd?.call('WOWNERO_cw_WalletListener_isNeedToRefresh');
+  return s;
+}
+
+
+bool WOWNERO_cw_WalletListener_isNewTransactionExist(WalletListener wlptr) {
+  debugStart?.call('WOWNERO_cw_WalletListener_isNewTransactionExist');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.WOWNERO_cw_WalletListener_isNewTransactionExist(wlptr);
+  debugEnd?.call('WOWNERO_cw_WalletListener_isNewTransactionExist');
+  return s;
+}
+
+void WOWNERO_cw_WalletListener_resetIsNewTransactionExist(WalletListener wlptr) {
+  debugStart?.call('WOWNERO_cw_WalletListener_resetIsNewTransactionExist');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.WOWNERO_cw_WalletListener_resetIsNewTransactionExist(wlptr);
+  debugEnd?.call('WOWNERO_cw_WalletListener_resetIsNewTransactionExist');
+  return s;
+}
+
+int WOWNERO_cw_WalletListener_height(WalletListener wlptr) {
+  debugStart?.call('WOWNERO_cw_WalletListener_height');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.WOWNERO_cw_WalletListener_height(wlptr);
+  debugEnd?.call('WOWNERO_cw_WalletListener_height');
+  return s;
+}
