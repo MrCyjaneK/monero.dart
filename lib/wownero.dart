@@ -3603,11 +3603,6 @@ wallet WOWNERO_deprecated_restore14WordSeed({
 }) {
   debugStart?.call('WOWNERO_deprecated_restore14WordSeed');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-    // ffi.Pointer<ffi.Char> path,
-    // ffi.Pointer<ffi.Char> password,
-    // ffi.Pointer<ffi.Char> language,
-    // int networkType,
-    // ffi.Pointer<ffi.Char> error,
   final path_ = path.toNativeUtf8();
   final password_ = path.toNativeUtf8();
   final language_ = path.toNativeUtf8();
@@ -3616,5 +3611,36 @@ wallet WOWNERO_deprecated_restore14WordSeed({
   calloc.free(password_);
   calloc.free(language_);
   debugEnd?.call('WOWNERO_deprecated_restore14WordSeed');
+  return s;
+}
+
+wallet WOWNERO_deprecated_create14WordSeed({
+  required String path,
+  required String password,
+  required String language,
+  required int networkType,
+}) {
+  debugStart?.call('WOWNERO_deprecated_create14WordSeed');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+  final path_ = path.toNativeUtf8();
+  final password_ = path.toNativeUtf8();
+  final language_ = path.toNativeUtf8();
+  final s = lib!.WOWNERO_deprecated_create14WordSeed(path_.cast(), password_.cast(), language_.cast(), networkType);
+  calloc.free(path_);
+  calloc.free(password_);
+  calloc.free(language_);
+  debugEnd?.call('WOWNERO_deprecated_create14WordSeed');
+  return s;
+}
+
+int WOWNERO_deprecated_14WordSeedHeight({
+  required String seed,
+}) {
+  debugStart?.call('WOWNERO_deprecated_14WordSeedHeight');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+  final seed_ = seed.toNativeUtf8();
+  final s = lib!.WOWNERO_deprecated_14WordSeedHeight(seed_.cast());
+  calloc.free(seed_);
+  debugEnd?.call('WOWNERO_deprecated_14WordSeedHeight');
   return s;
 }

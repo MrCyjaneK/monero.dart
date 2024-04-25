@@ -4967,4 +4967,45 @@ class WowneroC {
       _WOWNERO_deprecated_restore14WordSeedPtr.asFunction<
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  ffi.Pointer<ffi.Void> WOWNERO_deprecated_create14WordSeed(
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.Char> password,
+    ffi.Pointer<ffi.Char> seed,
+    int networkType,
+  ) {
+    return _WOWNERO_deprecated_create14WordSeed(
+      path,
+      password,
+      seed,
+      networkType,
+    );
+  }
+
+  late final _WOWNERO_deprecated_create14WordSeedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int32)>>('WOWNERO_deprecated_create14WordSeed');
+  late final _WOWNERO_deprecated_create14WordSeed =
+      _WOWNERO_deprecated_create14WordSeedPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  int WOWNERO_deprecated_14WordSeedHeight(
+    ffi.Pointer<ffi.Char> seed,
+  ) {
+    return _WOWNERO_deprecated_14WordSeedHeight(
+      seed,
+    );
+  }
+
+  late final _WOWNERO_deprecated_14WordSeedHeightPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<ffi.Char>)>>(
+          'WOWNERO_deprecated_14WordSeedHeight');
+  late final _WOWNERO_deprecated_14WordSeedHeight =
+      _WOWNERO_deprecated_14WordSeedHeightPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Char>)>();
 }
