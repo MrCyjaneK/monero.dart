@@ -4941,4 +4941,30 @@ class WowneroC {
   late final _WOWNERO_cw_WalletListener_height =
       _WOWNERO_cw_WalletListener_heightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
+
+  ffi.Pointer<ffi.Void> WOWNERO_deprecated_restore14WordSeed(
+    ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.Char> password,
+    ffi.Pointer<ffi.Char> language,
+    int networkType,
+  ) {
+    return _WOWNERO_deprecated_restore14WordSeed(
+      path,
+      password,
+      language,
+      networkType,
+    );
+  }
+
+  late final _WOWNERO_deprecated_restore14WordSeedPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Int32)>>('WOWNERO_deprecated_restore14WordSeed');
+  late final _WOWNERO_deprecated_restore14WordSeed =
+      _WOWNERO_deprecated_restore14WordSeedPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 }

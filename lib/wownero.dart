@@ -3594,3 +3594,27 @@ int WOWNERO_cw_WalletListener_height(WalletListener wlptr) {
   debugEnd?.call('WOWNERO_cw_WalletListener_height');
   return s;
 }
+
+wallet WOWNERO_deprecated_restore14WordSeed({
+  required String path,
+  required String password,
+  required String language,
+  required int networkType,
+}) {
+  debugStart?.call('WOWNERO_deprecated_restore14WordSeed');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+    // ffi.Pointer<ffi.Char> path,
+    // ffi.Pointer<ffi.Char> password,
+    // ffi.Pointer<ffi.Char> language,
+    // int networkType,
+    // ffi.Pointer<ffi.Char> error,
+  final path_ = path.toNativeUtf8();
+  final password_ = path.toNativeUtf8();
+  final language_ = path.toNativeUtf8();
+  final s = lib!.WOWNERO_deprecated_restore14WordSeed(path_.cast(), password_.cast(), language_.cast(), networkType);
+  calloc.free(path_);
+  calloc.free(password_);
+  calloc.free(language_);
+  debugEnd?.call('WOWNERO_deprecated_restore14WordSeed');
+  return s;
+}
