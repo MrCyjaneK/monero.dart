@@ -3604,8 +3604,8 @@ wallet WOWNERO_deprecated_restore14WordSeed({
   debugStart?.call('WOWNERO_deprecated_restore14WordSeed');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   final path_ = path.toNativeUtf8();
-  final password_ = path.toNativeUtf8();
-  final language_ = path.toNativeUtf8();
+  final password_ = password.toNativeUtf8();
+  final language_ = language.toNativeUtf8();
   final s = lib!.WOWNERO_deprecated_restore14WordSeed(path_.cast(), password_.cast(), language_.cast(), networkType);
   calloc.free(path_);
   calloc.free(password_);
