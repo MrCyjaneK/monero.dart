@@ -3261,6 +3261,21 @@ class MoneroC {
           void Function(
               ffi.Pointer<ffi.Void>, int, int, ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Void> MONERO_Wallet_multisig(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_Wallet_multisig(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_Wallet_multisigPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>)>>('MONERO_Wallet_multisig');
+  late final _MONERO_Wallet_multisig = _MONERO_Wallet_multisigPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>)>();
+
   ffi.Pointer<ffi.Char> MONERO_Wallet_getMultisigInfo(
     ffi.Pointer<ffi.Void> wallet_ptr,
   ) {
@@ -3275,6 +3290,133 @@ class MoneroC {
               ffi.Pointer<ffi.Void>)>>('MONERO_Wallet_getMultisigInfo');
   late final _MONERO_Wallet_getMultisigInfo = _MONERO_Wallet_getMultisigInfoPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>)>();
+
+  ffi.Pointer<ffi.Char> MONERO_Wallet_makeMultisig(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> info,
+    ffi.Pointer<ffi.Char> info_separator,
+    int threshold,
+  ) {
+    return _MONERO_Wallet_makeMultisig(
+      wallet_ptr,
+      info,
+      info_separator,
+      threshold,
+    );
+  }
+
+  late final _MONERO_Wallet_makeMultisigPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Uint32)>>('MONERO_Wallet_makeMultisig');
+  late final _MONERO_Wallet_makeMultisig =
+      _MONERO_Wallet_makeMultisigPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
+
+  ffi.Pointer<ffi.Char> MONERO_Wallet_exchangeMultisigKeys(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> info,
+    ffi.Pointer<ffi.Char> info_separator,
+    bool force_update_use_with_caution,
+  ) {
+    return _MONERO_Wallet_exchangeMultisigKeys(
+      wallet_ptr,
+      info,
+      info_separator,
+      force_update_use_with_caution,
+    );
+  }
+
+  late final _MONERO_Wallet_exchangeMultisigKeysPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Bool)>>('MONERO_Wallet_exchangeMultisigKeys');
+  late final _MONERO_Wallet_exchangeMultisigKeys =
+      _MONERO_Wallet_exchangeMultisigKeysPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, bool)>();
+
+  ffi.Pointer<ffi.Char> MONERO_Wallet_exportMultisigImages(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> separator,
+  ) {
+    return _MONERO_Wallet_exportMultisigImages(
+      wallet_ptr,
+      separator,
+    );
+  }
+
+  late final _MONERO_Wallet_exportMultisigImagesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_exportMultisigImages');
+  late final _MONERO_Wallet_exportMultisigImages =
+      _MONERO_Wallet_exportMultisigImagesPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
+  int MONERO_Wallet_importMultisigImages(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> info,
+    ffi.Pointer<ffi.Char> info_separator,
+  ) {
+    return _MONERO_Wallet_importMultisigImages(
+      wallet_ptr,
+      info,
+      info_separator,
+    );
+  }
+
+  late final _MONERO_Wallet_importMultisigImagesPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Size Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_importMultisigImages');
+  late final _MONERO_Wallet_importMultisigImages =
+      _MONERO_Wallet_importMultisigImagesPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>)>();
+
+  int MONERO_Wallet_hasMultisigPartialKeyImages(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+  ) {
+    return _MONERO_Wallet_hasMultisigPartialKeyImages(
+      wallet_ptr,
+    );
+  }
+
+  late final _MONERO_Wallet_hasMultisigPartialKeyImagesPtr =
+      _lookup<ffi.NativeFunction<ffi.Size Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_Wallet_hasMultisigPartialKeyImages');
+  late final _MONERO_Wallet_hasMultisigPartialKeyImages =
+      _MONERO_Wallet_hasMultisigPartialKeyImagesPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Void>)>();
+
+  ffi.Pointer<ffi.Void> MONERO_Wallet_restoreMultisigTransaction(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> signData,
+  ) {
+    return _MONERO_Wallet_restoreMultisigTransaction(
+      wallet_ptr,
+      signData,
+    );
+  }
+
+  late final _MONERO_Wallet_restoreMultisigTransactionPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>>(
+      'MONERO_Wallet_restoreMultisigTransaction');
+  late final _MONERO_Wallet_restoreMultisigTransaction =
+      _MONERO_Wallet_restoreMultisigTransactionPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Void> MONERO_Wallet_createTransactionMultDest(
     ffi.Pointer<ffi.Void> wallet_ptr,

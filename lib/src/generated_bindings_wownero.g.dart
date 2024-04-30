@@ -4945,13 +4945,13 @@ class WowneroC {
   ffi.Pointer<ffi.Void> WOWNERO_deprecated_restore14WordSeed(
     ffi.Pointer<ffi.Char> path,
     ffi.Pointer<ffi.Char> password,
-    ffi.Pointer<ffi.Char> language,
+    ffi.Pointer<ffi.Char> seed,
     int networkType,
   ) {
     return _WOWNERO_deprecated_restore14WordSeed(
       path,
       password,
-      language,
+      seed,
       networkType,
     );
   }
@@ -4971,13 +4971,13 @@ class WowneroC {
   ffi.Pointer<ffi.Void> WOWNERO_deprecated_create14WordSeed(
     ffi.Pointer<ffi.Char> path,
     ffi.Pointer<ffi.Char> password,
-    ffi.Pointer<ffi.Char> seed,
+    ffi.Pointer<ffi.Char> language,
     int networkType,
   ) {
     return _WOWNERO_deprecated_create14WordSeed(
       path,
       password,
-      seed,
+      language,
       networkType,
     );
   }
