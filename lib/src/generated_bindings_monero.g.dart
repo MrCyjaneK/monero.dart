@@ -5064,4 +5064,18 @@ class MoneroC {
   late final _MONERO_cw_WalletListener_height =
       _MONERO_cw_WalletListener_heightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Void>)>();
+
+  void MONERO_free(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _MONERO_free(
+      ptr,
+    );
+  }
+
+  late final _MONERO_freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'MONERO_free');
+  late final _MONERO_free =
+      _MONERO_freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 }

@@ -58,7 +58,7 @@ library;
 //   try { <------------- We need to try-catch these calls because they may fail in an unlikely case when we get an invalid UTF-8 string,
 //     final strPtr = txid.cast<Utf8>();                                            it is better to throw than to crash main isolate imo.
 //     final str = strPtr.toDartString(); <------------- convert the pointer to const char* to dart String
-//     malloc.free(strPtr); <------------- free the memory
+//     MONERO_free(strPtr.cast()); <------------- free the memory
 //     debugEnd?.call('MONERO_PendingTransaction_txid');
 //     return str; <------------- return the value
 //   } catch (e) {
@@ -126,7 +126,7 @@ String PendingTransaction_errorString(PendingTransaction ptr) {
   try {
     final rPtr = lib!.MONERO_PendingTransaction_errorString(ptr).cast<Utf8>();
     final str = rPtr.toDartString();
-    malloc.free(rPtr);
+    MONERO_free(rPtr.cast());
     debugEnd?.call('MONERO_PendingTransaction_errorString');
     return str;
   } catch (e) {
@@ -183,7 +183,7 @@ String PendingTransaction_txid(PendingTransaction ptr, String separator) {
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_PendingTransaction_txid');
     return str;
   } catch (e) {
@@ -212,7 +212,7 @@ String PendingTransaction_subaddrAccount(
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_PendingTransaction_subaddrAccount');
     return str;
   } catch (e) {
@@ -233,7 +233,7 @@ String PendingTransaction_subaddrIndices(
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_PendingTransaction_subaddrIndices');
     return str;
   } catch (e) {
@@ -251,7 +251,7 @@ String PendingTransaction_multisigSignData(PendingTransaction ptr) {
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_PendingTransaction_multisigSignData');
     return str;
   } catch (e) {
@@ -281,7 +281,7 @@ String PendingTransaction_signersKeys(
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('MONERO_PendingTransaction_signersKeys');
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_signersKeys', e);
@@ -301,7 +301,7 @@ String PendingTransaction_hex(PendingTransaction ptr, String separator) {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('MONERO_PendingTransaction_hex');
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_hex', e);
@@ -321,7 +321,7 @@ String PendingTransaction_txHex(PendingTransaction ptr, String separator) {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('MONERO_PendingTransaction_txHex');
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     return str;
   } catch (e) {
     errorHandler?.call('MONERO_PendingTransaction_txHex', e);
@@ -351,7 +351,7 @@ String UnsignedTransaction_errorString(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_UnsignedTransaction_errorString');
     return str;
   } catch (e) {
@@ -370,7 +370,7 @@ String UnsignedTransaction_amount(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_UnsignedTransaction_amount');
     return str;
   } catch (e) {
@@ -389,7 +389,7 @@ String UnsignedTransaction_fee(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_UnsignedTransaction_fee');
     return str;
   } catch (e) {
@@ -408,7 +408,7 @@ String UnsignedTransaction_mixin(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_UnsignedTransaction_mixin');
     return str;
   } catch (e) {
@@ -426,7 +426,7 @@ String UnsignedTransaction_confirmationMessage(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_UnsignedTransaction_confirmationMessage');
     return str;
   } catch (e) {
@@ -445,7 +445,7 @@ String UnsignedTransaction_paymentId(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_UnsignedTransaction_paymentId');
     return str;
   } catch (e) {
@@ -464,7 +464,7 @@ String UnsignedTransaction_recipientAddress(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_UnsignedTransaction_recipientAddress');
     return str;
   } catch (e) {
@@ -569,7 +569,7 @@ String TransactionInfo_description(TransactionInfo ptr) {
   try {
     final strPtr = lib!.MONERO_TransactionInfo_description(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_TransactionInfo_description');
     return str;
   } catch (e) {
@@ -586,7 +586,7 @@ String TransactionInfo_subaddrIndex(TransactionInfo ptr) {
         .MONERO_TransactionInfo_subaddrIndex(ptr, defaultSeparator)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_TransactionInfo_subaddrIndex');
     return str;
   } catch (e) {
@@ -609,7 +609,7 @@ String TransactionInfo_label(TransactionInfo ptr) {
   try {
     final strPtr = lib!.MONERO_TransactionInfo_label(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_TransactionInfo_label');
     return str;
   } catch (e) {
@@ -641,7 +641,7 @@ String TransactionInfo_hash(TransactionInfo ptr) {
   try {
     final strPtr = lib!.MONERO_TransactionInfo_hash(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_TransactionInfo_hash');
     return str;
   } catch (e) {
@@ -665,7 +665,7 @@ String TransactionInfo_paymentId(TransactionInfo ptr) {
   try {
     final strPtr = lib!.MONERO_TransactionInfo_paymentId(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_TransactionInfo_paymentId');
     return str;
   } catch (e) {
@@ -698,7 +698,7 @@ String TransactionInfo_transfers_address(TransactionInfo ptr, int index) {
     final strPtr =
         lib!.MONERO_TransactionInfo_transfers_address(ptr, index).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_TransactionInfo_transfers_address');
     return str;
   } catch (e) {
@@ -773,7 +773,7 @@ String AddressBookRow_extra(AddressBookRow addressBookRow_ptr) {
     final strPtr =
         lib!.MONERO_AddressBookRow_extra(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_AddressBookRow_extra');
     return str;
   } catch (e) {
@@ -790,7 +790,7 @@ String AddressBookRow_getAddress(AddressBookRow addressBookRow_ptr) {
     final strPtr =
         lib!.MONERO_AddressBookRow_getAddress(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_AddressBookRow_getAddress');
     return str;
   } catch (e) {
@@ -808,7 +808,7 @@ String AddressBookRow_getDescription(AddressBookRow addressBookRow_ptr) {
         .MONERO_AddressBookRow_getDescription(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_AddressBookRow_getDescription');
     return str;
   } catch (e) {
@@ -826,7 +826,7 @@ String AddressBookRow_getPaymentId(AddressBookRow addressBookRow_ptr) {
         .MONERO_AddressBookRow_getPaymentId(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_AddressBookRow_getPaymentId');
     return str;
   } catch (e) {
@@ -953,7 +953,7 @@ String CoinsInfo_hash(CoinsInfo addressBookRow_ptr) {
   try {
     final strPtr = lib!.MONERO_CoinsInfo_hash(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_CoinsInfo_hash');
     return str;
   } catch (e) {
@@ -1058,7 +1058,7 @@ String CoinsInfo_address(CoinsInfo addressBookRow_ptr) {
     final strPtr =
         lib!.MONERO_CoinsInfo_address(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_CoinsInfo_address');
     return str;
   } catch (e) {
@@ -1075,7 +1075,7 @@ String CoinsInfo_addressLabel(CoinsInfo coinsInfo_ptr) {
     final strPtr =
         lib!.MONERO_CoinsInfo_addressLabel(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_CoinsInfo_addressLabel');
     return str;
   } catch (e) {
@@ -1091,7 +1091,7 @@ String CoinsInfo_keyImage(CoinsInfo coinsInfo_ptr) {
   try {
     final strPtr = lib!.MONERO_CoinsInfo_keyImage(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_CoinsInfo_keyImage');
     return str;
   } catch (e) {
@@ -1123,7 +1123,7 @@ String CoinsInfo_pubKey(CoinsInfo coinsInfo_ptr) {
   try {
     final strPtr = lib!.MONERO_CoinsInfo_pubKey(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_CoinsInfo_pubKey');
     return str;
   } catch (e) {
@@ -1148,7 +1148,7 @@ String CoinsInfo_description(CoinsInfo coinsInfo_ptr) {
     final strPtr =
         lib!.MONERO_CoinsInfo_description(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_CoinsInfo_description');
     return str;
   } catch (e) {
@@ -1260,7 +1260,7 @@ String SubaddressRow_extra(SubaddressRow subaddressBookRow_ptr) {
     final strPtr =
         lib!.MONERO_SubaddressRow_extra(subaddressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressRow_extra');
     return str;
   } catch (e) {
@@ -1278,7 +1278,7 @@ String SubaddressRow_getAddress(SubaddressRow subaddressBookRow_ptr) {
         .MONERO_SubaddressRow_getAddress(subaddressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressRow_getAddress');
     return str;
   } catch (e) {
@@ -1295,7 +1295,7 @@ String SubaddressRow_getLabel(SubaddressRow subaddressBookRow_ptr) {
     final strPtr =
         lib!.MONERO_SubaddressRow_getLabel(subaddressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressRow_getLabel');
     return str;
   } catch (e) {
@@ -1380,7 +1380,7 @@ String SubaddressAccountRow_extra(SubaddressAccountRow addressBookRow_ptr) {
     final strPtr =
         lib!.MONERO_SubaddressAccountRow_extra(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressAccountRow_extra');
     return str;
   } catch (e) {
@@ -1399,7 +1399,7 @@ String SubaddressAccountRow_getAddress(
         .MONERO_SubaddressAccountRow_getAddress(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressAccountRow_getAddress');
     return str;
   } catch (e) {
@@ -1417,7 +1417,7 @@ String SubaddressAccountRow_getLabel(SubaddressAccountRow addressBookRow_ptr) {
         .MONERO_SubaddressAccountRow_getLabel(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressAccountRow_getLabel');
     return str;
   } catch (e) {
@@ -1436,7 +1436,7 @@ String SubaddressAccountRow_getBalance(
         .MONERO_SubaddressAccountRow_getBalance(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressAccountRow_getBalance');
     return str;
   } catch (e) {
@@ -1455,7 +1455,7 @@ String SubaddressAccountRow_getUnlockedBalance(
         .MONERO_SubaddressAccountRow_getUnlockedBalance(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_SubaddressAccountRow_getUnlockedBalance');
     return str;
   } catch (e) {
@@ -1588,7 +1588,7 @@ String Wallet_seed(wallet ptr, {required String seedOffset}) {
     final seedOffset_ = seedOffset.toNativeUtf8().cast<Char>();
     final strPtr = lib!.MONERO_Wallet_seed(ptr, seedOffset_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(seedOffset_);
     debugEnd?.call('MONERO_Wallet_seed');
     return str;
@@ -1605,7 +1605,7 @@ String Wallet_getSeedLanguage(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_getSeedLanguage(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_getSeedLanguage');
     return str;
   } catch (e) {
@@ -1639,7 +1639,7 @@ String Wallet_errorString(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_errorString(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_errorString');
     return str;
   } catch (e) {
@@ -1665,7 +1665,7 @@ String Wallet_getPassword(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_getPassword(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_getPassword');
     return str;
   } catch (e) {
@@ -1694,7 +1694,7 @@ String Wallet_address(wallet ptr,
         .MONERO_Wallet_address(ptr, accountIndex, addressIndex)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_address');
     return str;
   } catch (e) {
@@ -1710,7 +1710,7 @@ String Wallet_path(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_path(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_path');
     return str;
   } catch (e) {
@@ -1748,7 +1748,7 @@ String Wallet_integratedAddress(wallet ptr, {required String paymentId}) {
     final strPtr =
         lib!.MONERO_Wallet_integratedAddress(ptr, paymentId_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_integratedAddress');
     calloc.free(paymentId_);
     return str;
@@ -1765,7 +1765,7 @@ String Wallet_secretViewKey(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_secretViewKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_secretViewKey');
     return str;
   } catch (e) {
@@ -1781,7 +1781,7 @@ String Wallet_publicViewKey(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_publicViewKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_publicViewKey');
     return str;
   } catch (e) {
@@ -1797,7 +1797,7 @@ String Wallet_secretSpendKey(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_secretSpendKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_secretSpendKey');
     return str;
   } catch (e) {
@@ -1813,7 +1813,7 @@ String Wallet_publicSpendKey(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_publicSpendKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_publicSpendKey');
     return str;
   } catch (e) {
@@ -1829,7 +1829,7 @@ String Wallet_publicMultisigSignerKey(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_publicMultisigSignerKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_publicMultisigSignerKey');
     return str;
   } catch (e) {
@@ -1863,7 +1863,7 @@ String Wallet_filename(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_filename(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_filename');
     return str;
   } catch (e) {
@@ -1879,7 +1879,7 @@ String Wallet_keysFilename(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_keysFilename(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_keysFilename');
     return str;
   } catch (e) {
@@ -2130,7 +2130,7 @@ String Wallet_displayAmount(int amount) {
   try {
     final strPtr = lib!.MONERO_Wallet_displayAmount(amount).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_displayAmount');
     return str;
   } catch (e) {
@@ -2166,7 +2166,7 @@ String Wallet_genPaymentId() {
   try {
     final strPtr = lib!.MONERO_Wallet_genPaymentId().cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_genPaymentId');
     return str;
   } catch (e) {
@@ -2231,7 +2231,7 @@ String Wallet_keyValid_error(
             secret_key_string_, address_string_, isViewKey, nettype)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(secret_key_string_);
     calloc.free(address_string_);
     return str;
@@ -2251,7 +2251,7 @@ String Wallet_paymentIdFromAddress(
     final strPtr =
         lib!.MONERO_Wallet_paymentIdFromAddress(strarg_, nettype).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(strarg_);
     return str;
   } catch (e) {
@@ -2300,7 +2300,7 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
     final strPtr =
         lib!.MONERO_Wallet_getPolyseed(ptr, passphrase_).cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(passphrase_);
     debugEnd?.call('MONERO_Wallet_getPolyseed');
     return str;
@@ -2322,7 +2322,7 @@ String Wallet_createPolyseed({
         lib!.MONERO_Wallet_createPolyseed(language_.cast()).cast<Utf8>();
     calloc.free(language_);
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_createPolyseed');
     return str;
   } catch (e) {
@@ -2445,7 +2445,7 @@ String Wallet_getSubaddressLabel(wallet ptr,
         .MONERO_Wallet_getSubaddressLabel(ptr, accountIndex, addressIndex)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_getSubaddressLabel');
     return str;
   } catch (e) {
@@ -2484,7 +2484,7 @@ String Wallet_getMultisigInfo(wallet ptr) {
   try {
     final strPtr = lib!.MONERO_Wallet_getMultisigInfo(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_getMultisigInfo');
     return str;
   } catch (e) {
@@ -2513,7 +2513,7 @@ String Wallet_makeMultisig(
         .cast<Utf8>();
     final str = strPtr.toDartString();
     calloc.free(infoStr);
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_makeMultisig');
     return str;
   } catch (e) {
@@ -2542,7 +2542,7 @@ String Wallet_exchangeMultisigKeys(
         .cast<Utf8>();
     final str = strPtr.toDartString();
     calloc.free(infoStr);
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_exchangeMultisigKeys');
     return str;
   } catch (e) {
@@ -2569,7 +2569,7 @@ List<String> Wallet_exportMultisigImages(
         .cast<Utf8>();
     final str = strPtr.toDartString();
     calloc.free(infoStr);
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_exportMultisigImages');
     return str.split(defaultSeparatorStr);
   } catch (e) {
@@ -2909,7 +2909,7 @@ String Wallet_getCacheAttribute(wallet ptr, {required String key}) {
     final key_ = key.toNativeUtf8().cast<Char>();
     final strPtr = lib!.MONERO_Wallet_getCacheAttribute(ptr, key_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(key_);
     debugEnd?.call('MONERO_Wallet_getCacheAttribute');
     return str;
@@ -2940,7 +2940,7 @@ String Wallet_getUserNote(wallet ptr, {required String txid}) {
     final txid_ = txid.toNativeUtf8().cast<Char>();
     final strPtr = lib!.MONERO_Wallet_getUserNote(ptr, txid_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(txid_);
     debugEnd?.call('MONERO_Wallet_getUserNote');
     return str;
@@ -2958,7 +2958,7 @@ String Wallet_getTxKey(wallet ptr, {required String txid}) {
     final txid_ = txid.toNativeUtf8().cast<Char>();
     final strPtr = lib!.MONERO_Wallet_getTxKey(ptr, txid_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(txid_);
     debugEnd?.call('MONERO_Wallet_getTxKey');
     return str;
@@ -2982,7 +2982,7 @@ String Wallet_signMessage(
     final strPtr =
         lib!.MONERO_Wallet_signMessage(ptr, message_, address_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     calloc.free(message_);
     calloc.free(address_);
     debugEnd?.call('MONERO_Wallet_signMessage');
@@ -3112,7 +3112,7 @@ String Wallet_deviceShowAddress(wallet ptr,
         .MONERO_Wallet_deviceShowAddress(ptr, accountIndex, addressIndex)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_Wallet_deviceShowAddress');
     return str;
   } catch (e) {
@@ -3376,7 +3376,7 @@ String WalletManager_findWallets(WalletManager wm_ptr, {required String path}) {
         .cast<Utf8>();
     final str = strPtr.toDartString();
     calloc.free(path_);
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_WalletManager_findWallets');
     return str;
   } catch (e) {
@@ -3392,7 +3392,7 @@ String WalletManager_errorString(WalletManager wm_ptr) {
   try {
     final strPtr = lib!.MONERO_WalletManager_errorString(wm_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_WalletManager_errorString');
     return str;
   } catch (e) {
@@ -3501,7 +3501,7 @@ String WalletManager_resolveOpenAlias(
         .MONERO_WalletManager_resolveOpenAlias(wm_ptr, address_, dnssecValid)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    MONERO_free(strPtr.cast());
     debugEnd?.call('MONERO_WalletManager_resolveOpenAlias');
     calloc.free(address_);
     return str;
@@ -3696,5 +3696,14 @@ int MONERO_cw_WalletListener_height(WalletListener wlptr) {
 
   final s = lib!.MONERO_cw_WalletListener_height(wlptr);
   debugEnd?.call('MONERO_cw_WalletListener_height');
+  return s;
+}
+
+void MONERO_free(Pointer<Void> wlptr) {
+  debugStart?.call('MONERO_free');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.MONERO_free(wlptr);
+  debugEnd?.call('MONERO_free');
   return s;
 }

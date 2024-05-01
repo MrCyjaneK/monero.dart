@@ -5008,4 +5008,18 @@ class WowneroC {
   late final _WOWNERO_deprecated_14WordSeedHeight =
       _WOWNERO_deprecated_14WordSeedHeightPtr.asFunction<
           int Function(ffi.Pointer<ffi.Char>)>();
+
+  void WOWNERO_free(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _WOWNERO_free(
+      ptr,
+    );
+  }
+
+  late final _WOWNERO_freePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'WOWNERO_free');
+  late final _WOWNERO_free =
+      _WOWNERO_freePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 }

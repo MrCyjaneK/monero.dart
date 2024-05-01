@@ -9,7 +9,6 @@ library;
 // 2) grep .free lib/wownero.dart | grep -v '^//' | wc -l
 //    This will print number of all free calls, these numbers should match
 
-
 // Wrapper around generated_bindings.g.dart - to provide easy access to the
 // underlying functions, feel free to not use it at all.
 
@@ -20,7 +19,7 @@ library;
 // PendingTransaction Wallet_createTransaction(wallet ptr, <------------- wallet is a typedef for Pointer<Void>
 //     {required String dst_addr,--------------------------------\ All of the parameters that are used in this function
 //     required String payment_id,                  _____________/ String - will get casted into const char*
-//     required int amount,                        / 
+//     required int amount,                        /
 //     required int mixin_count,                  /                int - goes as it is
 //     required int pendingTransactionPriority,  /
 //     required int subaddr_account,            /
@@ -43,7 +42,7 @@ library;
 //     defaultSeparator,                                          |
 //   );___________________________________________________________/
 //   calloc.free(dst_addr_);---------------| Free the memory once we don't need it
-//   calloc.free(payment_id_);-------------| 
+//   calloc.free(payment_id_);-------------|
 //   debugEnd?.call('WOWNERO_Wallet_createTransaction'); <------------- Mark the function as executed
 //   return s; <------------- return the value
 // }
@@ -59,7 +58,7 @@ library;
 //   try { <------------- We need to try-catch these calls because they may fail in an unlikely case when we get an invalid UTF-8 string,
 //     final strPtr = txid.cast<Utf8>();                                            it is better to throw than to crash main isolate imo.
 //     final str = strPtr.toDartString(); <------------- convert the pointer to const char* to dart String
-//     malloc.free(strPtr); <------------- free the memory
+//     WOWNERO_free(strPtr.cast()); <------------- free the memory
 //     debugEnd?.call('WOWNERO_PendingTransaction_txid');
 //     return str; <------------- return the value
 //   } catch (e) {
@@ -125,11 +124,9 @@ String PendingTransaction_errorString(PendingTransaction ptr) {
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   debugStart?.call('WOWNERO_PendingTransaction_errorString');
   try {
-    final rPtr = lib!
-        .WOWNERO_PendingTransaction_errorString(ptr)
-        .cast<Utf8>();
+    final rPtr = lib!.WOWNERO_PendingTransaction_errorString(ptr).cast<Utf8>();
     final str = rPtr.toDartString();
-    malloc.free(rPtr);
+    WOWNERO_free(rPtr.cast());
     debugEnd?.call('WOWNERO_PendingTransaction_errorString');
     return str;
   } catch (e) {
@@ -186,7 +183,7 @@ String PendingTransaction_txid(PendingTransaction ptr, String separator) {
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_PendingTransaction_txid');
     return str;
   } catch (e) {
@@ -215,7 +212,7 @@ String PendingTransaction_subaddrAccount(
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_PendingTransaction_subaddrAccount');
     return str;
   } catch (e) {
@@ -236,7 +233,7 @@ String PendingTransaction_subaddrIndices(
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_PendingTransaction_subaddrIndices');
     return str;
   } catch (e) {
@@ -254,7 +251,7 @@ String PendingTransaction_multisigSignData(PendingTransaction ptr) {
   try {
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_PendingTransaction_multisigSignData');
     return str;
   } catch (e) {
@@ -284,7 +281,7 @@ String PendingTransaction_signersKeys(
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('WOWNERO_PendingTransaction_signersKeys');
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     return str;
   } catch (e) {
     errorHandler?.call('WOWNERO_PendingTransaction_signersKeys', e);
@@ -293,8 +290,7 @@ String PendingTransaction_signersKeys(
   }
 }
 
-String PendingTransaction_hex(
-    PendingTransaction ptr, String separator) {
+String PendingTransaction_hex(PendingTransaction ptr, String separator) {
   debugStart?.call('WOWNERO_PendingTransaction_hex');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   final separator_ = separator.toNativeUtf8().cast<Char>();
@@ -305,7 +301,7 @@ String PendingTransaction_hex(
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('WOWNERO_PendingTransaction_hex');
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     return str;
   } catch (e) {
     errorHandler?.call('WOWNERO_PendingTransaction_hex', e);
@@ -314,8 +310,7 @@ String PendingTransaction_hex(
   }
 }
 
-String PendingTransaction_txHex(
-    PendingTransaction ptr, String separator) {
+String PendingTransaction_txHex(PendingTransaction ptr, String separator) {
   debugStart?.call('WOWNERO_PendingTransaction_txHex');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   final separator_ = separator.toNativeUtf8().cast<Char>();
@@ -326,7 +321,7 @@ String PendingTransaction_txHex(
     final strPtr = txid.cast<Utf8>();
     final str = strPtr.toDartString();
     debugEnd?.call('WOWNERO_PendingTransaction_txHex');
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     return str;
   } catch (e) {
     errorHandler?.call('WOWNERO_PendingTransaction_txHex', e);
@@ -334,7 +329,6 @@ String PendingTransaction_txHex(
     return "";
   }
 }
-
 
 // UnsignedTransaction
 
@@ -357,7 +351,7 @@ String UnsignedTransaction_errorString(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_UnsignedTransaction_errorString');
     return str;
   } catch (e) {
@@ -376,7 +370,7 @@ String UnsignedTransaction_amount(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_UnsignedTransaction_amount');
     return str;
   } catch (e) {
@@ -395,7 +389,7 @@ String UnsignedTransaction_fee(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_UnsignedTransaction_fee');
     return str;
   } catch (e) {
@@ -414,7 +408,7 @@ String UnsignedTransaction_mixin(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_UnsignedTransaction_mixin');
     return str;
   } catch (e) {
@@ -432,7 +426,7 @@ String UnsignedTransaction_confirmationMessage(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_UnsignedTransaction_confirmationMessage');
     return str;
   } catch (e) {
@@ -451,7 +445,7 @@ String UnsignedTransaction_paymentId(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_UnsignedTransaction_paymentId');
     return str;
   } catch (e) {
@@ -470,7 +464,7 @@ String UnsignedTransaction_recipientAddress(UnsignedTransaction ptr) {
   try {
     final strPtr = errorString.cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_UnsignedTransaction_recipientAddress');
     return str;
   } catch (e) {
@@ -573,11 +567,9 @@ String TransactionInfo_description(TransactionInfo ptr) {
   debugStart?.call('WOWNERO_TransactionInfo_description');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_TransactionInfo_description(ptr)
-        .cast<Utf8>();
+    final strPtr = lib!.WOWNERO_TransactionInfo_description(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_TransactionInfo_description');
     return str;
   } catch (e) {
@@ -594,7 +586,7 @@ String TransactionInfo_subaddrIndex(TransactionInfo ptr) {
         .WOWNERO_TransactionInfo_subaddrIndex(ptr, defaultSeparator)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_TransactionInfo_subaddrIndex');
     return str;
   } catch (e) {
@@ -617,7 +609,7 @@ String TransactionInfo_label(TransactionInfo ptr) {
   try {
     final strPtr = lib!.WOWNERO_TransactionInfo_label(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_TransactionInfo_label');
     return str;
   } catch (e) {
@@ -647,10 +639,9 @@ String TransactionInfo_hash(TransactionInfo ptr) {
   debugStart?.call('WOWNERO_TransactionInfo_hash');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr =
-        lib!.WOWNERO_TransactionInfo_hash(ptr).cast<Utf8>();
+    final strPtr = lib!.WOWNERO_TransactionInfo_hash(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_TransactionInfo_hash');
     return str;
   } catch (e) {
@@ -672,10 +663,9 @@ String TransactionInfo_paymentId(TransactionInfo ptr) {
   debugStart?.call('WOWNERO_TransactionInfo_paymentId');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr =
-        lib!.WOWNERO_TransactionInfo_paymentId(ptr).cast<Utf8>();
+    final strPtr = lib!.WOWNERO_TransactionInfo_paymentId(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_TransactionInfo_paymentId');
     return str;
   } catch (e) {
@@ -705,11 +695,10 @@ String TransactionInfo_transfers_address(TransactionInfo ptr, int index) {
   debugStart?.call('WOWNERO_TransactionInfo_transfers_address');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_TransactionInfo_transfers_address(ptr, index)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_TransactionInfo_transfers_address(ptr, index).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_TransactionInfo_transfers_address');
     return str;
   } catch (e) {
@@ -781,11 +770,10 @@ String AddressBookRow_extra(AddressBookRow addressBookRow_ptr) {
   debugStart?.call('WOWNERO_AddressBookRow_extra');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_AddressBookRow_extra(addressBookRow_ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_AddressBookRow_extra(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_AddressBookRow_extra');
     return str;
   } catch (e) {
@@ -799,11 +787,10 @@ String AddressBookRow_getAddress(AddressBookRow addressBookRow_ptr) {
   debugStart?.call('WOWNERO_AddressBookRow_getAddress');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_AddressBookRow_getAddress(addressBookRow_ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_AddressBookRow_getAddress(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_AddressBookRow_getAddress');
     return str;
   } catch (e) {
@@ -821,7 +808,7 @@ String AddressBookRow_getDescription(AddressBookRow addressBookRow_ptr) {
         .WOWNERO_AddressBookRow_getDescription(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_AddressBookRow_getDescription');
     return str;
   } catch (e) {
@@ -839,7 +826,7 @@ String AddressBookRow_getPaymentId(AddressBookRow addressBookRow_ptr) {
         .WOWNERO_AddressBookRow_getPaymentId(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_AddressBookRow_getPaymentId');
     return str;
   } catch (e) {
@@ -964,11 +951,9 @@ String CoinsInfo_hash(CoinsInfo addressBookRow_ptr) {
   debugStart?.call('WOWNERO_CoinsInfo_hash');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_CoinsInfo_hash(addressBookRow_ptr)
-        .cast<Utf8>();
+    final strPtr = lib!.WOWNERO_CoinsInfo_hash(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_CoinsInfo_hash');
     return str;
   } catch (e) {
@@ -1070,11 +1055,10 @@ String CoinsInfo_address(CoinsInfo addressBookRow_ptr) {
   debugStart?.call('WOWNERO_CoinsInfo_address');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_CoinsInfo_address(addressBookRow_ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_CoinsInfo_address(addressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_CoinsInfo_address');
     return str;
   } catch (e) {
@@ -1088,11 +1072,10 @@ String CoinsInfo_addressLabel(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('WOWNERO_CoinsInfo_addressLabel');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_CoinsInfo_addressLabel(coinsInfo_ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_CoinsInfo_addressLabel(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_CoinsInfo_addressLabel');
     return str;
   } catch (e) {
@@ -1106,11 +1089,9 @@ String CoinsInfo_keyImage(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('WOWNERO_CoinsInfo_keyImage');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_CoinsInfo_keyImage(coinsInfo_ptr)
-        .cast<Utf8>();
+    final strPtr = lib!.WOWNERO_CoinsInfo_keyImage(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_CoinsInfo_keyImage');
     return str;
   } catch (e) {
@@ -1140,10 +1121,9 @@ String CoinsInfo_pubKey(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('WOWNERO_CoinsInfo_pubKey');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr =
-        lib!.WOWNERO_CoinsInfo_pubKey(coinsInfo_ptr).cast<Utf8>();
+    final strPtr = lib!.WOWNERO_CoinsInfo_pubKey(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_CoinsInfo_pubKey');
     return str;
   } catch (e) {
@@ -1165,11 +1145,10 @@ String CoinsInfo_description(CoinsInfo coinsInfo_ptr) {
   debugStart?.call('WOWNERO_CoinsInfo_description');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_CoinsInfo_description(coinsInfo_ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_CoinsInfo_description(coinsInfo_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_CoinsInfo_description');
     return str;
   } catch (e) {
@@ -1278,11 +1257,10 @@ String SubaddressRow_extra(SubaddressRow subaddressBookRow_ptr) {
   debugStart?.call('WOWNERO_SubaddressRow_extra');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_SubaddressRow_extra(subaddressBookRow_ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_SubaddressRow_extra(subaddressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressRow_extra');
     return str;
   } catch (e) {
@@ -1300,7 +1278,7 @@ String SubaddressRow_getAddress(SubaddressRow subaddressBookRow_ptr) {
         .WOWNERO_SubaddressRow_getAddress(subaddressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressRow_getAddress');
     return str;
   } catch (e) {
@@ -1314,11 +1292,10 @@ String SubaddressRow_getLabel(SubaddressRow subaddressBookRow_ptr) {
   debugStart?.call('WOWNERO_SubaddressRow_getLabel');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_SubaddressRow_getLabel(subaddressBookRow_ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_SubaddressRow_getLabel(subaddressBookRow_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressRow_getLabel');
     return str;
   } catch (e) {
@@ -1404,7 +1381,7 @@ String SubaddressAccountRow_extra(SubaddressAccountRow addressBookRow_ptr) {
         .WOWNERO_SubaddressAccountRow_extra(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressAccountRow_extra');
     return str;
   } catch (e) {
@@ -1423,7 +1400,7 @@ String SubaddressAccountRow_getAddress(
         .WOWNERO_SubaddressAccountRow_getAddress(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressAccountRow_getAddress');
     return str;
   } catch (e) {
@@ -1441,7 +1418,7 @@ String SubaddressAccountRow_getLabel(SubaddressAccountRow addressBookRow_ptr) {
         .WOWNERO_SubaddressAccountRow_getLabel(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressAccountRow_getLabel');
     return str;
   } catch (e) {
@@ -1460,7 +1437,7 @@ String SubaddressAccountRow_getBalance(
         .WOWNERO_SubaddressAccountRow_getBalance(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressAccountRow_getBalance');
     return str;
   } catch (e) {
@@ -1479,7 +1456,7 @@ String SubaddressAccountRow_getUnlockedBalance(
         .WOWNERO_SubaddressAccountRow_getUnlockedBalance(addressBookRow_ptr)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_SubaddressAccountRow_getUnlockedBalance');
     return str;
   } catch (e) {
@@ -1610,10 +1587,9 @@ String Wallet_seed(wallet ptr, {required String seedOffset}) {
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
     final seedOffset_ = seedOffset.toNativeUtf8().cast<Char>();
-    final strPtr =
-        lib!.WOWNERO_Wallet_seed(ptr, seedOffset_).cast<Utf8>();
+    final strPtr = lib!.WOWNERO_Wallet_seed(ptr, seedOffset_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(seedOffset_);
     debugEnd?.call('WOWNERO_Wallet_seed');
     return str;
@@ -1628,10 +1604,9 @@ String Wallet_getSeedLanguage(wallet ptr) {
   debugStart?.call('WOWNERO_Wallet_getSeedLanguage');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr =
-        lib!.WOWNERO_Wallet_getSeedLanguage(ptr).cast<Utf8>();
+    final strPtr = lib!.WOWNERO_Wallet_getSeedLanguage(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_getSeedLanguage');
     return str;
   } catch (e) {
@@ -1665,7 +1640,7 @@ String Wallet_errorString(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_errorString(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_errorString');
     return str;
   } catch (e) {
@@ -1691,7 +1666,7 @@ String Wallet_getPassword(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_getPassword(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_getPassword');
     return str;
   } catch (e) {
@@ -1720,7 +1695,7 @@ String Wallet_address(wallet ptr,
         .WOWNERO_Wallet_address(ptr, accountIndex, addressIndex)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_address');
     return str;
   } catch (e) {
@@ -1736,7 +1711,7 @@ String Wallet_path(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_path(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_path');
     return str;
   } catch (e) {
@@ -1771,11 +1746,10 @@ String Wallet_integratedAddress(wallet ptr, {required String paymentId}) {
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
     final paymentId_ = paymentId.toNativeUtf8().cast<Char>();
-    final strPtr = lib!
-        .WOWNERO_Wallet_integratedAddress(ptr, paymentId_)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_Wallet_integratedAddress(ptr, paymentId_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_integratedAddress');
     calloc.free(paymentId_);
     return str;
@@ -1792,7 +1766,7 @@ String Wallet_secretViewKey(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_secretViewKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_secretViewKey');
     return str;
   } catch (e) {
@@ -1808,7 +1782,7 @@ String Wallet_publicViewKey(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_publicViewKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_publicViewKey');
     return str;
   } catch (e) {
@@ -1824,7 +1798,7 @@ String Wallet_secretSpendKey(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_secretSpendKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_secretSpendKey');
     return str;
   } catch (e) {
@@ -1840,7 +1814,7 @@ String Wallet_publicSpendKey(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_publicSpendKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_publicSpendKey');
     return str;
   } catch (e) {
@@ -1854,11 +1828,10 @@ String Wallet_publicMultisigSignerKey(wallet ptr) {
   debugStart?.call('WOWNERO_Wallet_publicMultisigSignerKey');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_Wallet_publicMultisigSignerKey(ptr)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_Wallet_publicMultisigSignerKey(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_publicMultisigSignerKey');
     return str;
   } catch (e) {
@@ -1892,7 +1865,7 @@ String Wallet_filename(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_filename(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_filename');
     return str;
   } catch (e) {
@@ -1908,7 +1881,7 @@ String Wallet_keysFilename(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_keysFilename(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_keysFilename');
     return str;
   } catch (e) {
@@ -2073,7 +2046,8 @@ int Wallet_balance(wallet ptr, {required int accountIndex}) {
 int Wallet_unlockedBalance(wallet ptr, {required int accountIndex}) {
   debugStart?.call('WOWNERO_Wallet_unlockedBalance');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-  final unlockedBalance = lib!.WOWNERO_Wallet_unlockedBalance(ptr, accountIndex);
+  final unlockedBalance =
+      lib!.WOWNERO_Wallet_unlockedBalance(ptr, accountIndex);
   debugEnd?.call('WOWNERO_Wallet_unlockedBalance');
   return unlockedBalance;
 }
@@ -2081,7 +2055,8 @@ int Wallet_unlockedBalance(wallet ptr, {required int accountIndex}) {
 int Wallet_viewOnlyBalance(wallet ptr, {required int accountIndex}) {
   debugStart?.call('WOWNERO_Wallet_viewOnlyBalance');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-  final unlockedBalance = lib!.WOWNERO_Wallet_viewOnlyBalance(ptr, accountIndex);
+  final unlockedBalance =
+      lib!.WOWNERO_Wallet_viewOnlyBalance(ptr, accountIndex);
   debugEnd?.call('WOWNERO_Wallet_viewOnlyBalance');
   return unlockedBalance;
 }
@@ -2123,7 +2098,8 @@ int Wallet_estimateBlockChainHeight(wallet ptr) {
 int Wallet_daemonBlockChainHeight(wallet ptr) {
   debugStart?.call('WOWNERO_Wallet_daemonBlockChainHeight');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-  final daemonBlockChainHeight = lib!.WOWNERO_Wallet_daemonBlockChainHeight(ptr);
+  final daemonBlockChainHeight =
+      lib!.WOWNERO_Wallet_daemonBlockChainHeight(ptr);
   debugEnd?.call('WOWNERO_Wallet_daemonBlockChainHeight');
   return daemonBlockChainHeight;
 }
@@ -2140,7 +2116,8 @@ int Wallet_daemonBlockChainHeight_cached(wallet ptr) {
 void Wallet_daemonBlockChainHeight_runThread(wallet ptr, int seconds) {
   debugStart?.call('WOWNERO_Wallet_daemonBlockChainHeight_enableRefresh');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-  final ret = lib!.WOWNERO_Wallet_daemonBlockChainHeight_runThread(ptr, seconds);
+  final ret =
+      lib!.WOWNERO_Wallet_daemonBlockChainHeight_runThread(ptr, seconds);
   debugEnd?.call('WOWNERO_Wallet_daemonBlockChainHeight_enableRefresh');
   return ret;
 }
@@ -2159,7 +2136,7 @@ String Wallet_displayAmount(int amount) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_displayAmount(amount).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_displayAmount');
     return str;
   } catch (e) {
@@ -2195,7 +2172,7 @@ String Wallet_genPaymentId() {
   try {
     final strPtr = lib!.WOWNERO_Wallet_genPaymentId().cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_genPaymentId');
     return str;
   } catch (e) {
@@ -2260,7 +2237,7 @@ String Wallet_keyValid_error(
             secret_key_string_, address_string_, isViewKey, nettype)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(secret_key_string_);
     calloc.free(address_string_);
     return str;
@@ -2277,11 +2254,10 @@ String Wallet_paymentIdFromAddress(
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
     final strarg_ = strarg.toNativeUtf8().cast<Char>();
-    final strPtr = lib!
-        .WOWNERO_Wallet_paymentIdFromAddress(strarg_, nettype)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_Wallet_paymentIdFromAddress(strarg_, nettype).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(strarg_);
     return str;
   } catch (e) {
@@ -2313,8 +2289,8 @@ void Wallet_init3(
   final argv0_ = argv0.toNativeUtf8().cast<Char>();
   final defaultLogBaseName_ = defaultLogBaseName.toNativeUtf8().cast<Char>();
   final logPath_ = logPath.toNativeUtf8().cast<Char>();
-  final s = lib!
-      .WOWNERO_Wallet_init3(ptr, argv0_, defaultLogBaseName_, logPath_, console);
+  final s = lib!.WOWNERO_Wallet_init3(
+      ptr, argv0_, defaultLogBaseName_, logPath_, console);
   calloc.free(argv0_);
   calloc.free(defaultLogBaseName_);
   calloc.free(logPath_);
@@ -2327,11 +2303,10 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
     final passphrase_ = passphrase.toNativeUtf8().cast<Char>();
-    final strPtr = lib!
-        .WOWNERO_Wallet_getPolyseed(ptr, passphrase_)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_Wallet_getPolyseed(ptr, passphrase_).cast<Utf8>();
     final str = strPtr.toDartString();
-    calloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(passphrase_);
     debugEnd?.call('WOWNERO_Wallet_getPolyseed');
     return str;
@@ -2343,16 +2318,17 @@ String Wallet_getPolyseed(wallet ptr, {required String passphrase}) {
 }
 
 String Wallet_createPolyseed({
-    String language = "English",
-  }) {
+  String language = "English",
+}) {
   debugStart?.call('WOWNERO_Wallet_createPolyseed');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
     final language_ = language.toNativeUtf8();
-    final strPtr = lib!.WOWNERO_Wallet_createPolyseed(language_.cast()).cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_Wallet_createPolyseed(language_.cast()).cast<Utf8>();
     calloc.free(language_);
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_createPolyseed');
     return str;
   } catch (e) {
@@ -2461,7 +2437,8 @@ int Wallet_numSubaddressAccounts(wallet ptr) {
 int Wallet_numSubaddresses(wallet ptr, {required int accountIndex}) {
   debugStart?.call('WOWNERO_Wallet_numSubaddresses');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-  final numSubaddresses = lib!.WOWNERO_Wallet_numSubaddresses(ptr, accountIndex);
+  final numSubaddresses =
+      lib!.WOWNERO_Wallet_numSubaddresses(ptr, accountIndex);
   debugEnd?.call('WOWNERO_Wallet_numSubaddresses');
   return numSubaddresses;
 }
@@ -2475,7 +2452,7 @@ String Wallet_getSubaddressLabel(wallet ptr,
         .WOWNERO_Wallet_getSubaddressLabel(ptr, accountIndex, addressIndex)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_getSubaddressLabel');
     return str;
   } catch (e) {
@@ -2506,7 +2483,7 @@ String Wallet_getMultisigInfo(wallet ptr) {
   try {
     final strPtr = lib!.WOWNERO_Wallet_getMultisigInfo(ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_getMultisigInfo');
     return str;
   } catch (e) {
@@ -2516,23 +2493,25 @@ String Wallet_getMultisigInfo(wallet ptr) {
   }
 }
 
-PendingTransaction Wallet_createTransactionMultDest(wallet wptr,
-  {
-    required List<String> dstAddr,
-    String paymentId = "",
-    required bool isSweepAll,
-    required List<int> amounts,
-    required int mixinCount,
-    required int pendingTransactionPriority,
-    required int subaddr_account,
-    List<String> preferredInputs = const [],
-  }) {
+PendingTransaction Wallet_createTransactionMultDest(
+  wallet wptr, {
+  required List<String> dstAddr,
+  String paymentId = "",
+  required bool isSweepAll,
+  required List<int> amounts,
+  required int mixinCount,
+  required int pendingTransactionPriority,
+  required int subaddr_account,
+  List<String> preferredInputs = const [],
+}) {
   debugStart?.call('WOWNERO_Wallet_createTransactionMultDest');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   final dst_addr_list = dstAddr.join(defaultSeparatorStr).toNativeUtf8();
   final payment_id = paymentId.toNativeUtf8();
-  final amount_list = amounts.map((e) => e.toString()).join(defaultSeparatorStr).toNativeUtf8();
-  final preferredInputs_ = preferredInputs.join(defaultSeparatorStr).toNativeUtf8();
+  final amount_list =
+      amounts.map((e) => e.toString()).join(defaultSeparatorStr).toNativeUtf8();
+  final preferredInputs_ =
+      preferredInputs.join(defaultSeparatorStr).toNativeUtf8();
   final ret = lib!.WOWNERO_Wallet_createTransactionMultDest(
     wptr,
     dst_addr_list.cast(),
@@ -2799,11 +2778,10 @@ String Wallet_getCacheAttribute(wallet ptr, {required String key}) {
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
     final key_ = key.toNativeUtf8().cast<Char>();
-    final strPtr = lib!
-        .WOWNERO_Wallet_getCacheAttribute(ptr, key_)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_Wallet_getCacheAttribute(ptr, key_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(key_);
     debugEnd?.call('WOWNERO_Wallet_getCacheAttribute');
     return str;
@@ -2834,7 +2812,7 @@ String Wallet_getUserNote(wallet ptr, {required String txid}) {
     final txid_ = txid.toNativeUtf8().cast<Char>();
     final strPtr = lib!.WOWNERO_Wallet_getUserNote(ptr, txid_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(txid_);
     debugEnd?.call('WOWNERO_Wallet_getUserNote');
     return str;
@@ -2852,7 +2830,7 @@ String Wallet_getTxKey(wallet ptr, {required String txid}) {
     final txid_ = txid.toNativeUtf8().cast<Char>();
     final strPtr = lib!.WOWNERO_Wallet_getTxKey(ptr, txid_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(txid_);
     debugEnd?.call('WOWNERO_Wallet_getTxKey');
     return str;
@@ -2873,11 +2851,10 @@ String Wallet_signMessage(
   try {
     final message_ = message.toNativeUtf8().cast<Char>();
     final address_ = address.toNativeUtf8().cast<Char>();
-    final strPtr = lib!
-        .WOWNERO_Wallet_signMessage(ptr, message_, address_)
-        .cast<Utf8>();
+    final strPtr =
+        lib!.WOWNERO_Wallet_signMessage(ptr, message_, address_).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     calloc.free(message_);
     calloc.free(address_);
     debugEnd?.call('WOWNERO_Wallet_signMessage');
@@ -3007,7 +2984,7 @@ String Wallet_deviceShowAddress(wallet ptr,
         .WOWNERO_Wallet_deviceShowAddress(ptr, accountIndex, addressIndex)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_Wallet_deviceShowAddress');
     return str;
   } catch (e) {
@@ -3164,7 +3141,8 @@ wallet WalletManager_createDeterministicWalletFromSpendKey(
   required int restoreHeight,
   int kdfRounds = 1,
 }) {
-  debugStart?.call('WOWNERO_WalletManager_createDeterministicWalletFromSpendKey');
+  debugStart
+      ?.call('WOWNERO_WalletManager_createDeterministicWalletFromSpendKey');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   final path_ = path.toNativeUtf8().cast<Char>();
   final password_ = password.toNativeUtf8().cast<Char>();
@@ -3225,7 +3203,8 @@ wallet WalletManager_createWalletFromPolyseed(
 bool WalletManager_closeWallet(WalletManager wm_ptr, wallet ptr, bool store) {
   debugStart?.call('WOWNERO_WalletManager_closeWallet');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
-  final closeWallet = lib!.WOWNERO_WalletManager_closeWallet(wm_ptr, ptr, store);
+  final closeWallet =
+      lib!.WOWNERO_WalletManager_closeWallet(wm_ptr, ptr, store);
   debugEnd?.call('WOWNERO_WalletManager_closeWallet');
   return closeWallet;
 }
@@ -3269,7 +3248,7 @@ String WalletManager_findWallets(WalletManager wm_ptr, {required String path}) {
         .cast<Utf8>();
     final str = strPtr.toDartString();
     calloc.free(path_);
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_WalletManager_findWallets');
     return str;
   } catch (e) {
@@ -3283,11 +3262,9 @@ String WalletManager_errorString(WalletManager wm_ptr) {
   debugStart?.call('WOWNERO_WalletManager_errorString');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
   try {
-    final strPtr = lib!
-        .WOWNERO_WalletManager_errorString(wm_ptr)
-        .cast<Utf8>();
+    final strPtr = lib!.WOWNERO_WalletManager_errorString(wm_ptr).cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_WalletManager_errorString');
     return str;
   } catch (e) {
@@ -3396,7 +3373,7 @@ String WalletManager_resolveOpenAlias(
         .WOWNERO_WalletManager_resolveOpenAlias(wm_ptr, address_, dnssecValid)
         .cast<Utf8>();
     final str = strPtr.toDartString();
-    malloc.free(strPtr);
+    WOWNERO_free(strPtr.cast());
     debugEnd?.call('WOWNERO_WalletManager_resolveOpenAlias');
     calloc.free(address_);
     return str;
@@ -3567,7 +3544,6 @@ bool WOWNERO_cw_WalletListener_isNeedToRefresh(WalletListener wlptr) {
   return s;
 }
 
-
 bool WOWNERO_cw_WalletListener_isNewTransactionExist(WalletListener wlptr) {
   debugStart?.call('WOWNERO_cw_WalletListener_isNewTransactionExist');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
@@ -3577,7 +3553,8 @@ bool WOWNERO_cw_WalletListener_isNewTransactionExist(WalletListener wlptr) {
   return s;
 }
 
-void WOWNERO_cw_WalletListener_resetIsNewTransactionExist(WalletListener wlptr) {
+void WOWNERO_cw_WalletListener_resetIsNewTransactionExist(
+    WalletListener wlptr) {
   debugStart?.call('WOWNERO_cw_WalletListener_resetIsNewTransactionExist');
   lib ??= WowneroC(DynamicLibrary.open(libPath));
 
@@ -3606,7 +3583,8 @@ wallet WOWNERO_deprecated_restore14WordSeed({
   final path_ = path.toNativeUtf8();
   final password_ = password.toNativeUtf8();
   final language_ = language.toNativeUtf8();
-  final s = lib!.WOWNERO_deprecated_restore14WordSeed(path_.cast(), password_.cast(), language_.cast(), networkType);
+  final s = lib!.WOWNERO_deprecated_restore14WordSeed(
+      path_.cast(), password_.cast(), language_.cast(), networkType);
   calloc.free(path_);
   calloc.free(password_);
   calloc.free(language_);
@@ -3625,7 +3603,8 @@ wallet WOWNERO_deprecated_create14WordSeed({
   final path_ = path.toNativeUtf8();
   final password_ = path.toNativeUtf8();
   final language_ = path.toNativeUtf8();
-  final s = lib!.WOWNERO_deprecated_create14WordSeed(path_.cast(), password_.cast(), language_.cast(), networkType);
+  final s = lib!.WOWNERO_deprecated_create14WordSeed(
+      path_.cast(), password_.cast(), language_.cast(), networkType);
   calloc.free(path_);
   calloc.free(password_);
   calloc.free(language_);
@@ -3642,5 +3621,14 @@ int WOWNERO_deprecated_14WordSeedHeight({
   final s = lib!.WOWNERO_deprecated_14WordSeedHeight(seed_.cast());
   calloc.free(seed_);
   debugEnd?.call('WOWNERO_deprecated_14WordSeedHeight');
+  return s;
+}
+
+void WOWNERO_free(Pointer<Void> wlptr) {
+  debugStart?.call('WOWNERO_free');
+  lib ??= WowneroC(DynamicLibrary.open(libPath));
+
+  final s = lib!.WOWNERO_free(wlptr);
+  debugEnd?.call('WOWNERO_free');
   return s;
 }
