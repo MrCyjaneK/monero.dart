@@ -7,3 +7,6 @@
 pubspec.lock
 
 wallet2_api_c.h
+
+# FVM Version Cache
+.fvm/

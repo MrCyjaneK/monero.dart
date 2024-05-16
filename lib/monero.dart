@@ -2760,6 +2760,28 @@ bool Wallet_exportOutputs(wallet ptr, String filename, {required bool all}) {
   return s;
 }
 
+String Wallet_exportOutputsUR(
+  wallet ptr, {
+  int max_fragment_length = 130,
+  bool all = false,
+}) {
+  debugStart?.call('MONERO_Wallet_exportOutputsUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  try {
+    final strPtr = lib!
+        .MONERO_Wallet_exportOutputsUR(ptr, max_fragment_length, all)
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    MONERO_free(strPtr.cast());
+    debugEnd?.call('MONERO_Wallet_exportOutputsUR');
+    return str;
+  } catch (e) {
+    errorHandler?.call('MONERO_Wallet_exportOutputsUR', e);
+    debugEnd?.call('MONERO_Wallet_exportOutputsUR');
+    return "";
+  }
+}
+
 bool Wallet_importOutputs(wallet ptr, String filename) {
   debugStart?.call('MONERO_Wallet_importOutputs');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
@@ -2768,6 +2790,17 @@ bool Wallet_importOutputs(wallet ptr, String filename) {
   final s = lib!.MONERO_Wallet_importOutputs(ptr, filename_);
   calloc.free(filename_);
   debugEnd?.call('MONERO_Wallet_importOutputs');
+  return s;
+}
+
+bool Wallet_importOutputsUR(wallet ptr, String input) {
+  debugStart?.call('MONERO_Wallet_importOutputsUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final input_ = input.toNativeUtf8().cast<Char>();
+  final s = lib!.MONERO_Wallet_importOutputsUR(ptr, input_);
+  calloc.free(input_);
+  debugEnd?.call('MONERO_Wallet_importOutputsUR');
   return s;
 }
 

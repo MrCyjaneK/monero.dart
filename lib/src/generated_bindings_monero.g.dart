@@ -3639,6 +3639,26 @@ class MoneroC {
       _MONERO_Wallet_exportOutputsPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, bool)>();
 
+  ffi.Pointer<ffi.Char> MONERO_Wallet_exportOutputsUR(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    int max_fragment_length,
+    bool all,
+  ) {
+    return _MONERO_Wallet_exportOutputsUR(
+      wallet_ptr,
+      max_fragment_length,
+      all,
+    );
+  }
+
+  late final _MONERO_Wallet_exportOutputsURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, ffi.Size,
+              ffi.Bool)>>('MONERO_Wallet_exportOutputsUR');
+  late final _MONERO_Wallet_exportOutputsUR =
+      _MONERO_Wallet_exportOutputsURPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int, bool)>();
+
   bool MONERO_Wallet_importOutputs(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> filename,
@@ -3655,6 +3675,24 @@ class MoneroC {
               ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_importOutputs');
   late final _MONERO_Wallet_importOutputs =
       _MONERO_Wallet_importOutputsPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
+  bool MONERO_Wallet_importOutputsUR(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> input,
+  ) {
+    return _MONERO_Wallet_importOutputsUR(
+      wallet_ptr,
+      input,
+    );
+  }
+
+  late final _MONERO_Wallet_importOutputsURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_importOutputsUR');
+  late final _MONERO_Wallet_importOutputsUR =
+      _MONERO_Wallet_importOutputsURPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   bool MONERO_Wallet_setupBackgroundSync(
