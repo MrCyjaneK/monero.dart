@@ -148,6 +148,26 @@ bool PendingTransaction_commit(PendingTransaction ptr,
   return result;
 }
 
+String PendingTransaction_commitUR(
+    PendingTransaction ptr, int max_fragment_length) {
+  debugStart?.call('MONERO_PendingTransaction_commitUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final txid =
+      lib!.MONERO_PendingTransaction_commitUR(ptr, max_fragment_length);
+  debugEnd?.call('MONERO_PendingTransaction_commitUR');
+  try {
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    MONERO_free(strPtr.cast());
+    debugEnd?.call('MONERO_PendingTransaction_commitUR');
+    return str;
+  } catch (e) {
+    errorHandler?.call('MONERO_PendingTransaction_commitUR', e);
+    debugEnd?.call('MONERO_PendingTransaction_commitUR');
+    return "";
+  }
+}
+
 int PendingTransaction_amount(PendingTransaction ptr) {
   debugStart?.call('MONERO_PendingTransaction_amount');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
@@ -499,6 +519,26 @@ bool UnsignedTransaction_sign(UnsignedTransaction ptr, String signedFileName) {
   debugStart?.call('MONERO_UnsignedTransaction_sign');
   return v;
 }
+
+String UnsignedTransaction_signUR(
+    PendingTransaction ptr, int max_fragment_length) {
+  debugStart?.call('MONERO_UnsignedTransaction_signUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final txid = lib!.MONERO_UnsignedTransaction_signUR(ptr, max_fragment_length);
+  debugEnd?.call('MONERO_UnsignedTransaction_signUR');
+  try {
+    final strPtr = txid.cast<Utf8>();
+    final str = strPtr.toDartString();
+    MONERO_free(strPtr.cast());
+    debugEnd?.call('MONERO_UnsignedTransaction_signUR');
+    return str;
+  } catch (e) {
+    errorHandler?.call('MONERO_UnsignedTransaction_signUR', e);
+    debugEnd?.call('MONERO_UnsignedTransaction_signUR');
+    return "";
+  }
+}
+
 // TransactionInfo
 
 typedef TransactionInfo = Pointer<Void>;
@@ -2708,6 +2748,17 @@ UnsignedTransaction Wallet_loadUnsignedTx(wallet ptr,
   return s;
 }
 
+UnsignedTransaction Wallet_loadUnsignedUR(wallet ptr, {required String input}) {
+  debugStart?.call('MONERO_Wallet_loadUnsignedUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final input_ = input.toNativeUtf8().cast<Char>();
+  final s = lib!.MONERO_Wallet_loadUnsignedUR(ptr, input_);
+  calloc.free(input_);
+  debugEnd?.call('MONERO_Wallet_loadUnsignedUR');
+  return s;
+}
+
 bool Wallet_submitTransaction(wallet ptr, String filename) {
   debugStart?.call('MONERO_Wallet_submitTransaction');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
@@ -2716,6 +2767,17 @@ bool Wallet_submitTransaction(wallet ptr, String filename) {
   final s = lib!.MONERO_Wallet_submitTransaction(ptr, filename_);
   calloc.free(filename_);
   debugEnd?.call('MONERO_Wallet_submitTransaction');
+  return s;
+}
+
+bool Wallet_submitTransactionUR(wallet ptr, String input) {
+  debugStart?.call('MONERO_Wallet_submitTransactionUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final input_ = input.toNativeUtf8().cast<Char>();
+  final s = lib!.MONERO_Wallet_submitTransactionUR(ptr, input_);
+  calloc.free(input_);
+  debugEnd?.call('MONERO_Wallet_submitTransactionUR');
   return s;
 }
 
@@ -2738,6 +2800,28 @@ bool Wallet_exportKeyImages(wallet ptr, String filename, {required bool all}) {
   return s;
 }
 
+String Wallet_exportKeyImagesUR(
+  wallet ptr, {
+  int max_fragment_length = 130,
+  bool all = false,
+}) {
+  debugStart?.call('MONERO_Wallet_exportKeyImagesUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  try {
+    final strPtr = lib!
+        .MONERO_Wallet_exportKeyImagesUR(ptr, max_fragment_length, all)
+        .cast<Utf8>();
+    final str = strPtr.toDartString();
+    MONERO_free(strPtr.cast());
+    debugEnd?.call('MONERO_Wallet_exportKeyImagesUR');
+    return str;
+  } catch (e) {
+    errorHandler?.call('MONERO_Wallet_exportKeyImagesUR', e);
+    debugEnd?.call('MONERO_Wallet_exportKeyImagesUR');
+    return "";
+  }
+}
+
 bool Wallet_importKeyImages(wallet ptr, String filename) {
   debugStart?.call('MONERO_Wallet_importKeyImages');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
@@ -2746,6 +2830,17 @@ bool Wallet_importKeyImages(wallet ptr, String filename) {
   final s = lib!.MONERO_Wallet_importKeyImages(ptr, filename_);
   calloc.free(filename_);
   debugEnd?.call('MONERO_Wallet_importKeyImages');
+  return s;
+}
+
+bool Wallet_importKeyImagesUR(wallet ptr, String input) {
+  debugStart?.call('MONERO_Wallet_importKeyImagesUR');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+
+  final input_ = input.toNativeUtf8().cast<Char>();
+  final s = lib!.MONERO_Wallet_importKeyImagesUR(ptr, input_);
+  calloc.free(input_);
+  debugEnd?.call('MONERO_Wallet_importKeyImagesUR');
   return s;
 }
 

@@ -70,6 +70,24 @@ class MoneroC {
       _MONERO_PendingTransaction_commitPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, bool)>();
 
+  ffi.Pointer<ffi.Char> MONERO_PendingTransaction_commitUR(
+    ffi.Pointer<ffi.Void> pendingTx_ptr,
+    int max_fragment_length,
+  ) {
+    return _MONERO_PendingTransaction_commitUR(
+      pendingTx_ptr,
+      max_fragment_length,
+    );
+  }
+
+  late final _MONERO_PendingTransaction_commitURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Int)>>('MONERO_PendingTransaction_commitUR');
+  late final _MONERO_PendingTransaction_commitUR =
+      _MONERO_PendingTransaction_commitURPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int)>();
+
   int MONERO_PendingTransaction_amount(
     ffi.Pointer<ffi.Void> pendingTx_ptr,
   ) {
@@ -466,6 +484,24 @@ class MoneroC {
   late final _MONERO_UnsignedTransaction_sign =
       _MONERO_UnsignedTransaction_signPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> MONERO_UnsignedTransaction_signUR(
+    ffi.Pointer<ffi.Void> unsignedTx_ptr,
+    int max_fragment_length,
+  ) {
+    return _MONERO_UnsignedTransaction_signUR(
+      unsignedTx_ptr,
+      max_fragment_length,
+    );
+  }
+
+  late final _MONERO_UnsignedTransaction_signURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
+              ffi.Int)>>('MONERO_UnsignedTransaction_signUR');
+  late final _MONERO_UnsignedTransaction_signUR =
+      _MONERO_UnsignedTransaction_signURPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int)>();
 
   int MONERO_TransactionInfo_direction(
     ffi.Pointer<ffi.Void> txInfo_ptr,
@@ -3548,6 +3584,25 @@ class MoneroC {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Void> MONERO_Wallet_loadUnsignedUR(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> input,
+  ) {
+    return _MONERO_Wallet_loadUnsignedUR(
+      wallet_ptr,
+      input,
+    );
+  }
+
+  late final _MONERO_Wallet_loadUnsignedURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_loadUnsignedUR');
+  late final _MONERO_Wallet_loadUnsignedUR =
+      _MONERO_Wallet_loadUnsignedURPtr.asFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
   bool MONERO_Wallet_submitTransaction(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> fileName,
@@ -3564,6 +3619,24 @@ class MoneroC {
               ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_submitTransaction');
   late final _MONERO_Wallet_submitTransaction =
       _MONERO_Wallet_submitTransactionPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
+  bool MONERO_Wallet_submitTransactionUR(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> input,
+  ) {
+    return _MONERO_Wallet_submitTransactionUR(
+      wallet_ptr,
+      input,
+    );
+  }
+
+  late final _MONERO_Wallet_submitTransactionURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_submitTransactionUR');
+  late final _MONERO_Wallet_submitTransactionUR =
+      _MONERO_Wallet_submitTransactionURPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   bool MONERO_Wallet_hasUnknownKeyImages(
@@ -3601,6 +3674,26 @@ class MoneroC {
       _MONERO_Wallet_exportKeyImagesPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>, bool)>();
 
+  ffi.Pointer<ffi.Char> MONERO_Wallet_exportKeyImagesUR(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    int max_fragment_length,
+    bool all,
+  ) {
+    return _MONERO_Wallet_exportKeyImagesUR(
+      wallet_ptr,
+      max_fragment_length,
+      all,
+    );
+  }
+
+  late final _MONERO_Wallet_exportKeyImagesURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, ffi.Size,
+              ffi.Bool)>>('MONERO_Wallet_exportKeyImagesUR');
+  late final _MONERO_Wallet_exportKeyImagesUR =
+      _MONERO_Wallet_exportKeyImagesURPtr.asFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>, int, bool)>();
+
   bool MONERO_Wallet_importKeyImages(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> filename,
@@ -3617,6 +3710,24 @@ class MoneroC {
               ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_importKeyImages');
   late final _MONERO_Wallet_importKeyImages =
       _MONERO_Wallet_importKeyImagesPtr.asFunction<
+          bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
+
+  bool MONERO_Wallet_importKeyImagesUR(
+    ffi.Pointer<ffi.Void> wallet_ptr,
+    ffi.Pointer<ffi.Char> input,
+  ) {
+    return _MONERO_Wallet_importKeyImagesUR(
+      wallet_ptr,
+      input,
+    );
+  }
+
+  late final _MONERO_Wallet_importKeyImagesURPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Bool Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_importKeyImagesUR');
+  late final _MONERO_Wallet_importKeyImagesUR =
+      _MONERO_Wallet_importKeyImagesURPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
   bool MONERO_Wallet_exportOutputs(
