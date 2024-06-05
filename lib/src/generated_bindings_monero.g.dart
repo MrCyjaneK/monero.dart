@@ -3584,22 +3584,22 @@ class MoneroC {
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Void> MONERO_Wallet_loadUnsignedUR(
+  ffi.Pointer<ffi.Void> MONERO_Wallet_loadUnsignedTxUR(
     ffi.Pointer<ffi.Void> wallet_ptr,
     ffi.Pointer<ffi.Char> input,
   ) {
-    return _MONERO_Wallet_loadUnsignedUR(
+    return _MONERO_Wallet_loadUnsignedTxUR(
       wallet_ptr,
       input,
     );
   }
 
-  late final _MONERO_Wallet_loadUnsignedURPtr = _lookup<
+  late final _MONERO_Wallet_loadUnsignedTxURPtr = _lookup<
       ffi.NativeFunction<
           ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_loadUnsignedUR');
-  late final _MONERO_Wallet_loadUnsignedUR =
-      _MONERO_Wallet_loadUnsignedURPtr.asFunction<
+              ffi.Pointer<ffi.Char>)>>('MONERO_Wallet_loadUnsignedTxUR');
+  late final _MONERO_Wallet_loadUnsignedTxUR =
+      _MONERO_Wallet_loadUnsignedTxURPtr.asFunction<
           ffi.Pointer<ffi.Void> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 

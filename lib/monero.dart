@@ -2748,14 +2748,14 @@ UnsignedTransaction Wallet_loadUnsignedTx(wallet ptr,
   return s;
 }
 
-UnsignedTransaction Wallet_loadUnsignedUR(wallet ptr, {required String input}) {
-  debugStart?.call('MONERO_Wallet_loadUnsignedUR');
+UnsignedTransaction Wallet_loadUnsignedTxUR(wallet ptr, {required String input}) {
+  debugStart?.call('MONERO_Wallet_loadUnsignedTxUR');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
 
   final input_ = input.toNativeUtf8().cast<Char>();
-  final s = lib!.MONERO_Wallet_loadUnsignedUR(ptr, input_);
+  final s = lib!.MONERO_Wallet_loadUnsignedTxUR(ptr, input_);
   calloc.free(input_);
-  debugEnd?.call('MONERO_Wallet_loadUnsignedUR');
+  debugEnd?.call('MONERO_Wallet_loadUnsignedTxUR');
   return s;
 }
 
