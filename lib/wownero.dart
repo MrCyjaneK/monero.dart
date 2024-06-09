@@ -83,7 +83,7 @@ WowneroC? lib;
 String libPath = (() {
   if (Platform.isWindows) return 'wownero_libwallet2_api_c.dll';
   if (Platform.isMacOS) return 'wownero_libwallet2_api_c.dylib';
-  if (Platform.isIOS) return 'wownero_libwallet2_api_c.dylib';
+  if (Platform.isIOS) return 'WowneroWallet.framework/WowneroWallet';
   if (Platform.isAndroid) return 'libwownero_libwallet2_api_c.so';
   return 'wownero_libwallet2_api_c.so';
 })();
