@@ -13,7 +13,7 @@ jobs:
       - name: replace monero.dart dependency
         run: |
           CURRENT_HASH=$(cat pubspec.yaml | grep -A 1 'https://github.com/mrcyjanek/monero.dart' | tail -1 | awk '{ print $2 }')
-          sed -i pubspec.yaml "s/$CURRENT_HASH/$GITHUB_SHA/"
+          sed -i "s/$CURRENT_HASH/$GITHUB_SHA/" pubspec.yaml
       - uses: kuhnroyal/flutter-fvm-config-action@v2
         id: fvm-config-action
       - uses: subosito/flutter-action@v2
@@ -45,7 +45,7 @@ jobs:
       - name: replace monero.dart dependency
         run: |
           CURRENT_HASH=$(cat pubspec.yaml | grep -A 1 'https://github.com/mrcyjanek/monero.dart' | tail -1 | awk '{ print $2 }')
-          sed -i pubspec.yaml "s/$CURRENT_HASH/$GITHUB_SHA/"
+          sed -i "s/$CURRENT_HASH/$GITHUB_SHA/" pubspec.yaml
       - uses: kuhnroyal/flutter-fvm-config-action@v2
         id: fvm-config-action
       - uses: subosito/flutter-action@v2
@@ -78,7 +78,7 @@ jobs:
       - name: replace monero.dart dependency
         run: |
           CURRENT_HASH=$(cat pubspec.yaml | grep -A 1 'https://github.com/mrcyjanek/monero.dart' | tail -1 | awk '{ print $2 }')
-          sed -i pubspec.yaml "s/$CURRENT_HASH/$GITHUB_SHA/"
+          sed -i "s/$CURRENT_HASH/$GITHUB_SHA/" pubspec.yaml 
       - name: build
         run: |
           cd $GITHUB_WORKSPACE
