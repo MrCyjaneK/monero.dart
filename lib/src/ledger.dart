@@ -1,16 +1,35 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:typed_data';
 
+import 'package:ffi/ffi.dart';
 import 'package:ledger_flutter/src/ledger.dart';
 import 'package:ledger_flutter/src/ledger/ledger_operation.dart';
 import 'package:ledger_flutter/src/models/ledger_device.dart';
 import 'package:ledger_flutter/src/utils/buffer.dart';
+import 'package:monero/monero.dart' as monero;
 
 Timer? _ledgerExchangeTimer;
+Uint8List _lastLedgerRequest = Uint8List(0);
 
-void enableLedgerExchange() {
-  _ledgerExchangeTimer = Timer.periodic(Duration(milliseconds: 1), (_) {
-    // ToDo: Check incoming Pointer
+void enableLedgerExchange(
+    monero.wallet ptr, Ledger ledger, LedgerDevice device) {
+  _ledgerExchangeTimer = Timer.periodic(Duration(milliseconds: 1), (_) async {
+    final ledgerRequestLength = monero.Wallet_getSendToDeviceLength(ptr);
+    final ledgerRequest = monero.Wallet_getSendToDevice(ptr)
+        .cast<Uint8>()
+        .asTypedList(ledgerRequestLength);
+    if (ledgerRequestLength > 0 && _lastLedgerRequest != ledgerRequest) {
+      final response = await exchange(ledger, device, ledgerRequest);
+
+      final Pointer<Uint8> result = malloc<Uint8>(response.length);
+      result.asTypedList(response.length).addAll(response);
+      monero.Wallet_setDeviceReceivedData(
+          ptr, result.cast<UnsignedChar>(), response.length);
+
+      monero.Wallet_setDeviceSendData(
+          ptr, malloc<Uint8>(0).cast<UnsignedChar>(), 0);
+    }
   });
 }
 
@@ -27,7 +46,7 @@ Future<Uint8List> exchange(
       ins: 0x00,
       p1: 0x00,
       p2: 0x00,
-      inputData: Uint8List.fromList([]),
+      inputData: data,
     ),
   );
 }
@@ -53,13 +72,7 @@ class ExchangeOperation extends LedgerOperation<Uint8List> {
 
   @override
   Future<List<Uint8List>> write(ByteDataWriter writer) async {
-    writer
-      ..writeUint8(cla)
-      ..writeUint8(ins)
-      ..writeUint8(p1)
-      ..writeUint8(p2)
-      ..writeUint8(inputData.length)
-      ..write(inputData);
+    writer.write(inputData);
 
     return [writer.toBytes()];
   }
