@@ -3496,6 +3496,42 @@ wallet WalletManager_createDeterministicWalletFromSpendKey(
   return w;
 }
 
+wallet WalletManager_createWalletFromDevice(
+  WalletManager wm_ptr, {
+  required String path,
+  required String password,
+  int networkType = 0,
+  required String deviceName,
+  int restoreHeight = 0,
+  String subaddressLookahead = "",
+  int kdfRounds = 1,
+}) {
+  debugStart
+      ?.call('MONERO_WalletManager_createWalletFromDevice');
+  lib ??= MoneroC(DynamicLibrary.open(libPath));
+  final path_ = path.toNativeUtf8().cast<Char>();
+  final password_ = password.toNativeUtf8().cast<Char>();
+  final deviceName_ = deviceName.toNativeUtf8().cast<Char>();
+  final subaddressLookahead_ = subaddressLookahead.toNativeUtf8().cast<Char>();
+  final w = lib!.MONERO_WalletManager_createWalletFromDevice(
+      wm_ptr,
+      path_,
+      password_,
+      networkType,
+      deviceName_,
+      restoreHeight,
+      subaddressLookahead_,
+      defaultSeparator, // ignore
+      defaultSeparator, // ignore
+      kdfRounds);
+  calloc.free(path_);
+  calloc.free(password_);
+  calloc.free(deviceName_);
+  calloc.free(subaddressLookahead_);
+  debugEnd?.call('MONERO_WalletManager_createWalletFromDevice');
+  return w;
+}
+
 wallet WalletManager_createWalletFromPolyseed(
   WalletManager wm_ptr, {
   required String path,
