@@ -275,25 +275,6 @@ class MoneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> MONERO_PendingTransaction_txHex(
-    ffi.Pointer<ffi.Void> pendingTx_ptr,
-    ffi.Pointer<ffi.Char> separator,
-  ) {
-    return _MONERO_PendingTransaction_txHex(
-      pendingTx_ptr,
-      separator,
-    );
-  }
-
-  late final _MONERO_PendingTransaction_txHexPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Char>)>>('MONERO_PendingTransaction_txHex');
-  late final _MONERO_PendingTransaction_txHex =
-      _MONERO_PendingTransaction_txHexPtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
-
   int MONERO_UnsignedTransaction_status(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {

@@ -330,26 +330,6 @@ String PendingTransaction_hex(PendingTransaction ptr, String separator) {
   }
 }
 
-String PendingTransaction_txHex(PendingTransaction ptr, String separator) {
-  debugStart?.call('MONERO_PendingTransaction_txHex');
-  lib ??= MoneroC(DynamicLibrary.open(libPath));
-  final separator_ = separator.toNativeUtf8().cast<Char>();
-  final txid = lib!.MONERO_PendingTransaction_txHex(ptr, separator_);
-  calloc.free(separator_);
-  debugEnd?.call('MONERO_PendingTransaction_txHex');
-  try {
-    final strPtr = txid.cast<Utf8>();
-    final str = strPtr.toDartString();
-    debugEnd?.call('MONERO_PendingTransaction_txHex');
-    MONERO_free(strPtr.cast());
-    return str;
-  } catch (e) {
-    errorHandler?.call('MONERO_PendingTransaction_txHex', e);
-    debugEnd?.call('MONERO_PendingTransaction_txHex');
-    return "";
-  }
-}
-
 // UnsignedTransaction
 
 typedef UnsignedTransaction = Pointer<Void>;
@@ -3506,8 +3486,7 @@ wallet WalletManager_createWalletFromDevice(
   String subaddressLookahead = "",
   int kdfRounds = 1,
 }) {
-  debugStart
-      ?.call('MONERO_WalletManager_createWalletFromDevice');
+  debugStart?.call('MONERO_WalletManager_createWalletFromDevice');
   lib ??= MoneroC(DynamicLibrary.open(libPath));
   final path_ = path.toNativeUtf8().cast<Char>();
   final password_ = password.toNativeUtf8().cast<Char>();

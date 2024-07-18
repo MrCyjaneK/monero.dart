@@ -6,7 +6,7 @@ WDIR="$(realpath $(dirname $0))"
 
 pushd $(mktemp -d)
     git clone https://github.com/mrcyjanek/monero_c .
-    git checkout eaa7bdb8be3479418445ddb18bf33d453f64afcf
+    git checkout d1e246aaf4c53b60ff9e4ab4a4ac3ae4a1f94a33
     # git submodule update --init --force
     # ./apply_patches.sh wownero
     # ./apply_patches.sh monero

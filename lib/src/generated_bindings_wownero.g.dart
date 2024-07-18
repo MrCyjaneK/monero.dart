@@ -259,25 +259,6 @@ class WowneroC {
           ffi.Pointer<ffi.Char> Function(
               ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> WOWNERO_PendingTransaction_txHex(
-    ffi.Pointer<ffi.Void> pendingTx_ptr,
-    ffi.Pointer<ffi.Char> separator,
-  ) {
-    return _WOWNERO_PendingTransaction_txHex(
-      pendingTx_ptr,
-      separator,
-    );
-  }
-
-  late final _WOWNERO_PendingTransaction_txHexPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Void>,
-              ffi.Pointer<ffi.Char>)>>('WOWNERO_PendingTransaction_txHex');
-  late final _WOWNERO_PendingTransaction_txHex =
-      _WOWNERO_PendingTransaction_txHexPtr.asFunction<
-          ffi.Pointer<ffi.Char> Function(
-              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>)>();
-
   int WOWNERO_UnsignedTransaction_status(
     ffi.Pointer<ffi.Void> unsignedTx_ptr,
   ) {
@@ -4450,32 +4431,6 @@ class WowneroC {
       _WOWNERO_WalletManager_verifyWalletPasswordPtr.asFunction<
           bool Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>, bool, int)>();
-
-  bool WOWNERO_WalletManager_queryWalletDevice(
-    int device_type,
-    ffi.Pointer<ffi.Char> keys_file_name,
-    ffi.Pointer<ffi.Char> password,
-    int kdf_rounds,
-  ) {
-    return _WOWNERO_WalletManager_queryWalletDevice(
-      device_type,
-      keys_file_name,
-      password,
-      kdf_rounds,
-    );
-  }
-
-  late final _WOWNERO_WalletManager_queryWalletDevicePtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Bool Function(
-              ffi.Int,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Uint64)>>('WOWNERO_WalletManager_queryWalletDevice');
-  late final _WOWNERO_WalletManager_queryWalletDevice =
-      _WOWNERO_WalletManager_queryWalletDevicePtr.asFunction<
-          bool Function(
-              int, ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> WOWNERO_WalletManager_findWallets(
     ffi.Pointer<ffi.Void> wm_ptr,

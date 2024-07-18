@@ -310,26 +310,6 @@ String PendingTransaction_hex(PendingTransaction ptr, String separator) {
   }
 }
 
-String PendingTransaction_txHex(PendingTransaction ptr, String separator) {
-  debugStart?.call('WOWNERO_PendingTransaction_txHex');
-  lib ??= WowneroC(DynamicLibrary.open(libPath));
-  final separator_ = separator.toNativeUtf8().cast<Char>();
-  final txid = lib!.WOWNERO_PendingTransaction_txHex(ptr, separator_);
-  calloc.free(separator_);
-  debugEnd?.call('WOWNERO_PendingTransaction_txHex');
-  try {
-    final strPtr = txid.cast<Utf8>();
-    final str = strPtr.toDartString();
-    debugEnd?.call('WOWNERO_PendingTransaction_txHex');
-    WOWNERO_free(strPtr.cast());
-    return str;
-  } catch (e) {
-    errorHandler?.call('WOWNERO_PendingTransaction_txHex', e);
-    debugEnd?.call('WOWNERO_PendingTransaction_txHex');
-    return "";
-  }
-}
-
 // UnsignedTransaction
 
 typedef UnsignedTransaction = Pointer<Void>;
