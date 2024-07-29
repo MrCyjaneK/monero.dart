@@ -1,5 +1,7 @@
 # monero.dart
 
+> **This repository got migrated to https://github.com/MrCyjaneK/monero_c/ (impls/monero.dart subdirectory)**
+
 ## Usage
 
 ```bash
